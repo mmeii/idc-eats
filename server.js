@@ -2,6 +2,7 @@ const express = require("express");
 const path = require("path");
 const session = require("express-session");
 const keys = require("./config/keys");
+const authRoutes = require("./routes/auth-routes");
 const PORT = process.env.PORT || 3001;
 const app = express();
 
@@ -19,6 +20,8 @@ app.use(
 
 app.use(passport.initialize());
 app.use(passport.session());
+
+app.use(authRoutes);
 
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
