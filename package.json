@@ -21,6 +21,7 @@
   "dependencies": {
     "@material-ui/core": "^4.11.3",
     "@material-ui/icons": "^4.11.2",
+    "axios": "^0.21.1",
     "bcrypt": "^5.0.1",
     "express": "^4.16.3",
     "express-session": "^1.17.1",
