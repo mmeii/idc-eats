@@ -1,13 +1,13 @@
-//create User model
+//create Category model
 module.exports = (sequelize, DataTypes) => {
-    const Option = sequelize.define('Option', {
+    const Category  = sequelize.define('Category', {
       id: {
         type: DataTypes.INTEGER,
         allowNull: false,
         autoIncrement: true,
         primaryKey: true
       },
-      option: {
+      category: {
           type: DataTypes.STRING,
           allowNull: false
       },
@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
-            model: 'types', // 'types' refers to table name
+            model: 'types', // 'categoryTypes' refers to table name
             key: 'id' // 'id' referes to column name in types table
         }
       },
@@ -24,7 +24,7 @@ module.exports = (sequelize, DataTypes) => {
       },
     });
 
-    Type.hasMany(Option);
+    Type.hasMany(Category);
   
-    return Option;
+    return Category;
   };

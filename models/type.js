@@ -1,6 +1,6 @@
-//create Option_Type model
+//create Type model
 module.exports = (sequelize, DataTypes) => {
-    const OptionType = sequelize.define('OptionType', {
+    const Type = sequelize.define('Type', {
       id: {
         type: DataTypes.INTEGER,
         allowNull: false,
@@ -13,5 +13,5 @@ module.exports = (sequelize, DataTypes) => {
       },
     });
   
-    return OptionType;
+    return Type;
   };
