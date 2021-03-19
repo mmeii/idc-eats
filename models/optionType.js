@@ -1,20 +1,17 @@
-//create User model
+//create Option_Type model
 module.exports = (sequelize, DataTypes) => {
-    const User = sequelize.define('User', {
+    const OptionType = sequelize.define('OptionType', {
       id: {
         type: DataTypes.INTEGER,
         allowNull: false,
         autoIncrement: true,
         primaryKey: true
       },
-      username: {
+      type: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      password: {
-        type: DataTypes.STRING,
-      },
     });
   
-    return User;
+    return OptionType;
   };
