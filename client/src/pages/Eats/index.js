@@ -1,36 +1,17 @@
 import React from 'react';
-import Checkbox from '@material-ui/core/Checkbox';
+import PriceCheckbox from '../../components/PriceCheckbox';
 
-export default function Checkboxes() {
-    const [checked, setChecked] = React.useState(true);
 
-    const handleChange = (event) => {
-        setChecked(event.target.checked);
-    };
+const Eats = () => {
 
     return (
         <div>
-
-            <Checkbox
-                color="primary"
-                inputProps={{ 'aria-label': 'secondary checkbox' }}
-            />
-
-            <Checkbox
-                color="primary"
-                inputProps={{ 'aria-label': 'secondary checkbox' }}
-            />
-
-            <Checkbox
-                color="primary"
-                inputProps={{ 'aria-label': 'secondary checkbox' }}
-            />
-
-            <Checkbox
-                color="primary"
-                inputProps={{ 'aria-label': 'secondary checkbox' }}
-            />
-
+            <PriceCheckbox /> $
+            <PriceCheckbox /> $$
+            <PriceCheckbox /> $$$
+            <PriceCheckbox /> $$$$
         </div>
-    );
+    )
 }
+
+export default Eats;
