@@ -21,11 +21,14 @@
   "dependencies": {
     "@material-ui/core": "^4.11.3",
     "@material-ui/icons": "^4.11.2",
+    "bcrypt": "^5.0.1",
     "express": "^4.16.3",
+    "express-session": "^1.17.1",
     "framer-motion": "^4.0.0",
     "if-env": "^1.0.4",
     "passport": "^0.4.1",
     "passport-google-oauth20": "^2.0.0",
+    "passport-local": "^1.0.0",
     "react-router-dom": "^5.2.0"
   }
 }
