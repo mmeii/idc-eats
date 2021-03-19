@@ -1,6 +1,9 @@
 import React, { Component } from "react";
-import Nav from './components/Nav';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import Nav from './components/Nav';
+import Eats from './pages/Eats';
+// import Login from './pages/Login';
+
 
 import "./App.css";
 
@@ -10,9 +13,9 @@ function App() {
       <Nav />
       <Switch>
         {/* ADD in after created component={Login} */}
-        <Route exact path="/login" />
+        <Route exact path="/" />
         {/*  ADD in after created component={Eats} */}
-        <Route exact path="/eats" />
+        <Route exact path="/eats" component={Eats} />
         {/*  ADD in after created component={Preferences} */}
         <Route exact path="/preferences" />
         {/*  ADD in after created component={Logout} */}
