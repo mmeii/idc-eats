@@ -9,6 +9,8 @@ function App() {
     <Router>
       <Nav />
       <Switch>
+        {/* ADD in after created component={Login} */}
+        <Route exact path="/login" />
         {/*  ADD in after created component={Eats} */}
         <Route exact path="/eats" />
         {/*  ADD in after created component={Preferences} */}
