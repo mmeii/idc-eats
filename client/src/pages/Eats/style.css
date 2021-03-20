@@ -1,14 +1,15 @@
 .eats,
 .oneRestaurant {
     text-align: center;
-    min-height: 100vh;
+    height: 100%;
 }
 
 .imgDiv {
-    min-height: 65vh;
+    max-width: 100%;
+    height: auto;
 }
 
 #restaurantImg {
     width: auto;
-    height: 80vh;
+    height: 70vh;
 }
