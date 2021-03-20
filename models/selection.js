@@ -27,5 +27,6 @@ module.exports = (sequelize, DataTypes) => {
           },
         });
       };
-Selection;
+    
+    return Selection;
   };
