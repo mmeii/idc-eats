@@ -53,7 +53,7 @@ function Login() {
                 animate={{ scale: 2 }}
                 transition={{ duration: 0.5 }}
             />
-            <img src="" alt="idc-eats logo" />
+            <img src={`${process.env.PUBLIC_URL}/assets/logo.jpg`} alt="idc-eats logo" />
             <form>
                 <input id="email" label="email" />
                 <input id="password" label="password" />
