@@ -10,8 +10,13 @@ module.exports = (sequelize, DataTypes) => {
       type: {
         type: DataTypes.STRING,
         allowNull: false,
+        values: ['diet', 'cuisine']
       },
     });
+
+    Type.associate = (models) => {
+      Type.hasMany(models.Category)
+    };
   
     return Type;
   };
