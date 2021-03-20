@@ -1,9 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from "react-router-dom";
-import Details from '../Details';
 import PriceCheckbox from '../../components/PriceCheckbox';
 import { makeStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
+import Btn from '../../components/Btn';
 import Container from '@material-ui/core/Container';
 
 const useStyles = makeStyles((theme) => ({
@@ -16,6 +15,21 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Eats() {
 
+    const [showDetails, setShowDetails] = useState(false);
+    const onClick = () => setShowDetails(true);
+
+    const RestaurantDetails = () => (
+        <div className="restaurantDetail">
+            <div>
+                <img src="https://via.placeholder.com/300" alt="restaurant" />
+            </div>
+
+            <Link to="details">
+                <Btn label="More Info" />
+            </Link>
+        </div>
+    );
+
     return (
         <Container>
             <div className="eats">
@@ -26,21 +40,19 @@ export default function Eats() {
                     <PriceCheckbox /> $$$$
                 </div>
 
-                <Button variant="contained" color="primary">
-                    Rando
-                </Button>
+                <Btn
+                    variant="contained"
+                    color="primary"
+                    onClick={onClick}
+                    value="Rando"
+                    label="Rando"
+                />
 
-                <div className="restaurantImage">
-                    <img src="https://via.placeholder.com/300" alt="restaurant" />
-                </div>
+                {/* should be hidden tuntil Rando btn is clicked */}
+                {showDetails ? <RestaurantDetails /> : null}
 
-                <Button variant="contained" color="primary">
-                    <Link to="details">
-                        More Info
-                    </Link>
-                </Button>
             </div>
-        </Container>
+        </Container >
     )
 }
 
