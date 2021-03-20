@@ -1,6 +1,7 @@
 const express = require("express");
 const yelp = require("../api/yelp");
 const router = express.Router();
+const db = require("../models");
 
 const randomCategory = (weights, categories) => {
 	const totalWeight = 0;
