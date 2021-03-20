@@ -12,11 +12,12 @@ passport.use(
 			proxy: true,
 		},
 		async (accessToken, refreshToken, profile, done) => {
-			const id = profile.id;
+			const oauthId = profile.id;
+
 			const username = profile.displayName;
 
 			const user = await db.User.findOrCreate({
-				where: { id },
+				where: { oauthId },
 				defaults: {
 					username,
 				},
