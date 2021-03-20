@@ -1,3 +1,17 @@
+html {
+  background-image: url("/assets/background-unsplash-com.jpg");
+  background-size: cover;
+  width: 100vw;
+  height: 100vh;
+}
+
+.container {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-radius: 10px;
+  background-color: rgba(242, 240, 237, 0.8);
+}
+
 .App {
   text-align: center;
 }
