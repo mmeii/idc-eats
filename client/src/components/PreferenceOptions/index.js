@@ -5,13 +5,15 @@ import PriceCheckbox from '../../components/PriceCheckbox';
 
 
 
-  export default function CheckboxLabels() {
-  
-  
-    return (
-        <FormGroup row>
-          <PriceCheckbox />
-          
-        </FormGroup>
-      );
-    }
+function PreferenceOptions() {
+
+
+  return (
+    <FormGroup row>
+      <PriceCheckbox />
+
+    </FormGroup>
+  );
+}
+
+export default PreferenceOptions;

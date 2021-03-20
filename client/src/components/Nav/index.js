@@ -25,7 +25,12 @@ export default function SimpleMenu() {
 			>
 				<RestaurantMenuIcon />
 			</Button>
+
 			<a href="/auth/logout">Logout</a>
+
+			<a href="/auth/google">Login with Google</a>
+
+
 			<Menu
 				id="simple-menu"
 				anchorEl={anchorEl}
@@ -34,7 +39,6 @@ export default function SimpleMenu() {
 				onClose={handleClose}
 			>
 				<MenuItem onClick={handleClose}>
-					{/* ADD in link to random foods/search page */}
 					<Link to="eats">Eats</Link>
 				</MenuItem>
 
@@ -44,10 +48,10 @@ export default function SimpleMenu() {
 				</MenuItem>
 
 				<MenuItem onClick={handleClose}>
-					{/* ADD in link to logout page */}
-					<Link to="logout">Logout</Link>
+					<a href="/auth/logout">Logout</a>
 				</MenuItem>
 			</Menu>
+
 		</div>
 	);
 }
