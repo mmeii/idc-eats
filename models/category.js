@@ -15,14 +15,6 @@ module.exports = (sequelize, DataTypes) => {
 			type: DataTypes.STRING,
 			allowNull: false,
 		},
-		type_id: {
-			type: DataTypes.INTEGER,
-			allowNull: false,
-			references: {
-				model: "types", // 'categoryTypes' refers to table name
-				key: "id", // 'id' refers to column name in types table
-			},
-		},
 		selected: {
 			type: DataTypes.BOOLEAN,
 		},
