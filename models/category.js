@@ -7,7 +7,11 @@ module.exports = (sequelize, DataTypes) => {
 			autoIncrement: true,
 			primaryKey: true,
 		},
-		category: {
+		yelp_category: {
+			type: DataTypes.STRING,
+			allowNull: false,
+		},
+		display_category: {
 			type: DataTypes.STRING,
 			allowNull: false,
 		},
@@ -16,13 +20,31 @@ module.exports = (sequelize, DataTypes) => {
 			allowNull: false,
 			references: {
 				model: "types", // 'categoryTypes' refers to table name
-				key: "id", // 'id' referes to column name in types table
+				key: "id", // 'id' refers to column name in types table
 			},
 		},
-		display: {
+		selected: {
 			type: DataTypes.BOOLEAN,
 		},
 	});
+
+	Category.associate = (models) => {
+		Category.hasMany(models.Preference)
+	};
+
+	Category.associate = (models) => {
+		Category.hasMany(models.Weight, {
+			onDelete: 'cascade',
+		});
+	};
+
+	Category.associate = (models) => {
+		Category.belongsTo(models.Type, {
+			foreignKey: {
+				allowNull: false
+			}
+		});
+	};
 
 	return Category;
 };
