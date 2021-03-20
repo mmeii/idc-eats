@@ -1,14 +1,33 @@
-import React from "react";
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Nav from './components/Nav';
 import Eats from './pages/Eats';
 import Details from './pages/Details';
+import React, { useState, useEffect } from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 // import Login from './pages/Login';
-
 
 import "./App.css";
 
 function App() {
+
+  const [coords, setCoords] = useState({});
+
+  useEffect(() => {
+    fetchCoords();
+  }, []);
+
+  useEffect(() => {
+    console.log(coords);
+  }, [coords]);
+
+  const fetchCoords = () => {
+    navigator.geolocation.getCurrentPosition(res => {
+      setCoords({
+        latitude: res.coords.latitude,
+        longitude: res.coords.longitude,
+      });
+    });
+  };
+
   return (
     <Router>
       <Nav />
@@ -26,6 +45,5 @@ function App() {
     </Router>
   );
 }
-
 
 export default App;
