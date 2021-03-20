@@ -15,6 +15,24 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
       },
     });
+
+    User.associate = (models) => {
+      User.hasMany(models.Selection, {
+        onDelete: 'cascade',
+      });
+    };
+
+    User.association = (models) => {
+      User.hasMany(models.Preference, {
+        onDelete: 'cascade',
+      });
+    };
+
+    User.association = (models) => {
+      User.hasMany(models.Weigh, {
+        onDelete: 'cascade',
+      });
+    };
   
     return User;
   };
