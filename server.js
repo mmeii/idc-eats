@@ -1,4 +1,5 @@
 const express = require("express");
+const passport = require("passport");
 const path = require("path");
 const session = require("express-session");
 const keys = require("./config/keys");
@@ -8,12 +9,8 @@ const app = express();
 
 // Require models for syncing
 const db = require("./models");
-
-db.sequelize.sync().then(function() {
-	app.listen(PORT, function() {
-		console.log("Listening on port %s", PORT);
-	});
-});
+require("./services/passport/google");
+require("./services/passport/local");
 
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
@@ -45,7 +42,7 @@ app.get("*", (req, res) => {
 	res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });
 
-db.sequelize.sync().then(function() {
+db.sequelize.sync({ force: true }).then(function () {
 	app.listen(PORT, () => {
 		console.log(`🌎 ==> API server now on port ${PORT}!`);
 	});

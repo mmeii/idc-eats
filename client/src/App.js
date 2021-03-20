@@ -3,8 +3,15 @@ import Eats from './pages/Eats';
 import Details from './pages/Details';
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+<<<<<<< HEAD
+
+import Nav from "./components/Nav";
+import Eats from "./pages/Eats";
+// import Login from './pages/Login';
+=======
 import Login from './pages/login';
 
+>>>>>>> ba2998d9df8b0d3d227bc9949ec4bc67cd79ec00
 
 import "./App.css";
 
