@@ -4,6 +4,7 @@ import PriceCheckbox from '../../components/PriceCheckbox';
 import { makeStyles } from '@material-ui/core/styles';
 import Btn from '../../components/Btn';
 import Container from '@material-ui/core/Container';
+import ContainerWrapper from '../../components/ContainerWrapper';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -20,9 +21,7 @@ export default function Eats() {
 
     const RestaurantDetails = () => (
         <div className="restaurantDetail">
-            <div>
-                <img src={`${process.env.PUBLIC_URL}/assets/rando.jpg`} alt="restaurant" />
-            </div>
+
 
             <Link to="details">
                 <Btn label="More Info" />
@@ -31,8 +30,12 @@ export default function Eats() {
     );
 
     return (
-        <Container>
+        <ContainerWrapper>
             <div className="eats">
+                <div>
+                    <img src={`${process.env.PUBLIC_URL}/assets/rando.jpg`} alt="restaurant" />
+                </div>
+
                 <div className="price">
                     <PriceCheckbox /> $
                     <PriceCheckbox /> $$
@@ -52,7 +55,7 @@ export default function Eats() {
                 {showDetails ? <RestaurantDetails /> : null}
 
             </div>
-        </Container >
+        </ContainerWrapper >
     )
 }
 
