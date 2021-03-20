@@ -30,10 +30,6 @@
     "mysql2": "^2.2.5",
     "passport": "^0.4.1",
     "passport-google-oauth20": "^2.0.0",
-<<<<<<< HEAD
-    "sequelize": "^6.5.1",
-=======
->>>>>>> 25595fec818a9720911ec21efe274bb691f5db12
     "passport-local": "^1.0.0",
     "react-router-dom": "^5.2.0",
     "sequelize": "^6.5.1"

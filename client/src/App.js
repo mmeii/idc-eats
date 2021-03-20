@@ -5,6 +5,7 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Login from './pages/Login';
 import "./App.css";
+import Preferences from './pages/Preferences';
 
 function App() {
 
@@ -37,7 +38,7 @@ function App() {
         <Route exact path="/eats" component={Eats} />
         <Route exact path="/details" component={Details} />
         {/*  ADD in after created component={Preferences} */}
-        <Route exact path="/preferences" />
+        <Route exact path="/preferences" component={Preferences} />
         {/*  ADD in after created component={Logout} */}
         <Route exact path="/logout" />
       </Switch>
