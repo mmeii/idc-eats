@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const db = require("../../models");
+const db = require("../models");
 const passport = require("passport");
 
 router.post("/auth/signup", async (req, res) => {
@@ -37,7 +37,7 @@ router.get(
 	}
 );
 
-app.get("/auth/logout", (req, res) => {
+router.get("/auth/logout", (req, res) => {
 	req.logout();
 	res.redirect("/");
 });
