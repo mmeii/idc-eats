@@ -21,7 +21,7 @@ export default function Eats() {
     const RestaurantDetails = () => (
         <div className="restaurantDetail">
             <div>
-                <img src="https://via.placeholder.com/300" alt="restaurant" />
+                <img src={`${process.env.PUBLIC_URL}/assets/rando.jpg`} alt="restaurant" />
             </div>
 
             <Link to="details">
