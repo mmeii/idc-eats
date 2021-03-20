@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from "react-router-dom";
-import Details from '../Details';
 import PriceCheckbox from '../../components/PriceCheckbox';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
@@ -16,6 +15,23 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Eats() {
 
+    const [showDetails, setShowDetails] = useState(false);
+    const onClick = () => setShowDetails(true);
+
+    const RestaurantDetails = () => (
+        <div className="restaurantDetail">
+            <div>
+                <img src="https://via.placeholder.com/300" alt="restaurant" />
+            </div>
+
+            <Button variant="contained" color="primary">
+                <Link to="details">
+                    More Info
+                </Link>
+            </Button>
+        </div>
+    );
+
     return (
         <Container>
             <div className="eats">
@@ -26,19 +42,17 @@ export default function Eats() {
                     <PriceCheckbox /> $$$$
                 </div>
 
-                <Button variant="contained" color="primary">
+                <Button
+                    variant="contained"
+                    color="primary"
+                    onClick={onClick}
+                >
                     Rando
                 </Button>
 
-                <div className="restaurantImage">
-                    <img src="https://via.placeholder.com/300" alt="restaurant" />
-                </div>
+                {/* should be hidden tuntil Rando btn is clicked */}
+                {showDetails ? <RestaurantDetails /> : null}
 
-                <Button variant="contained" color="primary">
-                    <Link to="details">
-                        More Info
-                    </Link>
-                </Button>
             </div>
         </Container>
     )
