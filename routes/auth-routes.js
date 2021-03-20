@@ -6,6 +6,14 @@ const passport = require("passport");
 
 router.post("/auth/signup", async (req, res) => {
 	try {
+		const existingUser = await db.User.findOne({
+			where: { username: req.body.username },
+		});
+
+		if (existingUser) {
+			return res.send("Username already taken.");
+		}
+
 		const user = await db.User.create(req.body);
 
 		res.json(user);

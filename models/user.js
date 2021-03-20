@@ -1,3 +1,5 @@
+const bcrypt = require("bcrypt");
+const saltRounds = 10;
 //create User model
 module.exports = (sequelize, DataTypes) => {
 	const User = sequelize.define("User", {
@@ -9,7 +11,6 @@ module.exports = (sequelize, DataTypes) => {
 		},
 		oauthId: {
 			type: DataTypes.STRING,
-			primaryKey: true,
 		},
 		username: {
 			type: DataTypes.STRING,
@@ -18,6 +19,11 @@ module.exports = (sequelize, DataTypes) => {
 		password: {
 			type: DataTypes.STRING,
 		},
+	});
+
+	User.beforeCreate(async user => {
+		const hashedPassword = await bcrypt.hash(user.password, saltRounds);
+		user.password = hashedPassword;
 	});
 
 	return User;

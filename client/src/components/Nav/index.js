@@ -25,7 +25,6 @@ export default function SimpleMenu() {
 			>
 				<RestaurantMenuIcon />
 			</Button>
-			<a href="/auth/google">Login with Google</a>
 			<a href="/auth/logout">Logout</a>
 			<Menu
 				id="simple-menu"
