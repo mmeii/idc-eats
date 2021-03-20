@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Nav from './components/Nav';
 import Eats from './pages/Eats';
-// import Login from './pages/Login';
+import Login from './pages/login';
 
 
 import "./App.css";
@@ -13,7 +13,7 @@ function App() {
       <Nav />
       <Switch>
         {/* ADD in after created component={Login} */}
-        <Route exact path="/" />
+        <Route exact path="/" component={Login}/>
         {/*  ADD in after created component={Eats} */}
         <Route exact path="/eats" component={Eats} />
         {/*  ADD in after created component={Preferences} */}
