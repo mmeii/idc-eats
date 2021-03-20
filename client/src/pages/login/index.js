@@ -3,14 +3,14 @@ import { motion } from "framer-motion";
 
 function Login() {
     const handleClick = (event) => {
-        
+
     };
     return (
-       
+
         <div>
             <motion.div
-            animate={{ scale: 2 }}
-            transition={{ duration: 0.5 }}
+                animate={{ scale: 2 }}
+                transition={{ duration: 0.5 }}
             />
             <img src="" alt="idc-eats logo" />
             <form>

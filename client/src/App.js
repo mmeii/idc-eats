@@ -3,17 +3,9 @@ import Eats from './pages/Eats';
 import Details from './pages/Details';
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-<<<<<<< HEAD
-
-import Nav from "./components/Nav";
-import Eats from "./pages/Eats";
-// import Login from './pages/Login';
-=======
-import Login from './pages/login';
-
->>>>>>> ba2998d9df8b0d3d227bc9949ec4bc67cd79ec00
-
+import Login from './pages/Login';
 import "./App.css";
+import Preferences from './pages/Preferences';
 
 function App() {
 
@@ -41,12 +33,12 @@ function App() {
       <Nav />
       <Switch>
         {/* ADD in after created component={Login} */}
-        <Route exact path="/" component={Login}/>
+        <Route exact path="/" component={Login} />
         {/*  ADD in after created component={Eats} */}
         <Route exact path="/eats" component={Eats} />
         <Route exact path="/details" component={Details} />
         {/*  ADD in after created component={Preferences} */}
-        <Route exact path="/preferences" />
+        <Route exact path="/preferences" component={Preferences} />
         {/*  ADD in after created component={Logout} */}
         <Route exact path="/logout" />
       </Switch>
