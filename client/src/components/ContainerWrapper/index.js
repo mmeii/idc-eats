@@ -10,9 +10,7 @@ export default function ContainerWrapper(props) {
         // display="flex"
         // style={{ minHeight: '100vh' }}
         >
-
             {props.children}
-
         </Container>
     );
 }
