@@ -1,0 +1,14 @@
+.eats,
+.oneRestaurant {
+    text-align: center;
+    min-height: 100vh;
+}
+
+.imgDiv {
+    min-height: 65vh;
+}
+
+#restaurantImg {
+    width: auto;
+    height: 80vh;
+}
