@@ -7,29 +7,26 @@ module.exports = (sequelize, DataTypes) => {
         autoIncrement: true,
         primaryKey: true
       },
-      user_id: {
-          type: DataTypes.INTEGER,
-          allowNull: false,
-          references: {
-              model: 'users',
-              key: 'id'
-          }
-      },
-      option_id: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        references: {
-            model: 'options', // 'types' refers to table name
-            key: 'id' // 'id' referes to column name in types table
-        }
-      },
-      active: {
+      selected: {
         type: DataTypes.BOOLEAN,
       },
     });
 
-    User.hasMany(UserPreference);
-    Category.hasMany(UserPreference);
+    Preference.associate = (models) => {
+      Preference.belongsTo(models.User, {
+        foreignKey: {
+          allowNull: false,
+        },
+      });
+    };
+
+    Preference.associate = (models) => {
+      Preference.belongsTo(models.Type, {
+        foreignKey: {
+          allowNull: false,
+        },
+      });
+    };
   
     return UserPreference;
   };
