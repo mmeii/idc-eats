@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from "react-router-dom";
+import Details from '../Details';
 import PriceCheckbox from '../../components/PriceCheckbox';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
@@ -19,10 +21,10 @@ export default function Eats() {
             <div className="eats">
                 <div className="price">
                     <PriceCheckbox /> $
-                <PriceCheckbox /> $$
-                <PriceCheckbox /> $$$
-                <PriceCheckbox /> $$$$
-            </div>
+                    <PriceCheckbox /> $$
+                    <PriceCheckbox /> $$$
+                    <PriceCheckbox /> $$$$
+                </div>
 
                 <Button variant="contained" color="primary">
                     Rando
@@ -33,8 +35,10 @@ export default function Eats() {
                 </div>
 
                 <Button variant="contained" color="primary">
-                    More Info
-            </Button>
+                    <Link to="details">
+                        More Info
+                    </Link>
+                </Button>
             </div>
         </Container>
     )
