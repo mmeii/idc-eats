@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from "react-router-dom";
-import Button from '@material-ui/core/Button';
+import Btn from '../../components/Btn';
 import Container from '@material-ui/core/Container';
 
 const Details = () => {
@@ -19,19 +19,17 @@ const Details = () => {
                 </div>
 
                 {/* goes back to Eats/rando page */}
-                <Button variant="contained" color="primary">
-                    <Link to="eats">
-                        Nope
-                    </Link>
-                </Button>
+                <Link to="eats">
+                    <Btn label="Nope" />
+                </Link>
+
 
                 {/* goes to google for directions */}
                 {/* TODO: add location and restaurant address */}
-                <Button variant="contained" color="primary">
-                    <a href="https://www.google.com/maps" target="_blank" rel="noopener noreferrer">
-                        Take Me There!
-                    </a>
-                </Button>
+                <a href="https://www.google.com/maps" target="_blank" rel="noopener noreferrer">
+                    <Btn label="Take Me There!" />
+                </a>
+
 
             </Container>
         </div>

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from "react-router-dom";
 import PriceCheckbox from '../../components/PriceCheckbox';
 import { makeStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
+import Btn from '../../components/Btn';
 import Container from '@material-ui/core/Container';
 
 const useStyles = makeStyles((theme) => ({
@@ -24,11 +24,9 @@ export default function Eats() {
                 <img src="https://via.placeholder.com/300" alt="restaurant" />
             </div>
 
-            <Button variant="contained" color="primary">
-                <Link to="details">
-                    More Info
-                </Link>
-            </Button>
+            <Link to="details">
+                <Btn label="More Info" />
+            </Link>
         </div>
     );
 
@@ -42,19 +40,19 @@ export default function Eats() {
                     <PriceCheckbox /> $$$$
                 </div>
 
-                <Button
+                <Btn
                     variant="contained"
                     color="primary"
                     onClick={onClick}
-                >
-                    Rando
-                </Button>
+                    value="Rando"
+                    label="Rando"
+                />
 
                 {/* should be hidden tuntil Rando btn is clicked */}
                 {showDetails ? <RestaurantDetails /> : null}
 
             </div>
-        </Container>
+        </Container >
     )
 }
 
