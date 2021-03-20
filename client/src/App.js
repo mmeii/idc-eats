@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Nav from './components/Nav';
 import Eats from './pages/Eats';
+import Details from './pages/Details';
 // import Login from './pages/Login';
 
 
@@ -16,6 +17,7 @@ function App() {
         <Route exact path="/" />
         {/*  ADD in after created component={Eats} */}
         <Route exact path="/eats" component={Eats} />
+        <Route exact path="/details" component={Details} />
         {/*  ADD in after created component={Preferences} */}
         <Route exact path="/preferences" />
         {/*  ADD in after created component={Logout} */}
