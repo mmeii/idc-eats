@@ -45,7 +45,7 @@ module.exports = (sequelize, DataTypes) => {
   };
 
   User.association = (models) => {
-    User.hasMany(models.Weigh, {
+    User.hasMany(models.Weight, {
       onDelete: 'cascade',
     });
   };
