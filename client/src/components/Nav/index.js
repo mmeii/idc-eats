@@ -24,10 +24,12 @@ export default function SimpleMenu() {
 				aria-haspopup="true"
 				onClick={handleClick}
 			>
-				<RestaurantMenuIcon fontSize="large" />
+				<RestaurantMenuIcon id="navIcon" fontSize="large" />
 			</Button>
 
-			<a href="/auth/logout">Logout</a>
+			{/* this is linked directly on the nav button menu dropdown 
+			
+			<a href="/auth/logout">Logout</a> */}
 
 			<a href="/auth/google">Login with Google</a>
 
