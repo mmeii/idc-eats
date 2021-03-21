@@ -1,0 +1,42 @@
+#login {
+    background-color: white;
+    margin-right: auto;
+    margin-left: auto;
+    width: 50%;
+    align-items: center;
+    
+
+}
+
+form {
+    text-align: center;
+    height: 100%;
+    background-color: pink;
+    opacity: 50%;
+}
+
+#logo {
+    width: auto;
+    height: 70vh;
+    margin-right: auto;
+    margin-left:auto;
+    float: left;
+    opacity: 100%;
+    border-color: blue;
+    border-width: 2px;
+  
+}
+
+h1, a {
+    text-align: center;
+    font-family: sans-serif;
+    align-items: center;
+}
+
+i {
+    align-items: center;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+

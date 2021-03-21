@@ -1,0 +1,7 @@
+.square {
+    border-radius: 20px;
+    margin: auto;
+    height: 60vh;
+    width: 60vh;
+    background-image:url(./logo.jpg);
+}

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { motion } from "framer-motion";
+import Motion from "../../components/Motion"
+import './style.css';
 
 function Login() {
 
@@ -16,9 +17,8 @@ function Login() {
 	};
 
 	return (
-		<div>
-			<motion.div animate={{ scale: 2 }} transition={{ duration: 0.5 }} />
-			<img src="" alt="idc-eats logo" />
+		<div id="login">
+			<Motion />
 			<form onSubmit={event => handleSubmit(event)}>
 				<input
 					id="username"
