@@ -21,5 +21,9 @@ module.exports = (sequelize, DataTypes) => {
         });
     };
 
+    Restaurant.associate = (models) => {
+      Restaurant.belongsToMany(models.Category, { through: 'Restaurant_Category' });
+  };   
+
     return Restaurant;
   };
