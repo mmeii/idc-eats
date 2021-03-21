@@ -27,13 +27,9 @@ form {
   
 }
 
-h1, a {
+#googlelogin {
     text-align: center;
     font-family: sans-serif;
-    align-items: center;
-}
-
-i {
     align-items: center;
     margin-right: auto;
     margin-left: auto;
