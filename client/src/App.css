@@ -1,6 +1,6 @@
 html {
-  background-image: url("/assets/background-unsplash-com.jpg");
-  background-size: cover;
+  background-image: url("/assets/food-emojis.jpg");
+  background-repeat: repeat;
   width: 100vw;
   height: 100vh;
 }
@@ -11,7 +11,7 @@ html {
   margin-bottom: 20px;
   padding-bottom: 20px;
   border-radius: 10px;
-  background-color: rgba(242, 240, 237, 0.8);
+  background-color: rgba(242, 240, 237, 0.85);
 }
 
 .App {
