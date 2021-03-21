@@ -10,6 +10,16 @@ module.exports = (sequelize, DataTypes) => {
       selected: {
         type: DataTypes.BOOLEAN,
       },
+      createdAt: {
+        type: DataTypes.DATE,
+        allowNull: false,
+        defaultValue: new Date(),
+      },
+      updatedAt: {
+        type: DataTypes.DATE,
+        allowNull: false,
+        defaultValue: new Date(),
+      }
     });
 
     Preference.associate = (models) => {
