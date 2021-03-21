@@ -9,10 +9,25 @@
 }
 
 form {
+    align-items: center;
     text-align: center;
     height: 100%;
     background-color: pink;
-    opacity: 50%;
+    opacity: 70%;
+    border-radius: 20px;
+   
+}
+
+#loginbtn {
+    margin: 20px;
+}
+
+#createbtn {
+    margin: 20px;
+}
+
+input {
+    margin: 10px;
 }
 
 #logo {
@@ -20,7 +35,6 @@ form {
     height: 70vh;
     margin-right: auto;
     margin-left:auto;
-    float: left;
     opacity: 100%;
     border-color: blue;
     border-width: 2px;
