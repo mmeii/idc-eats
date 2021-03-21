@@ -4,7 +4,7 @@ import Eats from './pages/Eats';
 import Details from './pages/Details';
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Login from './pages/Login';
+import Login from './pages/Login'
 
 import "./App.css";
 import Preferences from './pages/Preferences';
