@@ -4,6 +4,7 @@ import Button from "@material-ui/core/Button";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import RestaurantMenuIcon from "@material-ui/icons/RestaurantMenu";
+import './style.css';
 
 export default function SimpleMenu() {
 	const [anchorEl, setAnchorEl] = React.useState(null);
@@ -17,15 +18,19 @@ export default function SimpleMenu() {
 	};
 
 	return (
-		<div>
+		<div className="nav">
 			<Button
 				aria-controls="simple-menu"
 				aria-haspopup="true"
 				onClick={handleClick}
 			>
-				<RestaurantMenuIcon />
+				<RestaurantMenuIcon fontSize="large" />
 			</Button>
+
+			<a href="/auth/logout">Logout</a>
+
 			<a href="/auth/google">Login with Google</a>
+
 
 			<Menu
 				id="simple-menu"

@@ -1,4 +1,5 @@
-const { Sequelize } = require(".");
+const bcrypt = require("bcrypt");
+const saltRounds = 10;
 
 //create User model
 module.exports = (sequelize, DataTypes) => {
@@ -48,6 +49,11 @@ module.exports = (sequelize, DataTypes) => {
       onDelete: 'cascade',
     });
   };
+
+  User.beforeCreate(async user => {
+		const hashedPassword = await bcrypt.hash(user.password, saltRounds);
+		user.password = hashedPassword;
+	});
   
   return User;
 };

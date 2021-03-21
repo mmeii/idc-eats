@@ -1,3 +1,4 @@
+
 import Nav from './components/Nav';
 import Eats from './pages/Eats';
 import Details from './pages/Details';
@@ -45,6 +46,7 @@ function App() {
       </Switch>
     </Router>
   );
+
 }
 
 export default App;
