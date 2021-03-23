@@ -37,22 +37,6 @@ module.exports = (sequelize, DataTypes) => {
         defaultValue: new Date(),
       }
     });
-
-    Weight.associate = (models) => {
-      Weight.belongsTo(models.User, {
-        foreignKey: {
-            allowNull: false,
-        },
-      });
-    };
-
-    Weight.associate = (models) => {
-        Weight.belongsTo(models.Category, {
-          foreignKey: {
-              allowNull: false,
-          },
-        });
-      };
     
     return Weight;
 };

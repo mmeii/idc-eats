@@ -15,6 +15,7 @@ module.exports = (sequelize, DataTypes) => {
 			type: DataTypes.STRING,
 			allowNull: false,
 		},
+		/*
 		type_id: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
@@ -23,6 +24,7 @@ module.exports = (sequelize, DataTypes) => {
 				key: "id", // 'id' refers to column name in types table
 			},
 		},
+		*/
 		createdAt: {
 			type: DataTypes.DATE,
 			allowNull: false,
@@ -46,11 +48,11 @@ module.exports = (sequelize, DataTypes) => {
 	};
 
 	Category.associate = (models) => {
-		Category.belongsTo(models.Type, {
-			foreignKey: {
-				allowNull: false
-			}
-		});
+		Category.belongsTo(models.Type,
+			//foreignKey: {
+			// 	allowNull: false
+			//}
+		);
 	};
 
 	Category.associate = (models) => {
