@@ -31,7 +31,7 @@ module.exports = (sequelize, DataTypes) => {
     };
 
     Preference.associate = (models) => {
-      Preference.belongsTo(models.Type, {
+      Preference.belongsTo(models.Category, {
         foreignKey: {
           allowNull: false,
         },
