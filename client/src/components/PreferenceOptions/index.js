@@ -7,6 +7,7 @@ import PriceCheckbox from '../../components/PriceCheckbox';
 
 function PreferenceOptions() {
 
+  //* add map function to map over yelp categories 
 
   return (
     <FormGroup row>
