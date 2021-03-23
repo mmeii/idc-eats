@@ -43,7 +43,7 @@ function Login() {
       <div id="googlelogin">
         <h1>Login with Google</h1>
         <a href="/auth/google">
-          <i class="fab fa-google"></i>
+          <i className="fab fa-google"></i>
         </a>
       </div>
     </ContainerWrapper>
