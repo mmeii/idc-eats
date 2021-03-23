@@ -23,6 +23,33 @@ passport.use(
 				},
 			});
 
+			// We may need to split out the above findOrCreate and do a find first and
+			// if it fails, then do a create with the below Weight inserts (db.Weigh.create)
+			// otherwise it will insert new Weights data on the find as well
+			// like:
+			// const user = await db.User.findOne({
+			// 	where: { oauthId },
+			// });
+			// if (user === null) {
+			// 	user = await db.User.create({
+			// 		username: username
+			// 	});
+
+			// 	const categories = await db.Category.findAll({
+			// 		where: {
+			// 			TypeId: 2
+			// 		}
+			// 	});
+
+			// 	for (let category of categories) {
+			// 		await db.Weight.create({
+			// 			user_id: user.id,
+			// 			category_id: category.id,
+			// 			value: 50
+			// 		});
+			// 	}
+			// }
+
 			done(null, user);
 		}
 	)

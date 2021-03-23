@@ -28,12 +28,9 @@ module.exports = (sequelize, DataTypes) => {
     Restaurant.associate = (models) => {
       Restaurant.hasMany(models.Selection, {
         onDelete: 'cascade',
-        });
-    };
-
-    Restaurant.associate = (models) => {
+      });
       Restaurant.belongsToMany(models.Category, { through: 'Restaurant_Category' });
-  };   
+    };
 
     return Restaurant;
   };

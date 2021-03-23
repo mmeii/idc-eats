@@ -28,15 +28,12 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
         },
       });
+      Selection.belongsTo(models.User, {
+        foreignKey: {
+            allowNull: false,
+        },
+      });
     };
-
-    Selection.associate = (models) => {
-        Selection.belongsTo(models.User, {
-          foreignKey: {
-              allowNull: false,
-          },
-        });
-      };
     
     return Selection;
   };

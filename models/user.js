@@ -36,15 +36,9 @@ module.exports = (sequelize, DataTypes) => {
     User.hasMany(models.Selection, {
       onDelete: 'cascade',
     });
-  };
-
-  User.association = (models) => {
-    User.hasMany(models.Preference, {
+    User.hasMany(models.Preference/*, {
       onDelete: 'cascade',
-    });
-  };
-
-  User.association = (models) => {
+    }*/);
     User.hasMany(models.Weight, {
       onDelete: 'cascade',
     });

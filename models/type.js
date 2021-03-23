@@ -25,7 +25,9 @@ module.exports = (sequelize, DataTypes) => {
     });
 
     Type.associate = (models) => {
-      Type.hasMany(models.Category)
+      Type.hasMany(models.Category, {
+        onDelete: 'cascade',
+      })
     };
   
     return Type;
