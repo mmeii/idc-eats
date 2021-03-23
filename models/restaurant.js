@@ -1,14 +1,17 @@
-//create Selection model
+//create Restaurant model
 module.exports = (sequelize, DataTypes) => {
-    const Selection = sequelize.define('Selection', {
+    const Restaurant = sequelize.define('Restaurant', {
       id: {
         type: DataTypes.INTEGER,
         allowNull: false,
         autoIncrement: true,
         primaryKey: true
       },
-      committed: {
-        type: DataTypes.BOOLEAN,
+      yelp_id: {
+        type: DataTypes.INTEGER,
+      },
+      name: {
+        type: DataTypes.STRING,
       },
       createdAt: {
         type: DataTypes.DATE,
@@ -22,18 +25,12 @@ module.exports = (sequelize, DataTypes) => {
       }
     });
 
-    Selection.associate = (models) => {
-      Selection.belongsTo(models.Restaurant, {
-        foreignKey: {
-            allowNull: false,
-        },
+    Restaurant.associate = (models) => {
+      Restaurant.hasMany(models.Selection, {
+        onDelete: 'cascade',
       });
-      Selection.belongsTo(models.User, {
-        foreignKey: {
-            allowNull: false,
-        },
-      });
+      Restaurant.belongsToMany(models.Category, { through: 'Restaurant_Category' });
     };
-    
-    return Selection;
+
+    return Restaurant;
   };

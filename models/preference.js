@@ -7,9 +7,14 @@ module.exports = (sequelize, DataTypes) => {
         autoIncrement: true,
         primaryKey: true
       },
-      selected: {
-        type: DataTypes.BOOLEAN,
-      },
+      // user_id: {
+      //   type: DataTypes.INTEGER,
+      //   allowNull: false,
+      //   references: {
+      //     model: "users", // 'categoryTypes' refers to table name
+      //     key: "id", // 'id' refers to column name in types table
+      //   },
+      // },
       createdAt: {
         type: DataTypes.DATE,
         allowNull: false,
@@ -22,16 +27,14 @@ module.exports = (sequelize, DataTypes) => {
       }
     });
 
+
     Preference.associate = (models) => {
-      Preference.belongsTo(models.User, {
+      Preference.belongsTo(models.Category, {
         foreignKey: {
           allowNull: false,
         },
       });
-    };
-
-    Preference.associate = (models) => {
-      Preference.belongsTo(models.Category, {
+      Preference.belongsTo(models.User, {
         foreignKey: {
           allowNull: false,
         },

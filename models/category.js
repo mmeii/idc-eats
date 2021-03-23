@@ -14,17 +14,15 @@ module.exports = (sequelize, DataTypes) => {
 		display_category: {
 			type: DataTypes.STRING,
 			allowNull: false,
-		},
-		/*
-		type_id: {
-			type: DataTypes.INTEGER,
-			allowNull: false,
-			references: {
-				model: "types", // 'categoryTypes' refers to table name
-				key: "id", // 'id' refers to column name in types table
-			},
-		},
-		*/
+		},		
+		// type_id: {
+		// 	type: DataTypes.INTEGER,
+		// 	allowNull: false,
+		// 	references: {
+		// 		model: "types", // 'categoryTypes' refers to table name
+		// 		key: "id", // 'id' refers to column name in types table
+		// 	},
+		// },
 		createdAt: {
 			type: DataTypes.DATE,
 			allowNull: false,
@@ -38,26 +36,18 @@ module.exports = (sequelize, DataTypes) => {
 	});
 
 	Category.associate = (models) => {
-		Category.hasMany(models.Preference)
-	};
+		Category.hasMany(models.Preference);
 
-	Category.associate = (models) => {
 		Category.hasMany(models.Weight, {
 			onDelete: 'cascade',
 		});
-	};
-
-	Category.associate = (models) => {
-		Category.belongsTo(models.Type,
-			//foreignKey: {
-			// 	allowNull: false
-			//}
-		);
-	};
-
-	Category.associate = (models) => {
+		Category.belongsTo(models.Type, {
+			foreignKey: {
+				allowNull: false
+			}
+		});
         Category.belongsToMany(models.Restaurant, { through: 'Restaurant_Category' });
-    };
+	};
 
 	return Category;
 };
