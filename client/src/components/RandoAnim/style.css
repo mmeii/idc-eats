@@ -1,0 +1,7 @@
+.rando {
+    border-radius: 50%;
+    margin: auto;
+    height: 60vh;
+    width: 60vh;
+    background-image: url("./BackgroundSource.js")
+}

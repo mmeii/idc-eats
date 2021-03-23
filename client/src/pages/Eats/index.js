@@ -5,6 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Btn from '../../components/Btn';
 import ContainerWrapper from '../../components/ContainerWrapper';
 import './style.css';
+import RandoAnim from "../../components/RandoAnim";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -34,10 +35,8 @@ export default function Eats() {
     const Rando = () => (
         <div className="eats">
             <div className="imgDiv">
-                <img id="restaurantImg"
-                    src={`${process.env.PUBLIC_URL}/assets/rando.jpg`} alt="restaurant"
-                />
-            </div>
+               <RandoAnim />
+           </div>
 
             <div className="price">
                 <PriceCheckbox /> $
