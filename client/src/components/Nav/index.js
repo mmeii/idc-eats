@@ -31,7 +31,7 @@ export default function SimpleMenu() {
 			
 			<a href="/auth/logout">Logout</a> */}
 
-			<a href="/auth/google">Login with Google</a>
+			<a href="/auth/google" id="loginlink">Login with Google</a>
 
 
 			<Menu
