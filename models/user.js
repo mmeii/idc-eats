@@ -32,13 +32,15 @@ module.exports = (sequelize, DataTypes) => {
     }
   });
 
+  User.addScope("defaultScope", { include: ['Preference']})
+  
   User.associate = (models) => {
     User.hasMany(models.Selection, {
       onDelete: 'cascade',
     });
-    User.hasMany(models.Preference/*, {
-      onDelete: 'cascade',
-    }*/);
+    User.hasMany(models.Preference, {
+      as: "Preference"
+    });
     User.hasMany(models.Weight, {
       onDelete: 'cascade',
     });

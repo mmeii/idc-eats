@@ -27,9 +27,13 @@ module.exports = (sequelize, DataTypes) => {
       }
     });
 
+    Preference.addScope("defaultScope", {
+      include: "Category"
+    });
 
     Preference.associate = (models) => {
       Preference.belongsTo(models.Category, {
+        as: "Category",
         foreignKey: {
           allowNull: false,
         },

@@ -2,6 +2,7 @@
 	"name": "mern",
 	"version": "0.1.0",
 	"description": "Mern Demo",
+	"proxy": "http://localhost:3001",
 	"private": true,
 	"dependencies": {
 		"axios": "^0.21.1",

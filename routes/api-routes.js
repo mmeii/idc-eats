@@ -2,45 +2,52 @@ const express = require("express");
 const yelp = require("../api/yelp");
 const router = express.Router();
 const db = require("../models");
+const user = require("../models/user");
 
-const randomCategory = (weights, categories) => {
-	const totalWeight = 0;
+const randomCategory = (weights) => {
+	let totalWeight = 0;
 
 	weights.forEach(weight => {
-		totalWeight += weight;
+		totalWeight += weight.value;
 	});
 
-	const randomValue = Math.floor(Math.random() * totalWeight);
+	let randomValue = Math.floor(Math.random() * totalWeight);
 
-	for (let i = 0; i < categories.length; i++) {
+	for (let i = 0; i < weights.length; i++) {
 		randomValue -= weights[i];
 
 		if (randomValue < 0) {
-			return categories[i];
+			return weights[i].Category;
 		}
 	}
 };
 
 router.get("/api/restaurants/:lat/:long/", async (req, res) => {
+	// /api/restaurants/${coords.latitude}/${coords.longitude}
 	// Pull price and diet options from query string of the request
 	const priceOptions = req.query.price;
-	const dietPreferences = req.query.diet;
+	// const dietPreferences = req.query.diet;
 	const lat = req.params.lat;
 	const long = req.params.long;
+	console.log(lat, long)
 	// Need to add weights and categories still
-	// const weight =
-	// const categories =
+	const weights = await db.Weight.findAll({ include: db.Category })
 
-	const category = randomCategory(weight, categories);
+	console.log(weights[0].Category.display_category)
+	// console.log(weights)
+	// const categories = 
+	const user = await db.User.findAll({ where: { id: 1 }})
+	const category = randomCategory(weights);
 
-	const urlString = `?latitude=${lat}&longitude=${long}`;
+	// const urlString = `?latitude=${lat}&longitude=${long}`;
 
-	if (priceOptions) {
-		urlString += `&price=${priceOptions}`;
-	}
+	// if (priceOptions) {
+	// 	urlString += `&price=${priceOptions}`;
+	// }
 
-	if (dietPreferences) {
-		urlString += `&price=${priceOptions}&categories=${category},${dietPreferences}`;
+	if (user.Preference.length) {
+		const dietPreferences = user.Preference[0]
+		urlString += `&price=${priceOptions}&categories=${dietPreferences.Category.yelp_category}`;
 	} else {
 		urlString += `&price=${priceOptions}&categories=${category}`;
 	}
@@ -48,11 +55,24 @@ router.get("/api/restaurants/:lat/:long/", async (req, res) => {
 	try {
 		const restaurants = await yelp(urlString);
 
+		if (user.Preference.length) {
+			const matching =
+			  	restaurants.filter((r) =>
+					r.categories.find((c) => c.alias === category)
+				)
+		}
+
 		const randomIndex = Math.floor(
 			Math.random() * restaurants.businesses.length + 1
 		);
 
-		const randomRestaurant = restaurants[randomIndex];
+		let randomRestaurant = null;
+		if (restaurants.length) {
+
+		
+		    randomRestaurant = restaurants[randomIndex];
+		}
+		res.json(randomRestaurant);
 	} catch (e) {
 		res.status(500).send(e);
 	}
