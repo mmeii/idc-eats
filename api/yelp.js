@@ -1,8 +1,8 @@
-import axios from "axios";
-import keys from "../config/keys";
+const axios = require('axios')
+const keys= require("../config/keys")
 
-export default axios.create({
-	baseURL: "https://api.yelp.com/v3/businesses/search",
+module.exports = axios.create({
+	baseURL: "https://api.yelp.com/v3/businesses",
 	headers: {
 		Authorization: "Bearer " + keys.yelpSecret,
 	},

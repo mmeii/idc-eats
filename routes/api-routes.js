@@ -2,57 +2,87 @@ const express = require("express");
 const yelp = require("../api/yelp");
 const router = express.Router();
 const db = require("../models");
+const requireLogin = require("../middlewares/requireLogin");
 
-const randomCategory = (weights, categories) => {
-	const totalWeight = 0;
+const randomCategory = weights => {
+	let totalWeight = 0;
 
 	weights.forEach(weight => {
-		totalWeight += weight;
+		totalWeight += weight.weight;
 	});
 
-	const randomValue = Math.floor(Math.random() * totalWeight);
-
-	for (let i = 0; i < categories.length; i++) {
-		randomValue -= weights[i];
+	let randomValue = Math.floor(Math.random() * totalWeight);
+	for (let i = 0; i < weights.length; i++) {
+		randomValue -= weights[i].weight;
 
 		if (randomValue < 0) {
-			return categories[i];
+			return weights[i].category;
 		}
 	}
 };
 
+// router.use(requireLogin);
+
 router.get("/api/restaurants/:lat/:long/", async (req, res) => {
-	// Pull price and diet options from query string of the request
+	const user = req.user.dataValues;
 	const priceOptions = req.query.price;
-	const dietPreferences = req.query.diet;
 	const lat = req.params.lat;
 	const long = req.params.long;
-	// Need to add weights and categories still
-	// const weight =
-	// const categories =
+	// Need to automatically add weights when User is created. To test, replace "user.id" with 1
+	const weights = await db.Weight.findAll({
+		where: { UserId: user.id },
+		include: db.Category,
+	});
+	const mappedWeights = weights.map(weight => {
+		return {
+			weight: weight.dataValues.value,
+			category: weight.dataValues.Category.dataValues.yelp_category,
+		};
+	});
 
-	const category = randomCategory(weight, categories);
+	const category = randomCategory(mappedWeights);
 
-	const urlString = `?latitude=${lat}&longitude=${long}`;
-
-	if (priceOptions) {
-		urlString += `&price=${priceOptions}`;
-	}
-
-	if (dietPreferences) {
-		urlString += `&price=${priceOptions}&categories=${category},${dietPreferences}`;
-	} else {
-		urlString += `&price=${priceOptions}&categories=${category}`;
+	let dietPreferences;
+	if (user.Preference.length) {
+		dietPreferences =
+			user.dataValues.Preference[0].Category.dataValues.yelp_category;
 	}
 
 	try {
-		const restaurants = await yelp(urlString);
+		const restaurants = await yelp.get("/search", {
+			params: {
+				latitude: lat,
+				longitude: long,
+				limit: 50,
+				categories: dietPreferences,
+			},
+		});
 
-		const randomIndex = Math.floor(
-			Math.random() * restaurants.businesses.length + 1
+		const matchingRestaurants = restaurants.data.businesses.filter(
+			restaurant => {
+				return restaurant.categories.find(c => {
+					return category.includes(c.alias);
+				});
+			}
 		);
 
-		const randomRestaurant = restaurants[randomIndex];
+		if (matchingRestaurants.length) {
+			const randomIndex = Math.floor(
+				Math.random() * matchingRestaurants.length
+			);
+			randomRestaurant = matchingRestaurants[randomIndex];
+
+			console.log(randomRestaurant);
+			res.json(randomRestaurant);
+		} else {
+			const randomIndex = Math.floor(
+				Math.random() * restaurants.data.businesses.length
+			);
+			randomRestaurant = restaurants.data.businesses[randomIndex];
+
+			console.log(randomRestaurant);
+			res.json(randomRestaurant);
+		}
 	} catch (e) {
 		res.status(500).send(e);
 	}
