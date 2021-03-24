@@ -2,77 +2,87 @@ const express = require("express");
 const yelp = require("../api/yelp");
 const router = express.Router();
 const db = require("../models");
-const user = require("../models/user");
+const requireLogin = require("../middlewares/requireLogin");
 
-const randomCategory = (weights) => {
+const randomCategory = weights => {
 	let totalWeight = 0;
 
 	weights.forEach(weight => {
-		totalWeight += weight.value;
+		totalWeight += weight.weight;
 	});
 
 	let randomValue = Math.floor(Math.random() * totalWeight);
-
 	for (let i = 0; i < weights.length; i++) {
-		randomValue -= weights[i];
+		randomValue -= weights[i].weight;
 
 		if (randomValue < 0) {
-			return weights[i].Category;
+			return weights[i].category;
 		}
 	}
 };
 
+// router.use(requireLogin);
+
 router.get("/api/restaurants/:lat/:long/", async (req, res) => {
-	// /api/restaurants/${coords.latitude}/${coords.longitude}
-	// Pull price and diet options from query string of the request
+	const user = req.user.dataValues;
 	const priceOptions = req.query.price;
-	// const dietPreferences = req.query.diet;
 	const lat = req.params.lat;
 	const long = req.params.long;
-	console.log(lat, long)
-	// Need to add weights and categories still
-	const weights = await db.Weight.findAll({ include: db.Category })
+	// Need to automatically add weights when User is created. To test, replace "user.id" with 1
+	const weights = await db.Weight.findAll({
+		where: { UserId: user.id },
+		include: db.Category,
+	});
+	const mappedWeights = weights.map(weight => {
+		return {
+			weight: weight.dataValues.value,
+			category: weight.dataValues.Category.dataValues.yelp_category,
+		};
+	});
 
-	console.log(weights[0].Category.display_category)
-	// console.log(weights)
-	// const categories = 
-	const user = await db.User.findAll({ where: { id: 1 }})
-	const category = randomCategory(weights);
+	const category = randomCategory(mappedWeights);
 
-	// const urlString = `?latitude=${lat}&longitude=${long}`;
-
-	// if (priceOptions) {
-	// 	urlString += `&price=${priceOptions}`;
-	// }
-
+	let dietPreferences;
 	if (user.Preference.length) {
-		const dietPreferences = user.Preference[0]
-		urlString += `&price=${priceOptions}&categories=${dietPreferences.Category.yelp_category}`;
-	} else {
-		urlString += `&price=${priceOptions}&categories=${category}`;
+		dietPreferences =
+			user.dataValues.Preference[0].Category.dataValues.yelp_category;
 	}
 
 	try {
-		const restaurants = await yelp(urlString);
+		const restaurants = await yelp.get("/search", {
+			params: {
+				latitude: lat,
+				longitude: long,
+				limit: 50,
+				categories: dietPreferences,
+			},
+		});
 
-		if (user.Preference.length) {
-			const matching =
-			  	restaurants.filter((r) =>
-					r.categories.find((c) => c.alias === category)
-				)
-		}
-
-		const randomIndex = Math.floor(
-			Math.random() * restaurants.businesses.length + 1
+		const matchingRestaurants = restaurants.data.businesses.filter(
+			restaurant => {
+				return restaurant.categories.find(c => {
+					return category.includes(c.alias);
+				});
+			}
 		);
 
-		let randomRestaurant = null;
-		if (restaurants.length) {
+		if (matchingRestaurants.length) {
+			const randomIndex = Math.floor(
+				Math.random() * matchingRestaurants.length
+			);
+			randomRestaurant = matchingRestaurants[randomIndex];
 
-		
-		    randomRestaurant = restaurants[randomIndex];
+			console.log(randomRestaurant);
+			res.json(randomRestaurant);
+		} else {
+			const randomIndex = Math.floor(
+				Math.random() * restaurants.data.businesses.length
+			);
+			randomRestaurant = restaurants.data.businesses[randomIndex];
+
+			console.log(randomRestaurant);
+			res.json(randomRestaurant);
 		}
-		res.json(randomRestaurant);
 	} catch (e) {
 		res.status(500).send(e);
 	}
