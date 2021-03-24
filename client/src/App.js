@@ -1,58 +1,52 @@
-
-import Nav from './components/Nav';
-import axios from 'axios'
-import Eats from './pages/Eats';
-import Details from './pages/Details';
+import Nav from "./components/Nav";
+import axios from "axios";
+import Eats from "./pages/Eats";
+import Details from "./pages/Details";
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Login from './pages/Login'
+import Login from "./pages/Login";
 
 import "./App.css";
-import Preferences from './pages/Preferences';
+import Preferences from "./pages/Preferences";
 
 function App() {
+	const [coords, setCoords] = useState();
 
-  const [coords, setCoords] = useState();
+	useEffect(() => {
+		fetchCoords();
+	}, []);
 
-  useEffect(() => {
-    fetchCoords();
-   
-  }, []);
+	useEffect(() => {
+		if (coords) {
+			axios.get(`/api/restaurants/${coords.latitude}/${coords.longitude}`);
+		}
+	}, [coords]);
 
-  useEffect(() => {
-    console.log(coords);
-    if (coords) {
-    console.log(`/api/restaurants/${coords.latitude}/${coords.longitude}`)
-    axios.get(`/api/restaurants/${coords.latitude}/${coords.longitude}`)
-    }
-  }, [coords]);
+	const fetchCoords = () => {
+		navigator.geolocation.getCurrentPosition(res => {
+			setCoords({
+				latitude: res.coords.latitude,
+				longitude: res.coords.longitude,
+			});
+		});
+	};
 
-  const fetchCoords = () => {
-    navigator.geolocation.getCurrentPosition(res => {
-      setCoords({
-        latitude: res.coords.latitude,
-        longitude: res.coords.longitude,
-      });
-    });
-  };
-
-  return (
-    <Router>
-      <Nav />
-      <Switch>
-        {/* ADD in after created component={Login} */}
-        <Route exact path="/" component={Login} />
-        {/*  ADD in after created component={Eats} */}
-        <Route exact path="/eats" component={Eats} />
-        <Route exact path="/details" component={Details} />
-        {/*  ADD in after created component={Preferences} */}
-        <Route exact path="/preferences" component={Preferences} />
-        {/*  ADD in after created component={Logout} */}
-        <Route exact path="/logout" />
-      </Switch>
-    </Router>
-  );
-
+	return (
+		<Router>
+			<Nav />
+			<Switch>
+				{/* ADD in after created component={Login} */}
+				<Route exact path="/" component={Login} />
+				{/*  ADD in after created component={Eats} */}
+				<Route exact path="/eats" component={Eats} />
+				<Route exact path="/details" component={Details} />
+				{/*  ADD in after created component={Preferences} */}
+				<Route exact path="/preferences" component={Preferences} />
+				{/*  ADD in after created component={Logout} */}
+				<Route exact path="/logout" />
+			</Switch>
+		</Router>
+	);
 }
 
 export default App;
