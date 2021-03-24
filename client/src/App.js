@@ -1,5 +1,6 @@
 
 import Nav from './components/Nav';
+import axios from 'axios'
 import Eats from './pages/Eats';
 import Details from './pages/Details';
 import React, { useState, useEffect } from "react";
@@ -11,14 +12,19 @@ import Preferences from './pages/Preferences';
 
 function App() {
 
-  const [coords, setCoords] = useState({});
+  const [coords, setCoords] = useState();
 
   useEffect(() => {
     fetchCoords();
+   
   }, []);
 
   useEffect(() => {
     console.log(coords);
+    if (coords) {
+    console.log(`/api/restaurants/${coords.latitude}/${coords.longitude}`)
+    axios.get(`/api/restaurants/${coords.latitude}/${coords.longitude}`)
+    }
   }, [coords]);
 
   const fetchCoords = () => {
