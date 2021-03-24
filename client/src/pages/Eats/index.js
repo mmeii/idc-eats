@@ -35,8 +35,8 @@ export default function Eats() {
     const Rando = () => (
         <div className="eats">
             <div className="imgDiv">
-               <RandoAnim />
-           </div>
+                <RandoAnim />
+            </div>
 
             <div className="price">
                 <PriceCheckbox /> $
