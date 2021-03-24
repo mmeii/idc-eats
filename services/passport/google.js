@@ -25,7 +25,8 @@ passport.use(
 
 			// We may need to split out the above findOrCreate and do a find first and
 			// if it fails, then do a create with the below Weight inserts (db.Weigh.create)
-			// otherwise it will insert new Weights data on the find as well
+			// otherwise it will insert new Weights data on the find as well.
+			
 			// like:
 			// const user = await db.User.findOne({
 			// 	where: { oauthId },
