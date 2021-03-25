@@ -1,7 +1,11 @@
 .square {
-    border-radius: 20px;
-    margin: auto;
+    margin-left: auto;
+    margin-right: auto;
     height: 60vh;
     width: 60vh;
     background-image:url(./logo.jpg);
+    background-repeat: no-repeat;
+    background-color: #fbf5fb;
+    background-position: center;
+    display: block;
 }
