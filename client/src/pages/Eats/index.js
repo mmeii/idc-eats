@@ -21,19 +21,18 @@ export default function Eats() {
     const classes = useStyles();
     const [showDetails, setShowDetails] = useState(false);
     const [coords, setCoords] = useState();
+    const [restaurant, setRestaurant] = useState();
 
     //yelp get route basing on lat and long
     useEffect(() => {
         fetchCoords();
     }, []);
 
-    useEffect(() => {
-        if (coords) {
-            axios.get(`/api/restaurants/${coords.latitude}/${coords.longitude}`);
-        }
-    }, [coords]);
-
-    console.log(coords);
+    // useEffect(() => {
+    //     if (coords) {
+    //         axios.get(`/api/restaurants/${coords.latitude}/${coords.longitude}`);
+    //     }
+    // }, [coords]);
 
     const fetchCoords = () => {
         navigator.geolocation.getCurrentPosition(res => {
@@ -46,6 +45,19 @@ export default function Eats() {
 
     const onClick = () => {
         setShowDetails(true);
+        console.log(coords);
+
+        if (coords) {
+            axios.get(`/api/restaurants/${coords.latitude}/${coords.longitude}`)
+                .then(res => console.log(res))
+                .then((result) => {
+                    setRestaurant(result);
+                })
+                .catch((err) => console.log(err));
+        } else {
+            console.log("cannot get coords");
+        }
+
     }
 
     const RestaurantDetails = () => (
