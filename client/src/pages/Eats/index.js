@@ -49,7 +49,7 @@ export default function Eats() {
 
         if (coords) {
             axios.get(`/api/restaurants/${coords.latitude}/${coords.longitude}`)
-                .then(res => console.log(res))
+                .then(res => console.log({ res }))
                 .then((result) => {
                     setRestaurant(result);
                 })
@@ -57,7 +57,6 @@ export default function Eats() {
         } else {
             console.log("cannot get coords");
         }
-
     }
 
     const RestaurantDetails = () => (
