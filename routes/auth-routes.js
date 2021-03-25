@@ -26,7 +26,7 @@ router.get(
 	"/auth/signin",
 	passport.authenticate("local", { failureRedirect: "/login" }),
 	(req, res) => {
-		res.redirect("/");
+		res.redirect("/eats");
 	}
 );
 
