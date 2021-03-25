@@ -21,7 +21,7 @@ export default function Eats() {
     const classes = useStyles();
     const [showDetails, setShowDetails] = useState(false);
     const [coords, setCoords] = useState();
-    const [restaurant, setRestaurant] = useState();
+    const [restaurant, setRestaurant] = useState([]);
 
     //yelp get route basing on lat and long
     useEffect(() => {
@@ -49,9 +49,10 @@ export default function Eats() {
 
         if (coords) {
             axios.get(`/api/restaurants/${coords.latitude}/${coords.longitude}`)
-                .then(res => console.log({ res }))
+                // .then(res => res.json())
                 .then((result) => {
-                    setRestaurant(result);
+                    // console.log(result);
+                    setRestaurant(result.data);
                 })
                 .catch((err) => console.log(err));
         } else {
@@ -59,10 +60,19 @@ export default function Eats() {
         }
     }
 
+    console.log(restaurant);
+    console.log(restaurant.image_url);
+    // open: is_closed
+    // restaurant name: name
+    // image: image_url
+    // rating: rating
+    // location: location.display_address
+    // phone: phone
+
     const RestaurantDetails = () => (
         <div className="oneRestaurant">
             <div>
-                <img src="https://via.placeholder.com/300" alt="restaurant" />
+                <img src={restaurant.image_url} alt="restaurant" />
             </div>
 
             <div className={classes.root}>
@@ -103,11 +113,13 @@ export default function Eats() {
         </div>
     )
 
+
     return (
         <ContainerWrapper>
             {showDetails ? <RestaurantDetails /> : <Rando />}
         </ContainerWrapper >
     )
+
 }
 
 
