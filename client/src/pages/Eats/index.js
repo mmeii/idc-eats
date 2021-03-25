@@ -6,16 +6,7 @@ import Btn from '../../components/Btn';
 import ContainerWrapper from '../../components/ContainerWrapper';
 import './style.css';
 import RandoAnim from "../../components/RandoAnim";
-// import axios from "axios";
-// const YELP_API_KEY = process.env.YELP_API_KEY;
-
-// const useStyles = makeStyles((theme) => ({
-//     root: {
-//         '& > *': {
-//             margin: theme.spacing(1),
-//         },
-//     },
-// }));
+import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -28,36 +19,33 @@ const useStyles = makeStyles((theme) => ({
 export default function Eats() {
 
     const classes = useStyles();
-
     const [showDetails, setShowDetails] = useState(false);
+    const [coords, setCoords] = useState();
 
-    // const config = {
-    //     headers: {
-    //         Authorization: `Bearer ${YELP_API_KEY}`,
-    //         "Content-type": "application/json",
-    //     },
-    //     params: {
-    //         term: 'food',
-    //         latitude: '0',
-    //         longitude: '0',
-    //         radius: '',
-    //         sort_by: 'rating'
-    //     }
-    // }
+    //yelp get route basing on lat and long
+    useEffect(() => {
+        fetchCoords();
+    }, []);
+
+    useEffect(() => {
+        if (coords) {
+            axios.get(`/api/restaurants/${coords.latitude}/${coords.longitude}`);
+        }
+    }, [coords]);
+
+    console.log(coords);
+
+    const fetchCoords = () => {
+        navigator.geolocation.getCurrentPosition(res => {
+            setCoords({
+                latitude: res.coords.latitude,
+                longitude: res.coords.longitude,
+            });
+        });
+    };
 
     const onClick = () => {
         setShowDetails(true);
-
-        //yelp get route basing on lat and long
-        // https://api.yelp.com/v3/businesses/search?term=chinese&latitude=37.786882&longitude=-122.399972
-
-        // axios.get("https://api.yelp.com/v3/businesses/search?", config)
-        //     .then((res) => {
-        //         console.log(res);
-        //     })
-        //     .catch((err) => {
-        //         console.log(err);
-        //     })
     }
 
     const RestaurantDetails = () => (
