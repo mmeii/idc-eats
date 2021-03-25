@@ -91,22 +91,22 @@ router.get("/api/restaurants/:lat/:long/", async (req, res) => {
 // Post User Preferences
 router.post("/api/preferences", async (req, res) => {
 	//req.user
-	try { 
+	try {
 		const user = req.user;
 		const preferences = req.body.preferences;
 
 		const currentPreferences = await db.Preference.destroy({
 			where: {
-				UserId: user.id
-			}
-		})
+				UserId: user.id,
+			},
+		});
 
 		for (let preference of preferences) {
 			if (preference.selected) {
 				db.Preference.create({
 					UserId: user.id,
-					CategoryId: preference.categoryId
-				})
+					CategoryId: preference.categoryId,
+				});
 			}
 		}
 	} catch (error) {
@@ -120,21 +120,18 @@ router.get("/api/preferences", async (req, res) => {
 		const user = req.user;
 		const preferences = db.Preference.findAll({
 			where: {
-				UserId: user.id
-			}
+				UserId: user.id,
+			},
 		});
-		const categories = db.Category.findAll().map(category =>
-			({
-				categoryId: category.id,
-				displayName: category.display_category,
-				selected: preferences.some(p => p.CategoryId == category.id)
-			})
-		);
-		res.json(categories)
+		const categories = db.Category.findAll().map(category => ({
+			categoryId: category.id,
+			displayName: category.display_category,
+			selected: preferences.some(p => p.CategoryId == category.id),
+		}));
+		res.json(categories);
 	} catch (error) {
 		console.log(error);
 	}
 });
-
 
 module.exports = router;
