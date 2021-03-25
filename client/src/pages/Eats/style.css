@@ -4,6 +4,11 @@
     height: 100%;
 }
 
+.oneRestaurant img {
+    width: 80%;
+    height: auto;
+}
+
 .imgDiv {
     max-width: 100%;
     height: auto;
