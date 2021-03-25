@@ -1,7 +1,11 @@
 .rando {
     border-radius: 50%;
-    margin: auto;
-    height: 60vh;
-    width: 60vh;
-    background-image: url("./BackgroundSource.js")
+    margin-right: auto;
+    margin-left: auto;
+    height: 300px;
+    width: 300px;
+    background-color: white;
+    background-image: url("./BackgroundSource.js");
+    background-repeat: no-repeat;
+    background-position: center;
 }
