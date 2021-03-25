@@ -26,7 +26,7 @@ router.get(
 	"/auth/signin",
 	passport.authenticate("local", { failureRedirect: "/login" }),
 	(req, res) => {
-		res.redirect("/");
+		res.redirect("/eats");
 	}
 );
 
@@ -41,7 +41,7 @@ router.get(
 	"/auth/google/callback",
 	passport.authenticate("google"),
 	(req, res) => {
-		res.redirect("/dashboard");
+		res.redirect("/eats");
 	}
 );
 
