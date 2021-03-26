@@ -26,13 +26,8 @@ router.use(requireLogin);
 router.get("/api/restaurants/:lat/:long/", async (req, res) => {
 	const user = req.user.dataValues;
 	let priceOptions = req.query.price;
-<<<<<<< HEAD
 	if (!priceOptions.length) {
 		priceOptions = "1, 2, 3, 4";
-=======
-	if (!priceOptions) {
-		priceOptions = [1, 2, 3, 4];
->>>>>>> e2e1713b03e480b77b23306dac323ed4481b7a27
 	}
 	const lat = req.params.lat;
 	const long = req.params.long;
