@@ -2,7 +2,6 @@ const express = require("express");
 const yelp = require("../api/yelp");
 const router = express.Router();
 const db = require("../models");
-const requireLogin = require("../middlewares/requireLogin");
 
 const randomCategory = weights => {
 	let totalWeight = 0;
@@ -20,8 +19,6 @@ const randomCategory = weights => {
 		}
 	}
 };
-
-router.use(requireLogin);
 
 router.get("/api/restaurants/:lat/:long/", async (req, res) => {
 	const user = req.user.dataValues;
