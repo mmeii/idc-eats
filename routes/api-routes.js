@@ -21,11 +21,14 @@ const randomCategory = weights => {
 	}
 };
 
-// router.use(requireLogin);
+router.use(requireLogin);
 
 router.get("/api/restaurants/:lat/:long/", async (req, res) => {
 	const user = req.user.dataValues;
-	const priceOptions = req.query.price;
+	let priceOptions = req.query.price;
+	if (!priceOptions) {
+		priceOptions = [1, 2, 3, 4];
+	}
 	const lat = req.params.lat;
 	const long = req.params.long;
 	// Need to automatically add weights when User is created. To test, replace "user.id" with 1
@@ -55,6 +58,7 @@ router.get("/api/restaurants/:lat/:long/", async (req, res) => {
 				longitude: long,
 				limit: 50,
 				categories: dietPreferences,
+				price: priceOptions,
 			},
 		});
 
@@ -72,7 +76,6 @@ router.get("/api/restaurants/:lat/:long/", async (req, res) => {
 			);
 			randomRestaurant = matchingRestaurants[randomIndex];
 
-			console.log(randomRestaurant);
 			res.json(randomRestaurant);
 		} else {
 			const randomIndex = Math.floor(
@@ -80,7 +83,6 @@ router.get("/api/restaurants/:lat/:long/", async (req, res) => {
 			);
 			randomRestaurant = restaurants.data.businesses[randomIndex];
 
-			console.log(randomRestaurant);
 			res.json(randomRestaurant);
 		}
 	} catch (e) {
