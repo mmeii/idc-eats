@@ -76,8 +76,9 @@ export default function Eats() {
                 <h3>We found a {restaurant.categories[0].title} restaurant for you!</h3>
                 <p>Restaurant Name: {restaurant.name}</p>
                 <p>Rating: {restaurant.rating}</p>
-                <p>Address: {restaurant.location.display_address}</p>
-                <p>Phone: {restaurant.phone}</p>
+                <p>Address: {restaurant.location.display_address[0]}, {restaurant.location.display_address[1]}</p>
+                <p>Phone: {restaurant.display_phone}</p>
+                <h3>Sounds good, right?</h3>
             </div>
 
             <div className={classes.root}>
@@ -85,10 +86,10 @@ export default function Eats() {
                     variant="contained"
                     color="primary"
                     onClick={onClick}
-                    label="Rando"
+                    label="Nope!"
                 />
 
-                <Btn label="Take Me There!"
+                <Btn label="Yes, Take Me There!"
                     onClick={goToRestaurant} />
 
                 {/* <Link to="details">
