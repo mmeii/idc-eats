@@ -18,27 +18,6 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function Eats() {
-	const classes = useStyles();
-	const [checkBoxOne, setCheckBoxOne] = React.useState(false);
-	const [checkBoxTwo, setCheckBoxTwo] = React.useState(false);
-	const [checkBoxThree, setCheckBoxThree] = React.useState(false);
-	const [checkBoxFour, setCheckBoxFour] = React.useState(false);
-	// const [showDetails, setShowDetails] = useState(false);
-	const [coords, setCoords] = useState();
-	const [restaurant, setRestaurant] = useState({});
-	const [priceOptions, setPriceOptions] = useState([]);
-
-	//yelp get route basing on lat and long
-	useEffect(() => {
-		fetchCoords();
-	}, []);
-
-	// useEffect(() => {
-	//     if (coords) {
-	//         axios.get(`/api/restaurants/${coords.latitude}/${coords.longitude}`);
-	//     }
-	// }, [coords]);
-
 	const fetchCoords = () => {
 		navigator.geolocation.getCurrentPosition(res => {
 			setCoords({
@@ -50,13 +29,10 @@ export default function Eats() {
 
 	const onClick = () => {
 		// setShowDetails(true);
-		// console.log(coords);
 
 		if (coords) {
 			axios
-				.get(
-					`/api/restaurants/${coords.latitude}/${coords.longitude}?price=${priceOptions}`
-				)
+				.get(`/api/restaurants/${coords.latitude}/${coords.longitude}`)
 				// .then(res => res.json())
 				.then(result => {
 					// console.log(result);
@@ -69,7 +45,6 @@ export default function Eats() {
 	};
 
 	console.log(restaurant);
-	console.log(restaurant.image_url);
 	// open: is_closed
 	// restaurant name: name
 	// image: image_url
@@ -77,10 +52,28 @@ export default function Eats() {
 	// location: location.display_address
 	// phone: phone
 
+	{
+		/* onclick to go to google maps with restaurant address */
+	}
+	const goToRestaurant = () => {
+		window.open(
+			`http://maps.google.com/?q=${restaurant.location.display_address}`,
+			"_blank"
+		);
+	};
+
 	const RestaurantDetails = () => (
 		<div className="oneRestaurant">
 			<div>
 				<img src={restaurant.image_url} alt="restaurant" />
+			</div>
+
+			<div className="restDetails">
+				<h3>We found a {restaurant.categories[0].title} restaurant for you!</h3>
+				<p>Restaurant Name: {restaurant.name}</p>
+				<p>Rating: {restaurant.rating}</p>
+				<p>Address: {restaurant.location.display_address}</p>
+				<p>Phone: {restaurant.phone}</p>
 			</div>
 
 			<div className={classes.root}>
@@ -91,69 +84,14 @@ export default function Eats() {
 					label="Rando"
 				/>
 
-				<Link to="details">
-					<Btn label="More Info" />
-				</Link>
+				<Btn label="Take Me There!" onClick={goToRestaurant} />
+
+				{/* <Link to="details">
+                    <Btn label="More Info" />
+                </Link> */}
 			</div>
 		</div>
 	);
-
-	const handleChange = expense => {
-		switch (expense) {
-			case "$":
-				setCheckBoxOne(!checkBoxOne);
-
-				break;
-			case "$$":
-				setCheckBoxTwo(!checkBoxTwo);
-
-				break;
-			case "$$$":
-				setCheckBoxThree(!checkBoxThree);
-
-				break;
-			case "$$$$":
-				setCheckBoxFour(!checkBoxFour);
-
-				break;
-		}
-	};
-
-	useEffect(() => {
-		if (checkBoxOne) {
-			setPriceOptions([...priceOptions, "1"]);
-		} else {
-			const filteredPrices = priceOptions.filter(option => option !== "1");
-			setPriceOptions(filteredPrices);
-		}
-	}, [checkBoxOne]);
-
-	useEffect(() => {
-		if (checkBoxTwo) {
-			setPriceOptions([...priceOptions, "2"]);
-		} else {
-			const filteredPrices = priceOptions.filter(option => option !== "2");
-			setPriceOptions(filteredPrices);
-		}
-	}, [checkBoxTwo]);
-
-	useEffect(() => {
-		if (checkBoxThree) {
-			setPriceOptions([...priceOptions, "3"]);
-		} else {
-			const filteredPrices = priceOptions.filter(option => option !== "3");
-			setPriceOptions(filteredPrices);
-		}
-	}, [checkBoxThree]);
-
-	useEffect(() => {
-		if (checkBoxFour) {
-			setPriceOptions([...priceOptions, "4"]);
-		} else {
-			const filteredPrices = priceOptions.filter(option => option !== "4");
-			setPriceOptions(filteredPrices);
-		}
-	}, [checkBoxFour]);
 
 	const Rando = () => (
 		<div className="eats">
@@ -162,34 +100,10 @@ export default function Eats() {
 			</div>
 
 			<div className="price">
-				<Checkbox
-					checked={checkBoxOne}
-					color="primary"
-					inputProps={{ "aria-label": "secondary checkbox" }}
-					onChange={() => handleChange("$")}
-				/>
-				$
-				<Checkbox
-					checked={checkBoxTwo}
-					color="primary"
-					inputProps={{ "aria-label": "secondary checkbox" }}
-					onChange={() => handleChange("$$")}
-				/>{" "}
-				$$
-				<Checkbox
-					checked={checkBoxThree}
-					color="primary"
-					inputProps={{ "aria-label": "secondary checkbox" }}
-					onChange={() => handleChange("$$$")}
-				/>{" "}
-				$$$
-				<Checkbox
-					checked={checkBoxFour}
-					color="primary"
-					inputProps={{ "aria-label": "secondary checkbox" }}
-					onChange={() => handleChange("$$$$")}
-				/>{" "}
-				$$$$
+				<PriceCheckbox /> $
+				<PriceCheckbox /> $$
+				<PriceCheckbox /> $$$
+				<PriceCheckbox /> $$$$
 			</div>
 
 			{/* rando button to show restaurant */}

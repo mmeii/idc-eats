@@ -19,6 +19,14 @@ function Login() {
 		setPassword("");
 	};
 
+	//const userSignin = (event) => {
+	//event.preventDefault();
+	//const credentials = { username, password };
+	//axios.get("/auth/signin", credentials);
+	//setUsername("");
+	//setPassword("");
+	//};
+
 	return (
 		<ContainerWrapper>
 			<Motion />
@@ -41,10 +49,10 @@ function Login() {
 					type="submit"
 					label="Login"
 					id="loginbtn"
-					onClick={handleSubmit}
+					//onClick={userSignin}
 				></Btn>
 				<p>Don't have an account? Make one!</p>
-				<Btn label="Create Account" id="createbtn"></Btn>
+				<Btn label="Create Account" id="createbtn" onClick={handleSubmit}></Btn>
 			</form>
 			<div id="googlelogin">
 				<h1>Login with Google</h1>
