@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
-import RestaurantMenuIcon from "@material-ui/icons/RestaurantMenu";
+import MenuIcon from '@material-ui/icons/Menu';
 import './style.css';
 
 export default function SimpleMenu() {
@@ -24,14 +24,14 @@ export default function SimpleMenu() {
 				aria-haspopup="true"
 				onClick={handleClick}
 			>
-				<RestaurantMenuIcon id="navIcon" fontSize="large" />
+				<MenuIcon id="navIcon" fontSize="large" />
 			</Button>
 
 			{/* this is linked directly on the nav button menu dropdown 
 			
 			<a href="/auth/logout">Logout</a> */}
 
-			<a href="/auth/google" id="loginlink">Login with Google</a>
+			<a href="/auth/google" id="loginlink"></a>
 
 
 			<Menu

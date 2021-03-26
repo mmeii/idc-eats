@@ -21,7 +21,7 @@ const randomCategory = weights => {
 	}
 };
 
-// router.use(requireLogin);
+router.use(requireLogin);
 
 router.get("/api/restaurants/:lat/:long/", async (req, res) => {
 	const user = req.user.dataValues;
