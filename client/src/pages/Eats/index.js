@@ -1,38 +1,31 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import PriceCheckbox from '../../components/PriceCheckbox';
-import { makeStyles } from '@material-ui/core/styles';
-import Btn from '../../components/Btn';
-import ContainerWrapper from '../../components/ContainerWrapper';
-import './style.css';
+import PriceCheckbox from "../../components/PriceCheckbox";
+import { makeStyles } from "@material-ui/core/styles";
+import Btn from "../../components/Btn";
+import ContainerWrapper from "../../components/ContainerWrapper";
+import "./style.css";
 import RandoAnim from "../../components/RandoAnim";
 import axios from "axios";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
     root: {
-        '& > *': {
+        "& > *": {
             margin: theme.spacing(1),
         },
     },
 }));
 
 export default function Eats() {
-
     const classes = useStyles();
-    const [showDetails, setShowDetails] = useState(false);
+    // const [showDetails, setShowDetails] = useState(false);
     const [coords, setCoords] = useState();
-    const [restaurant, setRestaurant] = useState([]);
+    const [restaurant, setRestaurant] = useState({});
 
     //yelp get route basing on lat and long
     useEffect(() => {
         fetchCoords();
     }, []);
-
-    // useEffect(() => {
-    //     if (coords) {
-    //         axios.get(`/api/restaurants/${coords.latitude}/${coords.longitude}`);
-    //     }
-    // }, [coords]);
 
     const fetchCoords = () => {
         navigator.geolocation.getCurrentPosition(res => {
@@ -44,24 +37,23 @@ export default function Eats() {
     };
 
     const onClick = () => {
-        setShowDetails(true);
-        console.log(coords);
+        // setShowDetails(true);
 
         if (coords) {
-            axios.get(`/api/restaurants/${coords.latitude}/${coords.longitude}`)
+            axios
+                .get(`/api/restaurants/${coords.latitude}/${coords.longitude}`)
                 // .then(res => res.json())
-                .then((result) => {
+                .then(result => {
                     // console.log(result);
                     setRestaurant(result.data);
                 })
-                .catch((err) => console.log(err));
+                .catch(err => console.log(err));
         } else {
             console.log("cannot get coords");
         }
-    }
+    };
 
     console.log(restaurant);
-    console.log(restaurant.image_url);
     // open: is_closed
     // restaurant name: name
     // image: image_url
@@ -69,10 +61,23 @@ export default function Eats() {
     // location: location.display_address
     // phone: phone
 
+    {/* onclick to go to google maps with restaurant address */ }
+    const goToRestaurant = () => {
+        window.open(`http://maps.google.com/?q=${restaurant.location.display_address}`, "_blank")
+    };
+
     const RestaurantDetails = () => (
         <div className="oneRestaurant">
             <div>
                 <img src={restaurant.image_url} alt="restaurant" />
+            </div>
+
+            <div className="restDetails">
+                <h3>We found a {restaurant.categories[0].title} restaurant for you!</h3>
+                <p>Restaurant Name: {restaurant.name}</p>
+                <p>Rating: {restaurant.rating}</p>
+                <p>Address: {restaurant.location.display_address}</p>
+                <p>Phone: {restaurant.phone}</p>
             </div>
 
             <div className={classes.root}>
@@ -83,9 +88,12 @@ export default function Eats() {
                     label="Rando"
                 />
 
-                <Link to="details">
+                <Btn label="Take Me There!"
+                    onClick={goToRestaurant} />
+
+                {/* <Link to="details">
                     <Btn label="More Info" />
-                </Link>
+                </Link> */}
             </div>
         </div>
     );
@@ -98,10 +106,10 @@ export default function Eats() {
 
             <div className="price">
                 <PriceCheckbox /> $
-                <PriceCheckbox /> $$
-                <PriceCheckbox /> $$$
-                <PriceCheckbox /> $$$$
-            </div>
+				<PriceCheckbox /> $$
+				<PriceCheckbox /> $$$
+				<PriceCheckbox /> $$$$
+			</div>
 
             {/* rando button to show restaurant */}
             <Btn
@@ -111,15 +119,11 @@ export default function Eats() {
                 label="Rando"
             />
         </div>
-    )
-
+    );
 
     return (
         <ContainerWrapper>
-            {showDetails ? <RestaurantDetails /> : <Rando />}
-        </ContainerWrapper >
-    )
-
+            {Object.keys(restaurant).length ? <RestaurantDetails /> : <Rando />}
+        </ContainerWrapper>
+    );
 }
-
-

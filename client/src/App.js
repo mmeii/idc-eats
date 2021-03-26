@@ -10,27 +10,6 @@ import "./App.css";
 import Preferences from "./pages/Preferences";
 
 function App() {
-	const [coords, setCoords] = useState();
-
-	useEffect(() => {
-		fetchCoords();
-	}, []);
-
-	useEffect(() => {
-		if (coords) {
-			axios.get(`/api/restaurants/${coords.latitude}/${coords.longitude}`);
-		}
-	}, [coords]);
-
-	const fetchCoords = () => {
-		navigator.geolocation.getCurrentPosition(res => {
-			setCoords({
-				latitude: res.coords.latitude,
-				longitude: res.coords.longitude,
-			});
-		});
-	};
-
 	return (
 		<Router>
 			<Nav />

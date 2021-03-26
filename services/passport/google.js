@@ -16,53 +16,42 @@ passport.use(
 
 			const username = profile.displayName;
 
-			// const user = await db.User.findOrCreate({
-			// 	where: { oauthId },
-			// 	defaults: {
-			// 		username,
-			// 	},
-			// });
-
 			var user = await db.User.findOne({
 				where: { oauthId },
 			});
 			if (user === null) {
 				try {
-					user = await db.User.create(
-						{
-							oauthId,
-							username
-						},
-					);
+					user = await db.User.create({
+						oauthId,
+						username,
+					});
 
 					const categories = await db.Category.findAll({
 						where: {
-							TypeId: 2
-						}
+							TypeId: 2,
+						},
 					});
 
 					for (let category of categories) {
 						await db.Weight.create({
 							UserId: user.id,
 							CategoryId: category.id,
-							value: 50
+							value: 50,
 						});
 					}
-
 				} catch (error) {
 					console.log(error);
 					return done(error);
 				}
 			}
 
-			done(null, user)
+			done(null, user);
 		}
 	)
 );
 
 passport.serializeUser((user, done) => {
 	done(null, user.id);
-	//done(null, user[0].dataValues.id);
 });
 
 passport.deserializeUser((id, done) => {
