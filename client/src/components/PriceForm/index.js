@@ -17,7 +17,7 @@ const PriceForm = ({ handleSubmit }) => {
 				<Form>
 					<FormControlLabel
 						value="1"
-						control={<Checkbox />}
+						control={<Checkbox color="primary" />}
 						label="$"
 						labelPlacement="end"
 						name="$"
