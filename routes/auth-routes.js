@@ -16,15 +16,29 @@ router.post("/auth/signup", async (req, res) => {
 
 		const user = await db.User.create(req.body);
 
+		const categories = await db.Category.findAll({
+			where: {
+				TypeId: 2,
+			},
+		});
+
+		for (let category of categories) {
+			await db.Weight.create({
+				UserId: user.id,
+				CategoryId: category.id,
+				value: 50,
+			});
+		}
+
 		res.json(user);
 	} catch (e) {
 		res.status(500).send(e);
 	}
 });
 
-router.get(
+router.post(
 	"/auth/signin",
-	passport.authenticate("local", { failureRedirect: "/login" }),
+	passport.authenticate("local", { failureRedirect: "/" }),
 	(req, res) => {
 		res.redirect("/eats");
 	}
