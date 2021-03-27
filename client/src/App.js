@@ -25,7 +25,7 @@ function App() {
 				{/*  ADD in after created component={Logout} */}
 				<Route exact path="/logout" />
 			</Switch>
-			<Footer />>
+			<Footer />
 		</Router>
 	);
 }
