@@ -7,7 +7,7 @@ const theme = createMuiTheme({
 	palette: {
 		primary: {
 			// light: will be calculated from palette.primary.main,
-			main: "#226126",
+			main: "#D92B04",
 			// dark: will be calculated from palette.primary.main,
 			// contrastText: will be calculated to contrast with palette.primary.main
 		},
@@ -26,7 +26,7 @@ function Btn(props) {
 		<ThemeProvider theme={theme}>
 			<Button
 				variant="contained"
-				color="primary"
+				color="secondary"
 				onClick={props.onClick}
 				type={props.type}
 			>

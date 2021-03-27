@@ -5,6 +5,7 @@
 
 #navIcon {
     color: red;
+    font-size: 48px;
 }
 
 #loginlink{
@@ -25,7 +26,7 @@ ul {
     list-style-type: none;
     background-color: #D2F4F7;
     text-align: left;
-    box-shadow: 2px 2px 2px 2px #E1F7E3;
+    box-shadow: 2px 2px 2px 2px #E6F1F2;
     border-radius: 20px;
     margin:auto;
     padding-top: 5px;

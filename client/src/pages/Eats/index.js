@@ -3,7 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Btn from "../../components/Btn";
 import ContainerWrapper from "../../components/ContainerWrapper";
 import "./style.css";
-import RandoAnim from "../../components/RandoAnim";
+import Loading from "../../components/Loading";
 import PriceForm from "../../components/PriceForm";
 import axios from "axios";
 import _ from "lodash";
@@ -152,15 +152,18 @@ export default function Eats() {
     const Rando = () => (
         <div className="eats">
             <div className="imgDiv">
-                <RandoAnim />
+                
             </div>
 
             <PriceForm handleSubmit={handleSubmit} />
         </div>
     );
+    
+   
 
     return (
         <ContainerWrapper>
+            
             {Object.keys(restaurant).length ? <RestaurantDetails /> : <Rando />}
         </ContainerWrapper>
     );
