@@ -1,11 +1,9 @@
 #login {
-    background-color: white;
-    margin-right: auto;
-    margin-left: auto;
-    width: 50%;
-    align-items: center;
-    
-
+	background-color: white;
+	margin-right: auto;
+	margin-left: auto;
+	width: 50%;
+	align-items: center;
 }
 
 h1, h2, h3 {
@@ -27,35 +25,41 @@ form {
    
 }
 
+/* Was affecting the price options on Eats page */
+/* form {
+	align-items: center;
+	text-align: center;
+	height: 100%;
+	background-color: pink;
+	opacity: 70%;
+	border-radius: 20px;
+} */
+
+
 #loginbtn {
-    margin: 20px;
+	margin: 20px;
 }
 
 #createbtn {
-    margin: 20px;
+	margin: 20px;
 }
 
 input {
-    margin: 10px;
+	margin: 10px;
 }
 
 #logo {
-    width: auto;
-    height: 70vh;
-    margin-right: auto;
-    margin-left:auto;
-    opacity: 100%;
-    
-    
-  
+	width: auto;
+	height: 70vh;
+	margin-right: auto;
+	margin-left: auto;
+	opacity: 100%;
 }
 
 #googlelogin {
-    text-align: center;
-    font-family: sans-serif;
-    align-items: center;
-    margin-right: auto;
-    margin-left: auto;
+	text-align: center;
+	font-family: sans-serif;
+	align-items: center;
+	margin-right: auto;
+	margin-left: auto;
 }
-
-

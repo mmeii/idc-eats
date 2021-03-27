@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import PriceCheckbox from "../../components/PriceCheckbox";
 import { makeStyles } from "@material-ui/core/styles";
 import Btn from "../../components/Btn";
 import ContainerWrapper from "../../components/ContainerWrapper";
 import "./style.css";
 import RandoAnim from "../../components/RandoAnim";
+import PriceForm from "../../components/PriceForm";
 import axios from "axios";
+import _ from "lodash";
+import StarIcon from '@material-ui/icons/Star';
+import StarHalfIcon from '@material-ui/icons/StarHalf';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -18,14 +20,25 @@ const useStyles = makeStyles(theme => ({
 
 export default function Eats() {
     const classes = useStyles();
-    // const [showDetails, setShowDetails] = useState(false);
     const [coords, setCoords] = useState();
     const [restaurant, setRestaurant] = useState({});
+    const [priceOptions, setPriceOptions] = useState([]);
 
     //yelp get route basing on lat and long
     useEffect(() => {
         fetchCoords();
     }, []);
+
+    useEffect(() => {
+        fetchRestaurant();
+    }, [priceOptions]);
+
+    useEffect(() => {
+        if (restaurant.categories) {
+            const categories = restaurant.categories;
+            axios.patch("/api/weights/decrement", categories);
+        }
+    }, [restaurant]);
 
     const fetchCoords = () => {
         navigator.geolocation.getCurrentPosition(res => {
@@ -36,12 +49,12 @@ export default function Eats() {
         });
     };
 
-    const onClick = () => {
-        // setShowDetails(true);
-
+    const fetchRestaurant = () => {
         if (coords) {
             axios
-                .get(`/api/restaurants/${coords.latitude}/${coords.longitude}`)
+                .get(
+                    `/api/restaurants/${coords.latitude}/${coords.longitude}?price=${priceOptions}`
+                )
                 // .then(res => res.json())
                 .then(result => {
                     // console.log(result);
@@ -53,6 +66,16 @@ export default function Eats() {
         }
     };
 
+    const handleSubmit = formData => {
+        const selectedPrices = _.chain(formData)
+            .map(option => option)
+            .filter(option => option)
+            .flatten()
+            .value();
+
+        setPriceOptions(selectedPrices);
+    };
+
     console.log(restaurant);
     // open: is_closed
     // restaurant name: name
@@ -61,9 +84,33 @@ export default function Eats() {
     // location: location.display_address
     // phone: phone
 
-    {/* onclick to go to google maps with restaurant address */ }
+    const StarRating = () => {
+        // convert str to int a round to nearest half
+        const num = Math.round(parseFloat(restaurant.rating) / 0.5) * 0.5;
+        const stars = [];
+        console.log(num);
+        for (let i = 1; i < 6; i++) {
+            const full = <StarIcon />;
+            const half = <StarHalfIcon />;
+            if (num > i || num === i) {
+                stars.push(full);
+            } else if (i - num === 0.5) {
+                stars.push(half);
+            }
+        }
+        // show stars
+        return stars;
+    }
+
+    // onclick to go to google maps with restaurant address	
     const goToRestaurant = () => {
-        window.open(`http://maps.google.com/?q=${restaurant.location.display_address}`, "_blank")
+        window.open(
+            `http://maps.google.com/?q=${restaurant.location.display_address}`,
+            "_blank"
+        );
+
+        const categories = restaurant.categories;
+        axios.patch("/api/weights/increment", categories);
     };
 
     const RestaurantDetails = () => (
@@ -75,8 +122,12 @@ export default function Eats() {
             <div className="restDetails">
                 <h3>We found a {restaurant.categories[0].title} restaurant for you!</h3>
                 <p>Restaurant Name: {restaurant.name}</p>
-                <p>Rating: {restaurant.rating}</p>
-                <p>Address: {restaurant.location.display_address[0]}, {restaurant.location.display_address[1]}</p>
+                <p>Price: {restaurant.price}</p>
+                <p>Rating: <StarRating /></p>
+                <p>
+                    Address: {restaurant.location.display_address[0]},{" "}
+                    {restaurant.location.display_address[1]}
+                </p>
                 <p>Phone: {restaurant.display_phone}</p>
                 <h3>Sounds good, right?</h3>
             </div>
@@ -85,12 +136,11 @@ export default function Eats() {
                 <Btn
                     variant="contained"
                     color="primary"
-                    onClick={onClick}
+                    onClick={fetchRestaurant}
                     label="Nope!"
                 />
 
-                <Btn label="Yes, Take Me There!"
-                    onClick={goToRestaurant} />
+                <Btn label="Yes, Take Me There!" onClick={goToRestaurant} />
 
                 {/* <Link to="details">
                     <Btn label="More Info" />
@@ -105,20 +155,7 @@ export default function Eats() {
                 <RandoAnim />
             </div>
 
-            <div className="price">
-                <PriceCheckbox /> $
-				<PriceCheckbox /> $$
-				<PriceCheckbox /> $$$
-				<PriceCheckbox /> $$$$
-			</div>
-
-            {/* rando button to show restaurant */}
-            <Btn
-                variant="contained"
-                color="primary"
-                onClick={onClick}
-                label="Rando"
-            />
+            <PriceForm handleSubmit={handleSubmit} />
         </div>
     );
 
