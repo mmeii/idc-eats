@@ -78,6 +78,7 @@ export default function Eats() {
         setPriceOptions(selectedPrices);
     };
 
+    // console.log(`my coords:${{ coords }}`);
     console.log(restaurant);
     // open: is_closed
     // restaurant name: name
@@ -85,6 +86,8 @@ export default function Eats() {
     // rating: rating
     // location: location.display_address
     // phone: phone
+    // console.log(`restaurant lat:${restaurant.coordinates.latitude}`);
+    // console.log(`restaurant long:${restaurant.coordinates.longitude}`);
 
     const StarRating = () => {
         // convert str to int a round to nearest half
@@ -114,6 +117,29 @@ export default function Eats() {
         axios.patch("/api/weights/increment", categories);
     };
 
+    const Distance = () => {
+        // radius of the earth in miles
+        const R = 3958.756;
+        const lat1 = coords.latitude;
+        const lat2 = restaurant.coordinates.latitude;
+        const lon1 = coords.longitude;
+        const lon2 = restaurant.coordinates.longitude;
+        var dLat = deg2rad(lat2 - lat1);  // deg2rad below
+        var dLon = deg2rad(lon2 - lon1);
+        var a =
+            Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+            Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
+            Math.sin(dLon / 2) * Math.sin(dLon / 2)
+            ;
+        var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        var d = R * c; // Distance in km
+        return +(Math.round(d + "e+2") + "e-2");
+    }
+
+    const deg2rad = (deg) => {
+        return deg * (Math.PI / 180);
+    }
+
     const RestaurantDetails = () => (
         <div className="oneRestaurant">
             <div>
@@ -125,6 +151,7 @@ export default function Eats() {
                 <p>Restaurant Name: {restaurant.name}</p>
                 <p>Price: {restaurant.price}</p>
                 <p>Rating: <StarRating /></p>
+                <p>Distance: <Distance /> miles</p>
                 <p>
                     Address: {restaurant.location.display_address[0]},{" "}
                     {restaurant.location.display_address[1]}
