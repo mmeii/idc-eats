@@ -44,9 +44,13 @@ router.post("/auth/signup", async (req, res) => {
 	}
 });
 
-router.post("/auth/signin", passport.authenticate('local'), (req, res) => {
-	res.redirect("/");
-});
+router.post(
+	"/auth/signin",
+	passport.authenticate("local", { failureRedirect: "/" }),
+	(req, res) => {
+		res.redirect("/");
+	}
+);
 
 router.get(
 	"/auth/google",
@@ -57,7 +61,7 @@ router.get(
 
 router.get(
 	"/auth/google/callback",
-	passport.authenticate("google"),
+	passport.authenticate("google", { failureRedirect: '/auth/google/failure' }),
 	(req, res) => {
 		res.redirect("/");
 	}

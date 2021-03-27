@@ -6,6 +6,7 @@ import Login from "./pages/Login";
 import Eats from "./pages/Eats";
 import Details from "./pages/Details";
 import Preferences from "./pages/Preferences";
+import Footer from "./components/Footer";
 import PrivateRoute from "./components/PrivateRoute";
 import { AuthProvider } from "./utils/AuthState";
 
@@ -23,6 +24,7 @@ const App = () => {
 					<PrivateRoute exact path="/preferences"><Preferences /></PrivateRoute>
 				</Switch>
 			</Router>
+			<Footer />
 		</AuthProvider>
 	);
 }
