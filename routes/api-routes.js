@@ -132,4 +132,42 @@ router.get("/api/preferences", async (req, res) => {
 	}
 });
 
+router.patch("/api/weights/:type", async (req, res) => {
+	// Category represent food category
+	// Type represents 'increment' or 'decrement'
+	const user = req.user.dataValues;
+	const categories = req.body;
+	const type = req.params.type;
+
+	try {
+		const dbCategories = await db.Category.findAll({});
+
+		const displayCategories = dbCategories.map(
+			category => category.dataValues.display_category
+		);
+
+		categories.forEach(async category => {
+			if (displayCategories.includes(category.title)) {
+				const queriedCategory = await db.Category.findOne({
+					where: { display_category: category.title },
+				});
+
+				const weight = await db.Weight.findOne({
+					where: { UserId: user.id, CategoryId: queriedCategory.dataValues.id },
+				});
+
+				if (type === "increment") {
+					weight.increment("value", { by: 5 });
+				} else {
+					weight.decrement("value", { by: 3 });
+				}
+			}
+		});
+
+		res.send();
+	} catch (e) {
+		res.status(500).send(e);
+	}
+});
+
 module.exports = router;
