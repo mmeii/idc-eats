@@ -4,6 +4,14 @@ const router = express.Router();
 const db = require("../models");
 const passport = require("passport");
 
+router.get("/auth", (req, res) => {
+	try {
+		res.send(req.user);
+	} catch (e) {
+		res.send(e);
+	}
+});
+
 router.post("/auth/signup", async (req, res) => {
 	try {
 		const existingUser = await db.User.findOne({
@@ -40,7 +48,7 @@ router.post(
 	"/auth/signin",
 	passport.authenticate("local", { failureRedirect: "/" }),
 	(req, res) => {
-		res.redirect("/eats");
+		res.redirect("/");
 	}
 );
 
@@ -53,9 +61,9 @@ router.get(
 
 router.get(
 	"/auth/google/callback",
-	passport.authenticate("google"),
+	passport.authenticate("google", { failureRedirect: '/auth/google/failure' }),
 	(req, res) => {
-		res.redirect("/eats");
+		res.redirect("/");
 	}
 );
 
