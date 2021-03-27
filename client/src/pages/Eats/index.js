@@ -152,7 +152,7 @@ export default function Eats() {
     const Rando = () => (
         <div className="eats">
             <div className="imgDiv">
-                <RandoAnim />
+                
             </div>
 
             <PriceForm handleSubmit={handleSubmit} />

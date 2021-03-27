@@ -41,6 +41,7 @@ function Login() {
           onChange={({ target: { value } }) => setUsername(value)}
           placeholder="username"
         />
+        <p> </p>
         <input
           id="password"
           label="password"
@@ -48,6 +49,7 @@ function Login() {
           onChange={({ target: { value } }) => setPassword(value)}
           placeholder="password"
         />
+        <p> </p>
         <Btn
           type="submit"
           label="Login"
