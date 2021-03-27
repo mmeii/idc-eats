@@ -2,7 +2,6 @@ const express = require("express");
 const yelp = require("../api/yelp");
 const router = express.Router();
 const db = require("../models");
-const requireLogin = require("../middlewares/requireLogin");
 
 const randomCategory = weights => {
 	let totalWeight = 0;
@@ -21,17 +20,14 @@ const randomCategory = weights => {
 	}
 };
 
-router.use(requireLogin);
-
 router.get("/api/restaurants/:lat/:long/", async (req, res) => {
 	const user = req.user.dataValues;
 	let priceOptions = req.query.price;
-	if (!priceOptions) {
-		priceOptions = [1, 2, 3, 4];
+	if (!priceOptions.length) {
+		priceOptions = "1, 2, 3, 4";
 	}
 	const lat = req.params.lat;
 	const long = req.params.long;
-	// Need to automatically add weights when User is created. To test, replace "user.id" with 1
 	const weights = await db.Weight.findAll({
 		where: { UserId: user.id },
 		include: db.Category,
@@ -133,6 +129,55 @@ router.get("/api/preferences", async (req, res) => {
 		res.json(categories);
 	} catch (error) {
 		console.log(error);
+	}
+});
+
+router.patch("/api/weights/:type", async (req, res) => {
+	// Category represent food category
+	// Type represents 'increment' or 'decrement'
+	const user = req.user.dataValues;
+	const categories = req.body;
+	const type = req.params.type;
+
+	try {
+		const dbCategories = await db.Category.findAll({});
+
+		const yelpCategories = dbCategories.map(
+			category => category.dataValues.yelp_category
+		);
+
+		const trackedYelpCategories = [];
+
+		categories.forEach(category => {
+			yelpCategories.forEach(async yelpCategory => {
+				if (
+					yelpCategory.includes(category.alias) &&
+					!trackedYelpCategories.includes(yelpCategory)
+				) {
+					trackedYelpCategories.push(yelpCategory);
+					const queriedCategory = await db.Category.findOne({
+						where: { yelp_category: yelpCategory },
+					});
+
+					const weight = await db.Weight.findOne({
+						where: {
+							UserId: user.id,
+							CategoryId: queriedCategory.dataValues.id,
+						},
+					});
+
+					if (type === "increment") {
+						weight.increment("value", { by: 5 });
+					} else {
+						weight.decrement("value", { by: 3 });
+					}
+				}
+			});
+		});
+
+		res.send();
+	} catch (e) {
+		res.status(500).send(e);
 	}
 });
 
