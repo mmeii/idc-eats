@@ -6,7 +6,8 @@
 
 .oneRestaurant img {
     width: 80%;
-    height: auto;
+    max-height: 350px;
+    object-fit: cover;
 }
 
 .imgDiv {
