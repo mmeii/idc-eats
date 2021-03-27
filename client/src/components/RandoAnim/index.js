@@ -14,7 +14,7 @@ function RandoAnim () {
     return (
         <motion.div
         className = "rando"
-        animate=  {{x: [ 0, 100, 0, -100, 0], rotate: 360}}
+        animate=  {{ rotate: 360}}
         transition= {{ duration: 3, loop: Infinity, ease: "linear"}}
         />
     )
