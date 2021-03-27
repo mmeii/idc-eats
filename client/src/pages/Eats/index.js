@@ -31,6 +31,13 @@ export default function Eats() {
 		fetchRestaurant();
 	}, [priceOptions]);
 
+	useEffect(() => {
+		if (restaurant.categories) {
+			const categories = restaurant.categories;
+			axios.patch("/api/weights/decrement", categories);
+		}
+	}, [restaurant]);
+
 	const fetchCoords = () => {
 		navigator.geolocation.getCurrentPosition(res => {
 			setCoords({
@@ -83,6 +90,9 @@ export default function Eats() {
 			`http://maps.google.com/?q=${restaurant.location.display_address}`,
 			"_blank"
 		);
+
+		const categories = restaurant.categories;
+		axios.patch("/api/weights/increment", categories);
 	};
 
 	const RestaurantDetails = () => (
