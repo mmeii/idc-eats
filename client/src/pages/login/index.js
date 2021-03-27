@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useAuthContext } from "../../utils/AuthState";
 import axios from "axios";
 import Motion from "../../components/Motion";
 import { makeStyles } from "@material-ui/core/styles";
@@ -7,17 +8,30 @@ import ContainerWrapper from "../../components/ContainerWrapper";
 import "./style.css";
 
 function Login() {
+	const [state, dispatch] = useAuthContext();
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
 
 	const handleSubmit = event => {
 		event.preventDefault();
 		const credentials = { username, password };
-		console.log(credentials);
 		axios.post("/auth/signup", credentials);
 		setUsername("");
 		setPassword("");
 	};
+
+	const fetchUser = async () => {
+		const user = await axios.get("/auth");
+		if (user) dispatch({ type: "signin", payload: user.data });
+	};
+
+	useEffect(() => {
+		fetchUser();
+	}, []);
+
+	useEffect(() => {
+		console.log(state);
+	}, [state]);
 
 	return (
 		<ContainerWrapper>

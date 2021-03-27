@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import Btn from "../../components/Btn";
-import ContainerWrapper from "../../components/ContainerWrapper";
-import "./style.css";
-import RandoAnim from "../../components/RandoAnim";
-import PriceForm from "../../components/PriceForm";
 import axios from "axios";
 import _ from "lodash";
+import { makeStyles } from "@material-ui/core/styles";
 import StarIcon from '@material-ui/icons/Star';
 import StarHalfIcon from '@material-ui/icons/StarHalf';
+
+import Btn from "../../components/Btn";
+import ContainerWrapper from "../../components/ContainerWrapper";
+import RandoAnim from "../../components/RandoAnim";
+import PriceForm from "../../components/PriceForm";
+
+import "./style.css";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -88,7 +90,6 @@ export default function Eats() {
         // convert str to int a round to nearest half
         const num = Math.round(parseFloat(restaurant.rating) / 0.5) * 0.5;
         const stars = [];
-        console.log(num);
         for (let i = 1; i < 6; i++) {
             const full = <StarIcon />;
             const half = <StarHalfIcon />;
