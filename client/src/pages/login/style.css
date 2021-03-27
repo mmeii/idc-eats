@@ -6,6 +6,25 @@
 	align-items: center;
 }
 
+h1, h2, h3 {
+    font-family: 'Alegreya Sans SC', sans-serif;
+    font-weight:bolder;
+}
+
+h4, h5, h6, p {
+    font-family: 'Roboto', sans-serif;
+}
+
+form {
+    align-items: center;
+    text-align: center;
+    height: 100%;
+    background-color: #FFF0F5;
+    opacity: 70%;
+    border-radius: 20px;
+   
+}
+
 /* Was affecting the price options on Eats page */
 /* form {
 	align-items: center;
@@ -15,6 +34,7 @@
 	opacity: 70%;
 	border-radius: 20px;
 } */
+
 
 #loginbtn {
 	margin: 20px;
