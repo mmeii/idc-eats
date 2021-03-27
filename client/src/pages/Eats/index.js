@@ -81,19 +81,10 @@ export default function Eats() {
         setPriceOptions(selectedPrices);
     };
 
-    // console.log(`my coords:${{ coords }}`);
     console.log(restaurant);
-    // open: is_closed
-    // restaurant name: name
-    // image: image_url
-    // rating: rating
-    // location: location.display_address
-    // phone: phone
-    // console.log(`restaurant lat:${restaurant.coordinates.latitude}`);
-    // console.log(`restaurant long:${restaurant.coordinates.longitude}`);
 
     const StarRating = () => {
-        // convert str to int a round to nearest half
+        // convert to int a round to nearest half
         const num = Math.round(parseFloat(restaurant.rating) / 0.5) * 0.5;
         const stars = [];
         for (let i = 1; i < 6; i++) {
@@ -120,6 +111,7 @@ export default function Eats() {
         axios.patch("/api/weights/increment", categories);
     };
 
+    // the function is using the Haversine Formula
     const Distance = () => {
         // radius of the earth in miles
         const R = 3958.756;
@@ -127,15 +119,16 @@ export default function Eats() {
         const lat2 = restaurant.coordinates.latitude;
         const lon1 = coords.longitude;
         const lon2 = restaurant.coordinates.longitude;
-        var dLat = deg2rad(lat2 - lat1);  // deg2rad below
-        var dLon = deg2rad(lon2 - lon1);
-        var a =
+        const dLat = deg2rad(lat2 - lat1);
+        const dLon = deg2rad(lon2 - lon1);
+        const a =
             Math.sin(dLat / 2) * Math.sin(dLat / 2) +
             Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
             Math.sin(dLon / 2) * Math.sin(dLon / 2)
             ;
-        var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-        var d = R * c; // Distance in km
+        const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        // distance in miles
+        var d = R * c;
         return +(Math.round(d + "e+2") + "e-2");
     }
 
@@ -173,9 +166,6 @@ export default function Eats() {
 
                 <Btn label="Yes, Take Me There!" onClick={goToRestaurant} />
 
-                {/* <Link to="details">
-                    <Btn label="More Info" />
-                </Link> */}
             </div>
         </div>
     );
@@ -183,18 +173,15 @@ export default function Eats() {
     const Rando = () => (
         <div className="eats">
             <div className="imgDiv">
-                
+
             </div>
 
             <PriceForm handleSubmit={handleSubmit} />
         </div>
     );
-    
-   
 
     return (
         <ContainerWrapper>
-            
             {Object.keys(restaurant).length ? <RestaurantDetails /> : <Rando />}
         </ContainerWrapper>
     );
