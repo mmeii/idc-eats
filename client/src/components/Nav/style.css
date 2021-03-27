@@ -1,14 +1,44 @@
-.nav {
+.menu {
     text-align: right;
-    background-color: #1F6E27;
-    padding: 5px;
+    
 }
 
 #navIcon {
-    color: rgba(242, 240, 237);
+    color: red;
 }
 
 #loginlink{
     color: rgba(242, 240, 237);
 }
 
+.menu-area  {
+    position: absolute;
+    list-style-type: none;
+    
+    
+  }
+
+ul {
+    float: right;
+    height: 130px;
+    width: 100px;
+    list-style-type: none;
+    background-color: #D2F4F7;
+    text-align: left;
+    box-shadow: 2px 2px 2px 2px #E1F7E3;
+    border-radius: 20px;
+    margin:auto;
+    padding-top: 5px;
+    padding: 0;
+    
+}
+
+li {
+    margin: 0px 10px 15px 15px;
+    text-align: left;
+}
+
+a {
+    color: #4E9DA6;
+    font-size: 16px;
+}
