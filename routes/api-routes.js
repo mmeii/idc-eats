@@ -142,26 +142,37 @@ router.patch("/api/weights/:type", async (req, res) => {
 	try {
 		const dbCategories = await db.Category.findAll({});
 
-		const displayCategories = dbCategories.map(
-			category => category.dataValues.display_category
+		const yelpCategories = dbCategories.map(
+			category => category.dataValues.yelp_category
 		);
 
-		categories.forEach(async category => {
-			if (displayCategories.includes(category.title)) {
-				const queriedCategory = await db.Category.findOne({
-					where: { display_category: category.title },
-				});
+		const trackedYelpCategories = [];
 
-				const weight = await db.Weight.findOne({
-					where: { UserId: user.id, CategoryId: queriedCategory.dataValues.id },
-				});
+		categories.forEach(category => {
+			yelpCategories.forEach(async yelpCategory => {
+				if (
+					yelpCategory.includes(category.alias) &&
+					!trackedYelpCategories.includes(yelpCategory)
+				) {
+					trackedYelpCategories.push(yelpCategory);
+					const queriedCategory = await db.Category.findOne({
+						where: { yelp_category: yelpCategory },
+					});
 
-				if (type === "increment") {
-					weight.increment("value", { by: 5 });
-				} else {
-					weight.decrement("value", { by: 3 });
+					const weight = await db.Weight.findOne({
+						where: {
+							UserId: user.id,
+							CategoryId: queriedCategory.dataValues.id,
+						},
+					});
+
+					if (type === "increment") {
+						weight.increment("value", { by: 5 });
+					} else {
+						weight.decrement("value", { by: 3 });
+					}
 				}
-			}
+			});
 		});
 
 		res.send();
