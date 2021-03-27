@@ -8,6 +8,15 @@
 
 }
 
+h1, h2, h3 {
+    font-family: 'Alegreya Sans SC', sans-serif;
+    font-weight:bolder;
+}
+
+h4, h5, h6, p {
+    font-family: 'Roboto', sans-serif;
+}
+
 form {
     align-items: center;
     text-align: center;

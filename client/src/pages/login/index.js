@@ -30,6 +30,9 @@ function Login() {
   return (
     <ContainerWrapper>
       <Motion />
+      <h2>i don't care. you pick.</h2>
+      <h4>The app that picks where to eat so you don't have to</h4>
+      <h5>Saving marriages and friendships from food-related arguments one click at a time</h5>
       <form onSubmit={(event) => handleSubmit(event)}>
         <input
           id="username"
