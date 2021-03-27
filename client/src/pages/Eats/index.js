@@ -7,7 +7,10 @@ import StarHalfIcon from '@material-ui/icons/StarHalf';
 
 import Btn from "../../components/Btn";
 import ContainerWrapper from "../../components/ContainerWrapper";
-import RandoAnim from "../../components/RandoAnim";
+
+
+import Loading from "../../components/Loading";
+
 import PriceForm from "../../components/PriceForm";
 
 import "./style.css";
@@ -180,15 +183,18 @@ export default function Eats() {
     const Rando = () => (
         <div className="eats">
             <div className="imgDiv">
-                <RandoAnim />
+                
             </div>
 
             <PriceForm handleSubmit={handleSubmit} />
         </div>
     );
+    
+   
 
     return (
         <ContainerWrapper>
+            
             {Object.keys(restaurant).length ? <RestaurantDetails /> : <Rando />}
         </ContainerWrapper>
     );
