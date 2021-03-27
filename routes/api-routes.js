@@ -71,7 +71,7 @@ router.get("/api/restaurants/:lat/:long/", async (req, res) => {
 				Math.random() * matchingRestaurants.length
 			);
 			randomRestaurant = matchingRestaurants[randomIndex];
-
+			
 			res.json(randomRestaurant);
 		} else {
 			const randomIndex = Math.floor(
@@ -112,7 +112,7 @@ router.post("/api/preferences", async (req, res) => {
 	}
 });
 
-// Post User Preferences
+// Get User Preferences
 router.get("/api/preferences", async (req, res) => {
 	try {
 		const user = req.user;
