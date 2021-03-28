@@ -1,10 +1,10 @@
 .eats,
-.oneRestaurant {
+.restaurant {
     text-align: center;
     height: 100%;
 }
 
-.oneRestaurant img {
+.restaurant img {
     width: 100%;
     max-height: 365px;
     object-fit: cover;
@@ -13,12 +13,58 @@
     box-shadow: 0px 3px 1px -2px rgb(0 0 0 / 20%), 0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%);
 }
 
+.paragraph {
+    /* padding: 0px; */
+    margin: 0px;
+}
+
 .imgDiv {
     max-width: 100%;
     height: auto;
 }
 
-#restaurantImg {
-    width: auto;
-    height: 70vh;
+.detailColumnOne {
+    float: left;
+    width: 40%;
 }
+
+.detailColumnTwo {
+    float: left;
+    width: 60%;
+}
+
+.resDetails:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.resContext {
+    width: 80%;
+    margin: auto;
+}
+
+.resInfo {
+    column-count: 2;
+    column-gap: 5px;
+    margin-bottom: 10px;
+}
+
+.resDetails li {
+    list-style: none;
+}
+
+#price {
+    text-align: left;
+}
+
+#distance {
+    text-align: left;
+}
+
+#rating {
+    text-align: right;
+}
+
+
+

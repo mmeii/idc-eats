@@ -62,11 +62,11 @@ function Login() {
 				<p>Don't have an account? Make one!</p>
 				<Btn label="Create Account" id="createbtn" onClick={handleSubmit}></Btn>
 				<div id="googlelogin">
-				<h2>Login with Google</h2><a href="/auth/google"><i className="fab fa-google"></i></a>
-			</div>
+					<h2>Login with Google</h2><a href="/auth/google"><i className="fab fa-google"></i></a>
+				</div>
 			</form>
 			<h2>i don't care. you pick.</h2>
-			
+
 		</ContainerWrapper>
 	);
 }
