@@ -13,11 +13,11 @@
 }
 
 #found {
-    text-align: left;
+    text-align: right;
 }
 
 #good {
-    text-align: right;
+    text-align: left;
 }
 
 #attention {
@@ -103,6 +103,10 @@
 #phone {
     float: left;
     width: 50%;
+}
+
+#nopeBtn {
+    padding-left: 5px;
 }
 
 

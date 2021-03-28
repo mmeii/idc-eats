@@ -15,11 +15,11 @@ import { makeStyles } from "@material-ui/core/styles";
 import "./style.css";
 
 const useStyles = makeStyles(theme => ({
-    root: {
-        "& > *": {
-            margin: theme.spacing(1),
-        },
-    },
+    // root: {
+    //     "& > *": {
+    //         margin: theme.spacing(0),
+    //     },
+    // },
     image: {
         width: '100%',
         maxHeight: '365px',
@@ -28,9 +28,6 @@ const useStyles = makeStyles(theme => ({
         borderBottomRightRadius: '50px',
         boxShadow: '0px 3px 1px -2px rgb(0 0 0 / 20%), 0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%)',
     },
-    mainColor: {
-        backgroundColor: '#D92B04',
-    }
 }));
 
 export default function Home() {
@@ -180,20 +177,22 @@ export default function Home() {
             <h3 id="good">Sounds <span id="attention">good</span>, right?
             </h3>
 
-            <div className={classes.root}>
-                <Btn
-                    variant="contained"
-                    color="secondary"
-                    onClick={fetchRestaurant}
-                    label="Nope!"
-                />
-
+            <div align="left">
                 <Btn
                     label="Yes, Take Me There!"
                     color="primary"
-                    className={classes.mainColor}
-                    onClick={goToRestaurant} />
+                    onClick={goToRestaurant}
+                />
 
+                <span id="nopeBtn">
+                    <Btn
+                        variant="contained"
+                        color="secondary"
+                        onClick={fetchRestaurant}
+                        label="Nope!"
+                        ml={2}
+                    />
+                </span>
             </div>
         </div>
     );
