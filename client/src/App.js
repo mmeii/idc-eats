@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import Nav from "./components/Nav";
 import Login from "./pages/Login";
-import Eats from "./pages/Eats";
+import Home from "./pages/Home";
 import Details from "./pages/Details";
 import Preferences from "./pages/Preferences";
 import Footer from "./components/Footer";
@@ -19,7 +19,7 @@ const App = () => {
 				<Nav />
 				<Switch>
 					<Route exact path="/" component={Login} />
-					<PrivateRoute exact path="/eats"><Eats /></PrivateRoute>
+					<PrivateRoute exact path="/home"><Home /></PrivateRoute>
 					<PrivateRoute exact path="/details"><Details /></PrivateRoute>
 					<PrivateRoute exact path="/preferences"><Preferences /></PrivateRoute>
 				</Switch>
