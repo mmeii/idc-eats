@@ -19,7 +19,7 @@
     
   }
 
-ul {
+.menu ul {
     float: right;
     height: 130px;
     width: 100px;
@@ -34,7 +34,7 @@ ul {
     
 }
 
-li {
+.menu li {
     margin: 0px 10px 15px 15px;
     text-align: left;
 }

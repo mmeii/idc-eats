@@ -16,13 +16,7 @@ export default function ContainerWrapper(props) {
         <div
             className={classes.root}
             align="center">
-            <Container className="container"
-                maxWidth="sm"
-            // alignItems="center"
-            // justifyContent="center"
-            // display="flex"
-            // style={{ minHeight: '100vh' }}
-            >
+            <Container className="container" maxWidth="sm">
                 {props.children}
             </Container>
         </div>

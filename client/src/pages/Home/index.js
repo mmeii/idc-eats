@@ -1,18 +1,20 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import _ from "lodash";
+
+//components imports
+import Btn from "../../components/Btn";
+import ContainerWrapper from "../../components/ContainerWrapper";
+import PriceForm from "../../components/PriceForm";
+import Loading from "../../components/Loading";
+
+//material-ui imports
 import { makeStyles } from "@material-ui/core/styles";
 import StarIcon from '@material-ui/icons/Star';
 import StarHalfIcon from '@material-ui/icons/StarHalf';
+import RoomIcon from '@material-ui/icons/Room';
 
-import Btn from "../../components/Btn";
-import ContainerWrapper from "../../components/ContainerWrapper";
-
-
-import Loading from "../../components/Loading";
-
-import PriceForm from "../../components/PriceForm";
-
+// styling import
 import "./style.css";
 
 const useStyles = makeStyles(theme => ({
@@ -109,25 +111,12 @@ export default function Home() {
         axios.patch("/api/weights/increment", categories);
     };
 
-    // the function is using the Haversine Formula
+    // display distance in miles
     const Distance = () => {
-        // radius of the earth in miles
-        const R = 3958.756;
-        const lat1 = coords.latitude;
-        const lat2 = restaurant.coordinates.latitude;
-        const lon1 = coords.longitude;
-        const lon2 = restaurant.coordinates.longitude;
-        const dLat = deg2rad(lat2 - lat1);
-        const dLon = deg2rad(lon2 - lon1);
-        const a =
-            Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-            Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
-            Math.sin(dLon / 2) * Math.sin(dLon / 2)
-            ;
-        const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-        // distance in miles
-        var d = R * c;
-        return +(Math.round(d + "e+2") + "e-2");
+        // yelp returns distance in meters, convert to miles
+        const convert = 0.000621371;
+        const miles = restaurant.distance * convert;
+        return +(Math.round(miles + "e+2") + "e-2");
     }
 
     const deg2rad = (deg) => {
@@ -135,24 +124,42 @@ export default function Home() {
     }
 
     const RestaurantDetails = () => (
-        <div className="oneRestaurant">
+        <div className="restaurant">
             <div>
                 <img src={restaurant.image_url} alt="restaurant" />
+                <h3>We found a(n) {restaurant.categories[0].title} place for you!</h3>
             </div>
 
-            <div className="restDetails">
-                <h3>We found a {restaurant.categories[0].title} restaurant for you!</h3>
-                <p>Restaurant Name: {restaurant.name}</p>
-                <p>Price: {restaurant.price}</p>
-                <p>Rating: <StarRating /></p>
-                <p>Distance: <Distance /> miles</p>
-                <p>
-                    Address: {restaurant.location.display_address[0]},{" "}
-                    {restaurant.location.display_address[1]}
+            <div className="resContext">
+                <div className="resInfo">
+                    <div class="infoColumn" id="price">
+                        {restaurant.price}
+                    </div>
+
+                    <div class="infoColumn" id="rating">
+                        <StarRating />
+                    </div>
+                </div>
+
+                <div className="resDetails">
+                    <div className="detailColumnOne" align="left">
+                        <p className="paragraph">Name:</p>
+                        <p className="paragraph">Phone:</p>
+                    </div>
+
+                    <div className="detailColumnTwo" align="left">
+                        <p className="paragraph">{restaurant.name}</p>
+                        <p className="paragraph">{restaurant.display_phone}</p>
+                    </div>
+                </div>
+
+                <p id="distance">
+                    <RoomIcon /><Distance /> miles
                 </p>
-                <p>Phone: {restaurant.display_phone}</p>
-                <h3>Sounds good, right?</h3>
+
             </div>
+
+            <h3>Sounds good, right?</h3>
 
             <div className={classes.root}>
                 <Btn
