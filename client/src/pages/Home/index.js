@@ -10,9 +10,6 @@ import Loading from "../../components/Loading";
 
 //material-ui imports
 import { makeStyles } from "@material-ui/core/styles";
-import StarIcon from '@material-ui/icons/Star';
-import StarHalfIcon from '@material-ui/icons/StarHalf';
-import RoomIcon from '@material-ui/icons/Room';
 
 // styling import
 import "./style.css";
@@ -23,6 +20,17 @@ const useStyles = makeStyles(theme => ({
             margin: theme.spacing(1),
         },
     },
+    image: {
+        width: '100%',
+        maxHeight: '365px',
+        objectFit: 'cover',
+        borderTopLeftRadius: '50px',
+        borderBottomRightRadius: '50px',
+        boxShadow: '0px 3px 1px -2px rgb(0 0 0 / 20%), 0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%)',
+    },
+    mainColor: {
+        backgroundColor: '#D92B04',
+    }
 }));
 
 export default function Home() {
@@ -88,8 +96,8 @@ export default function Home() {
         const num = Math.round(parseFloat(restaurant.rating) / 0.5) * 0.5;
         const stars = [];
         for (let i = 1; i < 6; i++) {
-            const full = <StarIcon />;
-            const half = <StarHalfIcon />;
+            const full = <i className="fas fa-star fa-sm"></i>
+            const half = <i className="fas fa-star-half-alt fa-sm"></i>
             if (num > i || num === i) {
                 stars.push(full);
             } else if (i - num === 0.5) {
@@ -119,24 +127,20 @@ export default function Home() {
         return +(Math.round(miles + "e+2") + "e-2");
     }
 
-    const deg2rad = (deg) => {
-        return deg * (Math.PI / 180);
-    }
-
     const RestaurantDetails = () => (
         <div className="restaurant">
             <div>
-                <img src={restaurant.image_url} alt="restaurant" />
+                <img className={classes.image} src={restaurant.image_url} alt="restaurant" />
                 <h3>We found a(n) {restaurant.categories[0].title} place for you!</h3>
             </div>
 
             <div className="resContext">
                 <div className="resInfo">
-                    <div class="infoColumn" id="price">
+                    <div className="infoColumn" id="price">
                         {restaurant.price}
                     </div>
 
-                    <div class="infoColumn" id="rating">
+                    <div className="infoColumn" align="right" id="rating">
                         <StarRating />
                     </div>
                 </div>
@@ -154,7 +158,7 @@ export default function Home() {
                 </div>
 
                 <p id="distance">
-                    <RoomIcon /><Distance /> miles
+                    <i className="fas fa-map-marker-alt fa-sm"></i><Distance /> miles
                 </p>
 
             </div>
@@ -164,12 +168,16 @@ export default function Home() {
             <div className={classes.root}>
                 <Btn
                     variant="contained"
-                    color="primary"
+                    color="secondary"
                     onClick={fetchRestaurant}
                     label="Nope!"
                 />
 
-                <Btn label="Yes, Take Me There!" onClick={goToRestaurant} />
+                <Btn
+                    label="Yes, Take Me There!"
+                    color="primary"
+                    className={classes.mainColor}
+                    onClick={goToRestaurant} />
 
             </div>
         </div>
