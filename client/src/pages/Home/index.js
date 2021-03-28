@@ -128,10 +128,10 @@ export default function Home() {
     }
 
     const RestaurantDetails = () => (
-        <div className="restaurant">
+        <div className="home">
             <div>
-                <img className={classes.image} src={restaurant.image_url} alt="restaurant" />
-                <h3>We found a(n) {restaurant.categories[0].title} place for you!</h3>
+                <img className={classes.image} src={restaurant.image_url} alt={restaurant.name} />
+                <h3>We found a(n) <span id="attention">{restaurant.categories[0].title}</span> place for you!</h3>
             </div>
 
             <div className="resContext">
@@ -147,23 +147,36 @@ export default function Home() {
 
                 <div className="resDetails">
                     <div className="detailColumnOne" align="left">
-                        <p className="paragraph">Name:</p>
-                        <p className="paragraph">Phone:</p>
+                        <p>name:</p>
+                        <p>phone:</p>
                     </div>
 
                     <div className="detailColumnTwo" align="left">
-                        <p className="paragraph">{restaurant.name}</p>
-                        <p className="paragraph">{restaurant.display_phone}</p>
+                        <p id="resName">{restaurant.name}</p>
+                        <div id="row">
+                            <div id="phone">
+                                <p>
+                                    {restaurant.display_phone}
+                                </p>
+                            </div>
+                            <div id="distance">
+                                <i className="fas fa-map-marker-alt fa-sm"></i>
+                                <span>
+                                    <Distance /> miles
+                                </span>
+                            </div>
+
+                        </div>
                     </div>
                 </div>
 
-                <p id="distance">
-                    <i className="fas fa-map-marker-alt fa-sm"></i><Distance /> miles
-                </p>
+                {/* <p id="distance">
+
+                </p> */}
 
             </div>
 
-            <h3>Sounds good, right?</h3>
+            <h3>Sounds <span id="attention">good</span>, right?</h3>
 
             <div className={classes.root}>
                 <Btn
