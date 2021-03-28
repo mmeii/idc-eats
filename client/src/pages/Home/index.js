@@ -131,7 +131,8 @@ export default function Home() {
         <div className="home">
             <div>
                 <img className={classes.image} src={restaurant.image_url} alt={restaurant.name} />
-                <h3>We found a(n) <span id="attention">{restaurant.categories[0].title}</span> place for you!</h3>
+                <h3 id="found">We found a(n) <span id="attention">{restaurant.categories[0].title}</span> place for you!</h3>
+                <hr />
             </div>
 
             <div className="resContext">
@@ -175,8 +176,9 @@ export default function Home() {
                 </p> */}
 
             </div>
-
-            <h3>Sounds <span id="attention">good</span>, right?</h3>
+            <hr />
+            <h3 id="good">Sounds <span id="attention">good</span>, right?
+            </h3>
 
             <div className={classes.root}>
                 <Btn

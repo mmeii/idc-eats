@@ -1,12 +1,34 @@
-.eats,
 .home {
     text-align: center;
     height: 100%;
+    width: 95%;
 }
 
 .home p {
     margin: 0px;
 }
+
+.home h3 {
+    padding: 0;
+}
+
+#found {
+    text-align: left;
+}
+
+#good {
+    text-align: right;
+}
+
+#attention {
+    color: #CC4D04;
+    font-size: 1.2em;
+    text-decoration: underline;
+}
+
+/* #attention:before {
+    transition: all 0.2s ease-out;
+} */
 
 .imgDiv {
     max-width: 100%;
@@ -15,13 +37,13 @@
 
 .detailColumnOne {
     float: left;
-    width: 30%;
+    width: 20%;
 }
 
 .detailColumnTwo {
     float: left;
-    width: 70%;
-    letter-spacing: 0.2rem;
+    width: 80%;
+    letter-spacing: 0.15rem;
 }
 
 #resName {
@@ -36,8 +58,8 @@
 }
 
 .resContext {
-    width: 80%;
     margin: auto;
+    padding-bottom: 10px;
 }
 
 .resInfo {
