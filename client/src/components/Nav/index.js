@@ -27,17 +27,17 @@ export default function Nav() {
         <motion.div className="menu" variants={menu_variants}>
           <ul>
             <li>
-            <Link to="eats">Eats</Link>
+              <Link to="Home">Home</Link>
             </li>
             <li></li>
-          <li>
-            {/* ADD in link to preferences/profile page */}
-            <Link to="preferences">Preferences</Link>
-          </li>
-          <li></li>
-          <li>
-            <a href="/auth/logout">Logout</a>
-          </li>
+            <li>
+              {/* ADD in link to preferences/profile page */}
+              <Link to="preferences">Preferences</Link>
+            </li>
+            <li></li>
+            <li>
+              <a href="/auth/logout">Logout</a>
+            </li>
           </ul>
         </motion.div>
       </motion.div>

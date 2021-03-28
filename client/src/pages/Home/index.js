@@ -23,7 +23,7 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-export default function Eats() {
+export default function Home() {
     const classes = useStyles();
     const [coords, setCoords] = useState();
     const [restaurant, setRestaurant] = useState({});
@@ -60,9 +60,7 @@ export default function Eats() {
                 .get(
                     `/api/restaurants/${coords.latitude}/${coords.longitude}?price=${priceOptions}`
                 )
-                // .then(res => res.json())
                 .then(result => {
-                    // console.log(result);
                     setRestaurant(result.data);
                 })
                 .catch(err => console.log(err));
