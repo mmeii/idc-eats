@@ -106,7 +106,7 @@ router.get("/api/preferences", async (req, res) => {
 			categoryType: category.TypeId,
 			selected: preferences.some(p => p.CategoryId == category.id),
 		}));
-		console.log(displayCategory);
+		//console.log(displayCategory);
 		res.json(displayCategory);
 	} catch (error) {
 		console.log(error);
