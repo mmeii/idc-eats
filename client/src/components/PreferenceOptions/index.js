@@ -3,6 +3,7 @@ import FormGroup from '@material-ui/core/FormGroup';
 import PriceCheckbox from '../../components/PriceCheckbox';
 import axios from 'axios';
 import { map } from 'lodash';
+import './style.css';
 
 
 function ListItem (props) {
@@ -42,9 +43,11 @@ function PreferenceOptions() {
 
   return (
     <FormGroup>
+      Select one dietary preference:
       <ul>
       {category.map((catMap) => <ListItem key = {catMap.categoryId} value={catMap.displayName} />)}
       </ul>
+      Cuisine choices: 
       <ul>
         {food.map((foodMap) => <ListItem key = {foodMap.categoryId} value={foodMap.displayName} />)} 
       </ul>
