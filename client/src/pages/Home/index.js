@@ -10,16 +10,21 @@ import Loading from "../../components/Loading";
 
 //material-ui imports
 import { makeStyles } from "@material-ui/core/styles";
+import { createMuiTheme } from "@material-ui/core/styles";
+import { ThemeProvider } from "@material-ui/styles";
+import ThumbUpIcon from '@material-ui/icons/ThumbUp';
+import ThumbDownIcon from '@material-ui/icons/ThumbDown';
+import Button from '@material-ui/core/Button';
 
 // styling import
 import "./style.css";
 
 const useStyles = makeStyles(theme => ({
-    // root: {
-    //     "& > *": {
-    //         margin: theme.spacing(0),
-    //     },
-    // },
+    root: {
+        "& > *": {
+            margin: theme.spacing(1),
+        },
+    },
     image: {
         width: '100%',
         maxHeight: '365px',
@@ -29,6 +34,17 @@ const useStyles = makeStyles(theme => ({
         boxShadow: '0px 3px 1px -2px rgb(0 0 0 / 20%), 0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%)',
     },
 }));
+
+const theme = createMuiTheme({
+    palette: {
+        primary: {
+            main: '#D92B04',
+        },
+        secondary: {
+            main: "#4E9DA6",
+        },
+    },
+});
 
 export default function Home() {
     const classes = useStyles();
@@ -145,8 +161,8 @@ export default function Home() {
 
                 <div className="resDetails">
                     <div className="detailColumnOne" align="left">
-                        <p>name:</p>
-                        <p>phone:</p>
+                        <p className="label">name:</p>
+                        <p className="label">phone:</p>
                     </div>
 
                     <div className="detailColumnTwo" align="left">
@@ -178,23 +194,29 @@ export default function Home() {
             </h3>
 
             <div align="left">
-                <Btn
-                    label="Yes, Take Me There!"
-                    color="primary"
-                    onClick={goToRestaurant}
-                />
+                <ThemeProvider theme={theme}>
+                    <Button
+                        variant="contained"
+                        color="primary"
+                        onClick={goToRestaurant}
+                        startIcon={<ThumbUpIcon />}
+                    >
+                        Take me there!
+                    </Button>
 
-                <span id="nopeBtn">
-                    <Btn
+                    <Button
+                        id="nopeBtn"
                         variant="contained"
                         color="secondary"
                         onClick={fetchRestaurant}
-                        label="Nope!"
+                        startIcon={<ThumbDownIcon />}
                         ml={2}
-                    />
-                </span>
+                    >
+                        Next!
+                        </Button>
+                </ThemeProvider>
             </div>
-        </div>
+        </div >
     );
 
     const Rando = () => (
