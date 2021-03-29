@@ -3,15 +3,12 @@ import axios from "axios";
 import _ from "lodash";
 
 //components imports
-import Btn from "../../components/Btn";
 import ContainerWrapper from "../../components/ContainerWrapper";
 import PriceForm from "../../components/PriceForm";
 import Loading from "../../components/Loading";
 
 //material-ui imports
-import { makeStyles } from "@material-ui/core/styles";
-import { createMuiTheme } from "@material-ui/core/styles";
-import { ThemeProvider } from "@material-ui/styles";
+import { makeStyles, createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import ThumbUpIcon from '@material-ui/icons/ThumbUp';
 import ThumbDownIcon from '@material-ui/icons/ThumbDown';
 import Button from '@material-ui/core/Button';
@@ -184,11 +181,8 @@ export default function Home() {
                     </div>
                 </div>
 
-                {/* <p id="distance">
-
-                </p> */}
-
             </div>
+
             <hr />
             <h3 id="good">Sounds <span id="attention">good</span>, right?
             </h3>
