@@ -1,22 +1,36 @@
-.eats,
-.restaurant {
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@700&display=swap');
+
+.home {
     text-align: center;
     height: 100%;
+    width: 95%;
 }
 
-.restaurant img {
-    width: 100%;
-    max-height: 365px;
-    object-fit: cover;
-    border-top-left-radius: 50px;
-    border-bottom-right-radius: 50px;
-    box-shadow: 0px 3px 1px -2px rgb(0 0 0 / 20%), 0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%);
-}
-
-.paragraph {
-    /* padding: 0px; */
+.home p {
     margin: 0px;
 }
+
+.home h3 {
+    padding: 0;
+}
+
+#found {
+    text-align: right;
+}
+
+#good {
+    text-align: left;
+}
+
+#attention {
+    color: #D92B04;
+    font-size: 1.2em;
+    text-decoration: underline;
+}
+
+/* #attention:before {
+    transition: all 0.2s ease-out;
+} */
 
 .imgDiv {
     max-width: 100%;
@@ -25,12 +39,18 @@
 
 .detailColumnOne {
     float: left;
-    width: 40%;
+    width: 20%;
 }
 
 .detailColumnTwo {
     float: left;
-    width: 60%;
+    width: 80%;
+    letter-spacing: 0.15rem;
+}
+
+#resName {
+    font-weight: bolder;
+    border: 1px black;
 }
 
 .resDetails:after {
@@ -40,8 +60,8 @@
 }
 
 .resContext {
-    width: 80%;
     margin: auto;
+    padding-bottom: 10px;
 }
 
 .resInfo {
@@ -56,15 +76,55 @@
 
 #price {
     text-align: left;
+    color: #D92B04;
+    font-size: 18px;
+    font-family: 'Syne', sans-serif;
+    letter-spacing: 2px;
 }
 
 #distance {
-    text-align: left;
+    text-align: right;
+    float: left;
+    width: 50%;
+    letter-spacing: 0;
+}
+
+#distance i {
+    padding-right: 5px;
+    color: #808080;
+}
+
+#distance span {
+    font-size: 12px;
+    color: #808080;
 }
 
 #rating {
-    text-align: right;
+    color: #F29F05;
+    font-size: 15px;
 }
+
+#phone,
+.label {
+    font-size: 13px;
+    padding-top: 4px;
+}
+
+#phone {
+    float: left;
+    width: 50%;
+    font-size: 12px;
+    padding-top: 3px;
+}
+
+#nopeBtn {
+    margin-left: 5px;
+}
+
+hr {
+    opacity: 0.5;
+}
+
 
 
 

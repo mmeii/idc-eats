@@ -11,6 +11,9 @@ const theme = createMuiTheme({
 			// dark: will be calculated from palette.primary.main,
 			// contrastText: will be calculated to contrast with palette.primary.main
 		},
+		secondary: {
+			main: "#F25C05",
+		},
 		// Used by `getContrastText()` to maximize the contrast between
 		// the background and the text.
 		contrastThreshold: 3,
@@ -26,7 +29,7 @@ function Btn(props) {
 		<ThemeProvider theme={theme}>
 			<Button
 				variant="contained"
-				color="secondary"
+				color="primary"
 				onClick={props.onClick}
 				type={props.type}
 			>
