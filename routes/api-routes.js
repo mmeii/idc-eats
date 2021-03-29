@@ -96,13 +96,14 @@ router.get("/api/preferences", async (req, res) => {
 				UserId: user.id
 			},
 		});
-		console.log(preferences[0].CategoryId, preferences[0].UserId);
-		console.log(typeof preferences);
+		// console.log(preferences[0].CategoryId, preferences[0].UserId);
+		// console.log(typeof preferences);
 		const categories = await db.Category.findAll();
 		// console.log(categories);
 		const displayCategory = categories.map((category) => ({
 			categoryId: category.id,
 			displayName: category.display_category,
+			categoryType: category.TypeId,
 			selected: preferences.some(p => p.CategoryId == category.id),
 		}));
 		console.log(displayCategory);
