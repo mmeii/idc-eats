@@ -86,9 +86,38 @@ router.get("/api/restaurants/:lat/:long/", async (req, res) => {
 	}
 });
 
+// Get User Preferences
+router.get("/api/preferences", async (req, res) => {
+	const user = req.user.dataValues;
+
+	try {
+		const preferences = await db.Preference.findAll({
+			where: {
+				UserId: user.id
+			},
+		});
+		// console.log(preferences[0].CategoryId, preferences[0].UserId);
+		// console.log(typeof preferences);
+		const categories = await db.Category.findAll();
+		// console.log(categories);
+		const displayCategory = categories.map((category) => ({
+			categoryId: category.id,
+			displayName: category.display_category,
+			categoryType: category.TypeId,
+			selected: preferences.some(p => p.CategoryId == category.id),
+		}));
+		console.log(displayCategory);
+		res.json(displayCategory);
+	} catch (error) {
+		console.log(error);
+	}
+});
+
 // Post User Preferences
 router.post("/api/preferences", async (req, res) => {
 	//req.user
+	console.log(req.user);
+	
 	try {
 		const user = req.user;
 		const preferences = req.body.preferences;
@@ -107,26 +136,6 @@ router.post("/api/preferences", async (req, res) => {
 				});
 			}
 		}
-	} catch (error) {
-		console.log(error);
-	}
-});
-
-// Get User Preferences
-router.get("/api/preferences", async (req, res) => {
-	try {
-		const user = req.user;
-		const preferences = db.Preference.findAll({
-			where: {
-				UserId: user.id,
-			},
-		});
-		const categories = db.Category.findAll().map(category => ({
-			categoryId: category.id,
-			displayName: category.display_category,
-			selected: preferences.some(p => p.CategoryId == category.id),
-		}));
-		res.json(categories);
 	} catch (error) {
 		console.log(error);
 	}
