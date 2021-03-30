@@ -20,7 +20,10 @@ const randomCategory = weights => {
 	}
 };
 
+
+
 router.get("/api/restaurants/:lat/:long/", async (req, res) => {
+	console.log(req.user.dataValues);
 	const user = req.user.dataValues;
 	let priceOptions = req.query.price;
 	if (!priceOptions.length) {
@@ -44,7 +47,7 @@ router.get("/api/restaurants/:lat/:long/", async (req, res) => {
 	let dietPreferences;
 	if (user.Preference.length) {
 		dietPreferences =
-			user.dataValues.Preference[0].Category.dataValues.yelp_category;
+			user.Preference[0].Category.dataValues.yelp_category;
 	}
 
 	try {
