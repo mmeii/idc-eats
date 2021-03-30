@@ -3,8 +3,7 @@ footer {
     font-weight: bold;
     background-color: white;
     font-family: 'Roboto', sans-serif;
-    bottom: 0;
+    bottom: 0px;
     position: absolute;
     width: 100%;
-    padding-top: 30px;
 }
