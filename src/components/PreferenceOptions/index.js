@@ -28,17 +28,17 @@ function PreferenceOptions() {
     let displayCuisine;
     let currentPreferences = [];
     
-    const handleSubmit = axios.post("/api/preferences", {
+    //const handleSubmit = axios.post("/api/preferences", {
           //setCurrentPreferences = []
           
           
-    })
-    .then(function (response) {
-      console.log(response);
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
+    //})
+    //.then(function (response) {
+      //console.log(response);
+    //})
+    //.catch(function (error) {
+      //console.log(error);
+    //});
    
     
   
@@ -62,20 +62,23 @@ function PreferenceOptions() {
   return (
     
     <Formik
-      intialValues = ""
-      onSubmit={ handleSubmit => {
-      console.log(formData);
+      intialValues = {{ categoryId: []}}
+      onSubmit={ (values) => {
+       console.log (values)
+        //axios.post(JSON.stringify(values, null, 2));
+      
+      
       
       ;
-    }}>{({ handleChange }) => (
+    }}>{({ values }) => (
       <Form>
       <p>Select one dietary preference:</p>
       <ul>
-      {category.map((catMap) => <ListItem key = {catMap.categoryId} value={catMap.displayName} onChange={handleChange}/>)}
+      {category.map((catMap) => <ListItem key = {catMap.categoryId} value={catMap.displayName} />)}
       </ul>
       <p>Cuisine choices:</p> 
       <ul>
-        {food.map((foodMap) => <ListItem key = {foodMap.categoryId} value={foodMap.displayName} onChange={handleChange}/>)} 
+        {food.map((foodMap) => <ListItem key = {foodMap.categoryId} value={foodMap.displayName} />)} 
       </ul>
     
      <Btn
