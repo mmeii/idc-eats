@@ -218,14 +218,16 @@ export default function Home() {
             <div className="imgDiv">
 
             </div>
-
+            <h3>Select the price range and let us take care the rest for you!</h3>
             <PriceForm handleSubmit={handleSubmit} />
         </div>
     );
 
     return (
-        <ContainerWrapper>
-            {Object.keys(restaurant).length ? <RestaurantDetails /> : <Rando />}
-        </ContainerWrapper>
+        <div className="homeWrapper">
+            <ContainerWrapper>
+                {Object.keys(restaurant).length ? <RestaurantDetails /> : <Rando />}
+            </ContainerWrapper>
+        </div>
     );
 }

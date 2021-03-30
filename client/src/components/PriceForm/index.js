@@ -47,7 +47,7 @@ const PriceForm = ({ handleSubmit }) => {
 						labelPlacement="end"
 						onChange={handleChange}
 					/>
-					<Button label={"Rando"} type="submit" />
+					<Button label={"Find a restaurant!"} type="submit" />
 				</Form>
 			)}
 		</Formik>

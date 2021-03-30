@@ -4,9 +4,9 @@ import "./style.css";
 const Footer = () => {
     return (
         <footer>
-            <p>Copyright &copy; 2021</p>            
+            Copyright &copy; 2021
         </footer>
     )
 }
 
-export default Footer
+export default Footer;
