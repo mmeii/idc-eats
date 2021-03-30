@@ -5,6 +5,7 @@ const bcrypt = require("bcrypt");
 
 passport.use(
 	new LocalStrategy(async (username, password, done) => {
+		console.log(username, password);
 		const user = await db.User.findOne({ where: { username } });
 
 		if (!user) {
@@ -17,6 +18,7 @@ passport.use(
 			if (!result || err) {
 				return done(null, false);
 			} else {
+				console.log(user);
 				done(null, user);
 			}
 		});

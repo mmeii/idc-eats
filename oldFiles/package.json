@@ -1,0 +1,46 @@
+{
+	"name": "idc-eats",
+	"version": "1.0.0",
+	"homepage": "/",
+	"description": "a random restaurant discovery application",
+	"main": "server.js",
+	"scripts": {
+		"start": "concurrently \"npm run build:watch\" \"npm run start:watch\"",
+		"start:prod": "node server.js",
+		"start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
+		"client": "cd client && npm run start",
+		"install": "cd client && npm install",
+		"build": "react-scripts build",
+		"build:watch": "cra-build-watch",
+		"start:watch": "nodemon --ignore './client/' server.js",
+		"heroku-postbuild": "npm run build"
+	},
+	"author": "",
+	"license": "ISC",
+	"devDependencies": {
+		"concurrently": "^4.1.0",
+		"nodemon": "^1.18.7"
+	},
+	"dependencies": {
+		"@material-ui/core": "^4.11.3",
+		"@material-ui/icons": "^4.11.2",
+		"axios": "^0.21.1",
+		"bcrypt": "^5.0.1",
+		"cookie-session": "^1.4.0",
+		"express": "^4.16.3",
+		"express-es6-template-engine": "^2.2.3",
+		"express-session": "^1.17.1",
+		"framer-motion": "^4.0.0",
+		"if-env": "^1.0.4",
+		"mysql2": "^2.2.5",
+		"npm-run-all": "^1.4.0",
+		"passport": "^0.4.1",
+		"passport-google-oauth20": "^2.0.0",
+		"passport-local": "^1.0.0",
+		"react-router-dom": "^5.2.0",
+		"reload": "^3.1.1",
+		"sequelize": "^6.6.2",
+		"sequelize-cli": "^6.2.0",
+		"serialize-javascript": "^5.0.1"
+	}
+}

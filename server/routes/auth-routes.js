@@ -48,7 +48,7 @@ router.post(
 	"/auth/signin",
 	passport.authenticate("local", { failureRedirect: "/" }),
 	(req, res) => {
-		res.redirect("/");
+		res.redirect("/home");
 	}
 );
 
@@ -63,7 +63,7 @@ router.get(
 	"/auth/google/callback",
 	passport.authenticate("google", { failureRedirect: "/" }),
 	(req, res) => {
-		res.redirect("/");
+		res.redirect("/home");
 	}
 );
 
