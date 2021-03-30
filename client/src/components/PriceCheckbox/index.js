@@ -9,6 +9,7 @@ const PriceCheckbox = () => {
     };
 
     return (
+        
         <Checkbox
             color="primary"
             inputProps={{ 'aria-label': 'secondary checkbox' }}
