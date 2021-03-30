@@ -12,7 +12,7 @@ router.get("/auth", (req, res) => {
 	}
 });
 
-router.post("/auth/signup", async (req, res) => {
+router.post("/auth/signup", async (req, res, next) => {
 	try {
 		const existingUser = await db.User.findOne({
 			where: { username: req.body.username },
@@ -38,7 +38,15 @@ router.post("/auth/signup", async (req, res) => {
 			});
 		}
 
-		res.json(user);
+		passport.authenticate('local', (err, user) => {
+            req.logIn(user, (errLogIn) => {
+                if (errLogIn) {
+                    return next(errLogIn);
+				}
+				return res.redirect('/')
+			});
+			
+        })(req, res, next);
 	} catch (e) {
 		res.status(500).send(e);
 	}

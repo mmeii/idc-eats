@@ -10,10 +10,11 @@ function Login() {
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
 
-	const handleSubmit = event => {
+	const handleSubmit = async event => {
 		event.preventDefault();
 		const credentials = { username, password };
-		axios.post("/auth/signup", credentials);
+		await axios.post("/auth/signup", credentials);
+		window.location = '/home'
 		setUsername("");
 		setPassword("");
 	};
