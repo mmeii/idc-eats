@@ -2,7 +2,7 @@ html {
   background-color: white;
   background-repeat: repeat;
   position: relative;
-  min-height: 100%; /* padding-bottom: 30px; */
+  min-height: 100%;
 }
 
 .MuiContainer-root {
