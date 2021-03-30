@@ -8,25 +8,30 @@ import Details from "./pages/Details";
 import Preferences from "./pages/Preferences";
 import Footer from "./components/Footer";
 import PrivateRoute from "./components/PrivateRoute";
-import { AuthProvider } from "./utils/AuthState";
 
 import "./App.css";
 
 const App = () => {
 	return (
-		<AuthProvider>
+		<>
 			<Router>
 				<Nav />
 				<Switch>
 					<Route exact path="/" component={Login} />
-					<PrivateRoute exact path="/home"><Home /></PrivateRoute>
-					<PrivateRoute exact path="/details"><Details /></PrivateRoute>
-					<PrivateRoute exact path="/preferences"><Preferences /></PrivateRoute>
+					<PrivateRoute exact path="/home">
+						<Home />
+					</PrivateRoute>
+					<PrivateRoute exact path="/details">
+						<Details />
+					</PrivateRoute>
+					<PrivateRoute exact path="/preferences">
+						<Preferences />
+					</PrivateRoute>
 				</Switch>
 			</Router>
 			<Footer />
-		</AuthProvider>
+		</>
 	);
-}
+};
 
 export default App;
