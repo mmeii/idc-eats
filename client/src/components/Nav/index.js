@@ -27,7 +27,7 @@ export default function Nav() {
         <motion.div className="menu" variants={menu_variants}>
           <ul>
             <li>
-              <Link to="Home">Home</Link>
+              <Link to="home">Home</Link>
             </li>
             <li></li>
             <li>
