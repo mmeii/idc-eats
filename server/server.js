@@ -2,7 +2,7 @@ const http = require("http");
 const path = require("path");
 const express = require("express");
 const passport = require("passport");
-const flash = require('connect-flash');
+const flash = require("connect-flash");
 const reload = require("reload");
 const es6Renderer = require("express-es6-template-engine");
 const serialize = require("serialize-javascript");
@@ -29,7 +29,7 @@ app.use(
 		maxAge: 1000 * 60 * 60 * 24,
 	})
 );
-app.use(flash())
+app.use(flash());
 
 // Passport middlewares
 app.use(passport.initialize());
@@ -74,11 +74,11 @@ app.get("*", (req, res) => {
 	let message;
 
 	if (req.user) {
-		user = { id: req.user.id, username: req.user.username }
+		user = { id: req.user.id, username: req.user.username };
 	}
 
 	if (req.flash) {
-		message = req.flash('error')
+		message = req.flash("error");
 	}
 
 	res.render("index", {

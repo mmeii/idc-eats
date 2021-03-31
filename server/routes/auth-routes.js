@@ -38,15 +38,14 @@ router.post("/auth/signup", async (req, res, next) => {
 			});
 		}
 
-		passport.authenticate('local', (err, user) => {
-            req.logIn(user, (errLogIn) => {
-                if (errLogIn) {
-                    return next(errLogIn);
+		passport.authenticate("local", (err, user) => {
+			req.logIn(user, errLogIn => {
+				if (errLogIn) {
+					return next(errLogIn);
 				}
-				return res.redirect('/')
+				return res.redirect("/");
 			});
-			
-        })(req, res, next);
+		})(req, res, next);
 	} catch (e) {
 		res.status(500).send(e);
 	}
@@ -54,7 +53,10 @@ router.post("/auth/signup", async (req, res, next) => {
 
 router.post(
 	"/auth/signin",
-	passport.authenticate("local", { failureRedirect: "/", failureFlash: 'Invalid username or password' }),
+	passport.authenticate("local", {
+		failureRedirect: "/",
+		failureFlash: "Invalid username or password",
+	}),
 	(req, res) => {
 		res.redirect("/home");
 	}
