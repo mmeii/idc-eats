@@ -54,7 +54,7 @@ router.post("/auth/signup", async (req, res, next) => {
 
 router.post(
 	"/auth/signin",
-	passport.authenticate("local", { failureRedirect: "/" }),
+	passport.authenticate("local", { failureRedirect: "/", failureFlash: 'Invalid username or password' }),
 	(req, res) => {
 		res.redirect("/home");
 	}
@@ -69,7 +69,7 @@ router.get(
 
 router.get(
 	"/auth/google/callback",
-	passport.authenticate("google", { failureRedirect: "/" }),
+	passport.authenticate("google", { failureRedirect: "/", failureFlash: true }),
 	(req, res) => {
 		res.redirect("/home");
 	}

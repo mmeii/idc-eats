@@ -2,6 +2,7 @@ const http = require("http");
 const path = require("path");
 const express = require("express");
 const passport = require("passport");
+const flash = require('connect-flash');
 const reload = require("reload");
 const es6Renderer = require("express-es6-template-engine");
 const serialize = require("serialize-javascript");
@@ -28,7 +29,9 @@ app.use(
 		maxAge: 1000 * 60 * 60 * 24,
 	})
 );
+app.use(flash())
 
+// Passport middlewares
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -67,9 +70,21 @@ if (process.env.NODE_ENV !== "production") {
 }
 
 app.get("*", (req, res) => {
+	let user;
+	let message;
+
+	if (req.user) {
+		user = { id: req.user.id, username: req.user.username }
+	}
+
+	if (req.flash) {
+		message = req.flash('error')
+	}
+
 	res.render("index", {
 		locals: {
-			bootstrap: serialize({ bootstrap: req.user }, { isJSON: true }),
+			user: serialize({ user }, { isJSON: true }),
+			message: serialize({ message }, { isJSON: true }),
 		},
 	});
 });

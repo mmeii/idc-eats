@@ -6,7 +6,7 @@ const PrivateRoute = ({ children, ...rest }) => {
 		<Route
 			{...rest}
 			render={({ location }) =>
-				Object.keys(bootstrap).length ? (
+				Object.keys(user).length ? (
 					children
 				) : (
 					<Redirect

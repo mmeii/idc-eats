@@ -1,22 +1,19 @@
 import React, { useState } from "react";
 import axios from "axios";
+
 import Motion from "../../components/Motion";
-import { makeStyles } from "@material-ui/core/styles";
-import Btn from "../../components/Btn";
 import ContainerWrapper from "../../components/ContainerWrapper";
+import AuthForm from "../../components/AuthForm";
 import "./style.css";
 
 function Login() {
-	const [username, setUsername] = useState("");
-	const [password, setPassword] = useState("");
+	const [toggle, setToggle] = useState(true);
 
-	const handleSubmit = async event => {
+	const handleSubmit = async (username, password) => {
 		event.preventDefault();
 		const credentials = { username, password };
 		await axios.post("/auth/signup", credentials);
-		window.location = '/home'
-		setUsername("");
-		setPassword("");
+		window.location = "/home";
 	};
 
 	return (
@@ -27,32 +24,23 @@ function Login() {
 				Saving marriages and friendships from food-related arguments one click
 				at a time
 			</h5>
-			<form action="/auth/signin" method="POST" id="loginForm">
-				<input
-					id="username"
-					label="username"
-					name="username"
-					value={username}
-					onChange={({ target: { value } }) => setUsername(value)}
-					placeholder="username"
+			{toggle ? (
+				<AuthForm
+					buttonText="Login"
+					action="/auth/signin"
+					method="POST"
+					text={"Don't have an account yet? Sign up!"}
+					handleToggle={() => setToggle(!toggle)}
 				/>
-				<input
-					id="password"
-					label="password"
-					name="password"
-					value={password}
-					onChange={({ target: { value } }) => setPassword(value)}
-					placeholder="password"
+			) : (
+				<AuthForm
+					buttonText="Register"
+					handleSubmit={handleSubmit}
+					text={"Already have an account? Sign in!"}
+					handleToggle={() => setToggle(!toggle)}
 				/>
-				<Btn type="submit" label="Login" id="loginbtn"></Btn>
-				<p>Don't have an account? Make one!</p>
-				<Btn label="Create Account" id="createbtn" onClick={handleSubmit}></Btn>
-				<div id="googlelogin">
-					<h2>Login with Google</h2><a href="/auth/google"><i className="fab fa-google"></i></a>
-				</div>
-			</form>
+			)}
 			<h2>i don't care. you pick.</h2>
-
 		</ContainerWrapper>
 	);
 }
