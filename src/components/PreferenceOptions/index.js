@@ -1,102 +1,128 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import { Formik, Form } from "formik";
-import FormGroup from '@material-ui/core/FormGroup';
+import FormGroup from "@material-ui/core/FormGroup";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 import Btn from "../Btn";
-import axios from 'axios';
-import { map } from 'lodash';
-import './style.css';
+import axios from "axios";
+import { map } from "lodash";
+import "./style.css";
 
-
-function ListItem (props) {
-  return <li>{props.value} <Checkbox /></li>
-};
-
+const DIETARY_CONCERN = 1;
+const CUISINE_TYPE = 2;
 
 
 function PreferenceOptions() {
-  const [ category, setCategory ] = useState([]);
-  const [ food, setFood ] = useState([]);
+  const [dietaryOptions, setDietaryOptions] = useState([]);
+  const [cuisineOptions, setCuisineOptions] = useState([]);
+  const [toggle, setToggle] = useState(false);
   //const [ currentPreferences, setCurrentPreferences ] = useState([]);
-  
-   
+  const initialDietOptionsValue = {};
 
-    useEffect(() => {
+  useEffect(() => {
     let dietPref;
-    let displayDiet; 
+    let displayDiet;
     let cuisine;
     let displayCuisine;
     let currentPreferences = [];
-    
-    //const handleSubmit = axios.post("/api/preferences", {
-          //setCurrentPreferences = []
-          
-          
+
+    //axios.post("/api/preferences", {
+    //setCurrentPreferences = []
+
     //})
     //.then(function (response) {
-      //console.log(response);
+    //console.log(response);
     //})
     //.catch(function (error) {
-      //console.log(error);
+    //console.log(error);
     //});
-   
-    
-  
-     axios.get('/api/preferences').then((response) => {
-   
-     dietPref = response.data.filter(dietType => dietType.categoryType === 1)
-     cuisine = response.data.filter(cuisineType => cuisineType.categoryType === 2)
-   
-     //console.log(dietPref);
-     //console.log(cuisine);
-     
-     setCategory(dietPref);
-     setFood(cuisine);
-    })
-  }, [])
-   
-   
-   
-  //* add map function to map over yelp categories 
 
+    axios.get("/api/preferences").then((response) => {
+      dietPref = response.data.filter(
+        (dietType) => dietType.categoryType === DIETARY_CONCERN
+      );
+      cuisine = response.data.filter(
+        (cuisineType) => cuisineType.categoryType === CUISINE_TYPE
+      );
+      
+      //console.log(dietPref);
+      //console.log(cuisine);
+
+      setDietaryOptions(dietPref);
+      setCuisineOptions(cuisine);
+    });
+  }, []);
+
+  useEffect(() => {
+    for (let option of dietaryOptions) {initialDietOptionsValue[option.displayName] = false};
+    
+    for (let option of cuisineOptions) {initialDietOptionsValue[option.displayName] = false};
+    setToggle(true);
+    console.log(initialDietOptionsValue);
+    console.log(Object.keys(initialDietOptionsValue).length);
+  }
+  ,[cuisineOptions]);
+
+  
+  
+  
+  //* add map function to map over yelp categories
+  
+  
   return (
-    
+    <>
+    {toggle ? (
+      
     <Formik
-      intialValues = {{ categoryId: []}}
-      onSubmit={ (values) => {
-       console.log (values)
-        //axios.post(JSON.stringify(values, null, 2));
-      
-      
-      
-      ;
-    }}>{({ values }) => (
-      <Form>
-      <p>Select one dietary preference:</p>
-      <ul>
-      {category.map((catMap) => <ListItem key = {catMap.categoryId} value={catMap.displayName} />)}
-      </ul>
-      <p>Cuisine choices:</p> 
-      <ul>
-        {food.map((foodMap) => <ListItem key = {foodMap.categoryId} value={foodMap.displayName} />)} 
-      </ul>
-    
-     <Btn
-     id="savePrefBtn"
-     variant="contained"
-     color="secondary"
-     type="submit"
-     ml={2}
-     >
-       Save
-       </Btn>
-       </Form>
-       )}
-       </Formik>
-    
+      intialValues={ initialDietOptionsValue }
+      onSubmit={(values) => {
+        console.log(values);
+      }}
+    >
+      {({ handleChange }) => (
+        <Form>
+          
+              <p>Select one dietary preference:</p>
+              <ul>
+                {dietaryOptions.map((dietOption) => (
+                  <FormControlLabel
+                    key={dietOption.categoryId}
+                    label={dietOption.displayName}
+                    value={dietOption.displayName}
+                    control={<Checkbox color="primary" />}
+                    onChange={handleChange}
+                  />
+                ))}
+              </ul>
+              <p>Cuisine choices:</p>
+              <ul>
+                {cuisineOptions.map((foodMap) => (
+                  <FormControlLabel
+                    key={foodMap.categoryId}
+                    label={foodMap.displayName}
+                    value={foodMap.displayName}
+                    control={<Checkbox color="primary" />}
+                    onChange={handleChange}
+                  />
+                ))}
+              </ul>
+
+              <Btn
+                id="savePrefBtn"
+                variant="contained"
+                color="secondary"
+                type="submit"
+                ml={2}
+              >
+                Save
+              </Btn>
+            
+          
+        </Form>
+      )}
+    </Formik>
+    ) : null}
+    </>
   );
 }
-
-
-
 export default PreferenceOptions;
