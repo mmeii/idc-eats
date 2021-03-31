@@ -3,7 +3,10 @@ html {
   background-repeat: repeat;
   position: relative;
   min-height: 100%;
-  padding-bottom: 30px;
+}
+
+.MuiContainer-root {
+  margin-bottom: 50px !important;
 }
 
 .container {
@@ -12,7 +15,7 @@ html {
   margin-bottom: 20px;
   padding-bottom: 20px;
   border-radius: 10px;
-  background-color: #E6F1F2;
+  background-color: #e6f1f2;
 }
 
 .App {
@@ -36,6 +39,10 @@ html {
 }
 
 @keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
