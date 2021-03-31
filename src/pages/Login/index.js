@@ -36,6 +36,7 @@ function Login() {
 				<AuthForm
 					buttonText="Register"
 					handleSubmit={handleSubmit}
+					type="signup"
 					text={"Already have an account? Sign in!"}
 					handleToggle={() => setToggle(!toggle)}
 				/>
