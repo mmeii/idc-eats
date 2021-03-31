@@ -31,10 +31,33 @@ const AuthForm = ({
 	handleSubmit,
 	handleToggle,
 	text,
+	type,
 }) => {
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
+	const [valMessage, setValMessage] = useState("");
 	const classes = useStyles();
+
+	const handleClick = e => {
+		if (type === "signup") {
+			e.preventDefault();
+			if (username.length < 6) {
+				setValMessage("Username must be greater than 6 characters");
+			} else if (password.length < 6) {
+				setValMessage("Password must be greater than 6 characters");
+			} else if ((password.match(/[!@#$%^&*]/g) || []).length < 2) {
+				setValMessage("Password must contain at least 2 special characters");
+			} else if ((password.match(/[A-Za-z]/g) || []).length < 2) {
+				setValMessage(
+					"Password must contain at least 2 alphabetical characters"
+				);
+			} else if ((password.match(/\d/g) || []).length < 2) {
+				setValMessage("Password must contain at least 2 numerical characters");
+			} else {
+				handleSubmit(username, password);
+			}
+		}
+	};
 
 	return (
 		<form id="loginForm" action={action} method={method}>
@@ -70,12 +93,17 @@ const AuthForm = ({
 						className="loginButton"
 						label={buttonText}
 						type="submit"
-						onClick={() => handleSubmit(username, password)}
+						onClick={e => handleClick(e)}
 					/>
 				</Grid>
 				<Grid item xs={12}>
-					{message ? (
+					{message && !valMessage ? (
 						<Typography className={classes.error}>{message.message}</Typography>
+					) : null}
+				</Grid>
+				<Grid item xs={12}>
+					{valMessage ? (
+						<Typography className={classes.error}>{valMessage}</Typography>
 					) : null}
 				</Grid>
 				<Grid item xs={12}>
