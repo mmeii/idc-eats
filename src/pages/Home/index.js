@@ -6,6 +6,7 @@ import _ from "lodash";
 import ContainerWrapper from "../../components/ContainerWrapper";
 import PriceForm from "../../components/PriceForm";
 import Loading from "../../components/Loading";
+import Motion from "../../components/Motion";
 
 //material-ui imports
 import { makeStyles, createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
@@ -217,6 +218,7 @@ export default function Home() {
 
     const Rando = () => (
         <div className="eats">
+            <Motion />
             <div className="imgDiv">
 
             </div>
