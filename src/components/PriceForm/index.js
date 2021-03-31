@@ -9,7 +9,6 @@ const PriceForm = ({ handleSubmit }) => {
 		<Formik
 			initialValues={{ $: "", $$: "", $$$: "", $$$$: "" }}
 			onSubmit={formData => {
-				console.log(formData);
 				handleSubmit(formData);
 			}}
 		>
