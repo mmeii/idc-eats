@@ -1,11 +1,11 @@
 .square {
     margin-left: auto;
     margin-right: auto;
-    height: 30vh;
-    width: 30vh;
+    height: 35vh;
+    width: 20vw;
     background-image:url(./logo.jpg);
     background-repeat: no-repeat;
-    background-color: #fbf5fb;
+    background-color: white;
     background-position: center;
     display: block;
     box-shadow: 2px 2px 2px 2px #F2E9D8;

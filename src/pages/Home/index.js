@@ -73,7 +73,7 @@ export default function Home() {
     if (restaurant.categories) {
       const categories = restaurant.categories;
       axios.patch("/api/weights/decrement", categories);
-      setTimeout(() => setIsLoading(true), 1000);
+      setTimeout(() => setIsLoading(true), 2000);
     }
     
   }, [restaurant]);
