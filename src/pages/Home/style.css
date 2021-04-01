@@ -28,20 +28,11 @@
     text-decoration: underline;
 }
 
-.detailColumnOne {
-    float: left;
-    width: 20%;
-}
-
-.detailColumnTwo {
-    float: left;
-    width: 80%;
-    letter-spacing: 0.15rem;
-}
-
 #resName {
     font-weight: bolder;
     border: 1px black;
+    text-align: center;
+    letter-spacing: 0.15rem;
 }
 
 .resDetails:after {
@@ -58,11 +49,6 @@
 .resInfo {
     column-count: 2;
     column-gap: 5px;
-    margin-bottom: 10px;
-}
-
-.resDetails li {
-    list-style: none;
 }
 
 #price {
@@ -78,6 +64,7 @@
     float: left;
     width: 50%;
     letter-spacing: 0;
+    font-family: 'Roboto', sans-serif;
 }
 
 #distance i {
@@ -101,8 +88,20 @@
     padding-top: 4px;
 }
 
+#phone a {
+    font-size: 13px;
+    padding-top: 4px;
+    text-decoration: none;
+    color: #808080;
+}
+
+#phone a:hover {
+    font-style: italic;
+}
+
 #phone {
     float: left;
+    text-align: left;
     width: 50%;
     font-size: 12px;
     padding-top: 3px;
@@ -114,6 +113,15 @@
 
 hr {
     opacity: 0.5;
+}
+
+.priceSubmit {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.eats h3 {
+    padding-top: 10px;
 }
 
 
