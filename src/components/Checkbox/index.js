@@ -7,7 +7,7 @@ const Checkbox = ({ category }) => {
                 type="checkbox" 
                 id={category.displayName} 
                 name={category.categoryId} 
-                value={category.selected}
+                value={category.displayName}
                 defaultChecked={category.selected} />
                 
             

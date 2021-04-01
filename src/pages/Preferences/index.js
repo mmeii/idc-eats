@@ -22,6 +22,14 @@ function Preferences({ category }) {
   
     console.log(categories);
     console.log(typeof categories);
+
+    const handleSubmit = event => {
+      event.preventDefault();   
+      var formEl = document.getElementById("preferencesForm");
+      var formData = new FormData(formEl);
+      axios.post("/api/preferences", formData);
+     
+    };
   
     // const displayCategories = [];
     
@@ -86,7 +94,7 @@ function Preferences({ category }) {
         <div style={{ textAlign: "center" }}>
           <h1>Preferences</h1>
         </div>
-        <form action="/preferences" method="POST">
+        <form id="preferencesForm" action="/preferences" method="POST">
           <div>
             <h3>Dietary Concern (select one)</h3>
               {categories.filter((category) => category.categoryType === 1).map((category) => (
@@ -99,7 +107,7 @@ function Preferences({ category }) {
                 <Checkbox key={category.categoryId} category={category} />
               ))}
           </div>
-          <button type="submit" value="Save">Save</button>
+          <button type="submit" value="Save" onClick={handleSubmit}>Save</button>
         </form>
         {/* <div style={{ margin: "0 auto" }}>
           <PrefsBox handleSubmit={handleSubmit}/>

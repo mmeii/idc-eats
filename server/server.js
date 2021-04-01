@@ -7,6 +7,9 @@ const reload = require("reload");
 const es6Renderer = require("express-es6-template-engine");
 const serialize = require("serialize-javascript");
 const cookieSession = require("cookie-session");
+const bodyParser = require("body-parser");
+const multer = require ("multer");
+const upload = multer();
 
 const packageJson = require("../package.json");
 const keys = require("./config/keys");
@@ -34,6 +37,9 @@ app.use(flash());
 // Passport middlewares
 app.use(passport.initialize());
 app.use(passport.session());
+
+//FormData middleware
+app.use(upload.array());
 
 // Auth Routes
 app.use(authRoutes);
