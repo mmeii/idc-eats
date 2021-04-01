@@ -83,7 +83,7 @@ function Preferences({ category }) {
     return (
       <div>
         <ContainerWrapper>
-        <div style={{ textAlign: "center" }}>
+        <div style={{ textAlign: "left" }}>
           <h1>Preferences</h1>
         </div>
         <form action="/preferences" method="POST">
