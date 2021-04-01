@@ -31,12 +31,11 @@ export default function Nav() {
             </li>
             <li></li>
             <li>
-              {/* ADD in link to preferences/profile page */}
-              <Link to="preferences">Preferences</Link>
+              <Link to="preferences" onClick={() => {window.location.href="/preferences"}}>Preferences</Link>
             </li>
             <li></li>
             <li>
-              <a href="/auth/logout">Logout</a>
+              <a href="/auth/logout" onClick={() => {window.location.href="/logout"}}>Logout</a>
             </li>
           </ul>
         </motion.div>

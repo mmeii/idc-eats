@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@700&display=swap');
+
 .menu {
     text-align: right;
     
@@ -22,11 +24,11 @@
 .menu ul {
     float: right;
     height: 130px;
-    width: 100px;
+    width: 120px;
     list-style-type: none;
-    background-color: #D2F4F7;
+    background-color: #e6F1F2;
     text-align: left;
-    box-shadow: 2px 2px 2px 2px #E6F1F2;
+    box-shadow: 2px 2px 2px 2px #FBF5FB;
     border-radius: 20px;
     margin:auto;
     padding-top: 5px;
@@ -37,6 +39,7 @@
 .menu li {
     margin: 0px 10px 15px 15px;
     text-align: left;
+    font-family: 'Roboto', sans-serif;
 }
 
 a {
