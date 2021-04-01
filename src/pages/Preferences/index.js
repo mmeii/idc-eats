@@ -1,8 +1,12 @@
 import React, {useState, useEffect} from "react";
 import ContainerWrapper from "../../components/ContainerWrapper";
-import PrefsBox from "../../components/PrefsBox";
+import FormGroup from "@material-ui/core/FormGroup";
 import axios from "axios";
 import Checkbox from "../../components/Checkbox";
+import Btn from "../../components/Btn";
+import "./style.css";
+
+
 
 function Preferences({ category }) {
   const [categories, setCategories] = useState([]);
@@ -83,29 +87,32 @@ function Preferences({ category }) {
     return (
       <div>
         <ContainerWrapper>
-        <div style={{ textAlign: "left" }}>
+        <FormGroup>
+          <div>
           <h1>Preferences</h1>
         </div>
         <form action="/preferences" method="POST">
-          <div>
+          <div id="diet">
             <h3>Dietary Concern (select one)</h3>
               {categories.filter((category) => category.categoryType === 1).map((category) => (
                 <Checkbox key={category.categoryId} category={category} />
               ))}
           </div>
-          <div>
+          <div id="cuisine">
             <h3>Cuisine Preference (select all that apply)</h3>
               {categories.filter((category) => category.categoryType === 2).map((category) => (
                 <Checkbox key={category.categoryId} category={category} />
               ))}
           </div>
-          <button type="submit" value="Save">Save</button>
+          <Btn type="submit" label={"Save"} value="Save">Save</Btn>
         </form>
         {/* <div style={{ margin: "0 auto" }}>
           <PrefsBox handleSubmit={handleSubmit}/>
         </div> */}
+        </FormGroup>
         </ContainerWrapper>
       </div>
+      
     );
   
 };
