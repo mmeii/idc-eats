@@ -119,21 +119,24 @@ router.get("/api/preferences", async (req, res) => {
 // Post User Preferences
 router.post("/api/preferences", async (req, res) => {
 	//req.user
-	console.log(req.user);
+	console.log(req.user.dataValues);
 	
 	try {
-		const user = req.user;
+		const user = req.user.dataValues;
 		const preferences = req.body.preferences;
 
+	
 		const currentPreferences = await db.Preference.destroy({
 			where: {
 				UserId: user.id,
 			},
 		});
 
+		console.log('req.body: ' + require('util').inspect(req.body));
+
 		for (let preference of preferences) {
 			if (preference.selected) {
-				db.Preference.create({
+				await db.Preference.create({
 					UserId: user.id,
 					CategoryId: preference.categoryId,
 				});
