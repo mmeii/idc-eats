@@ -49,6 +49,10 @@ export default function Home() {
     const [coords, setCoords] = useState();
     const [restaurant, setRestaurant] = useState({});
     const [priceOptions, setPriceOptions] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
+
+    
+    
 
     //yelp get route basing on lat and long
     useEffect(() => {
@@ -60,9 +64,14 @@ export default function Home() {
     }, [priceOptions]);
 
     useEffect(() => {
+        setTimeout(() => setIsLoading(false), 1000)
+      }, []);
+
+    useEffect(() => {
         if (restaurant.categories) {
             const categories = restaurant.categories;
             axios.patch("/api/weights/decrement", categories);
+            
         }
     }, [restaurant]);
 
@@ -83,6 +92,7 @@ export default function Home() {
                 )
                 .then(result => {
                     setRestaurant(result.data);
+                    
                 })
                 .catch(err => console.log(err));
         } else {
@@ -222,10 +232,16 @@ export default function Home() {
         </div>
     );
 
+
+
     return (
         <div className="homeWrapper">
             <ContainerWrapper>
-                {Object.keys(restaurant).length ? <RestaurantDetails /> : <Rando />}
+            
+                {isLoading === false ? (
+                Object.keys(restaurant).length ? <RestaurantDetails /> : <Rando />
+                ) : (<Loading />)
+                }   
             </ContainerWrapper>
         </div>
     );
