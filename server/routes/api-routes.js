@@ -132,7 +132,8 @@ router.post("/api/preferences", async (req, res) => {
 			},
 		});
 
-		console.log('req.body: ' + require('util').inspect(req.body));
+		// console.log('req.body: ' + require('util').inspect(req.body));
+		console.log('req.body: ' + req.body);
 
 		for (let preference of preferences) {
 			if (preference.selected) {
