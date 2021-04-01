@@ -119,10 +119,10 @@ export default function Home() {
         return stars;
     }
 
-    // onclick to go to google maps with restaurant address	
+    // onclick to go to google maps from current location to restaurant address	
     const goToRestaurant = () => {
         window.open(
-            `http://maps.google.com/?q=${restaurant.location.display_address}`,
+            `http://maps.google.com/?saddr=My+Location&daddr=${restaurant.location.display_address}`,
             "_blank"
         );
 
@@ -160,34 +160,29 @@ export default function Home() {
                 </div>
 
                 <div className="resDetails">
-                    <div className="detailColumnOne" align="left">
-                        <p className="label">name:</p>
-                        <p className="label">phone:</p>
-                    </div>
 
-                    <div className="detailColumnTwo" align="left">
-                        <p id="resName">{restaurant.name}</p>
-                        <div id="row">
-                            <div id="phone">
-                                <p>
-                                    {restaurant.display_phone}
-                                </p>
-                            </div>
-                            <div id="distance">
-                                <i className="fas fa-map-marker-alt fa-sm"></i>
-                                <span>
-                                    <Distance /> miles
+                    <p id="resName">{restaurant.name}</p>
+
+                    <div id="row">
+                        <div id="phone">
+                            <p>
+                                <a href={`tel:${restaurant.display_phone}`}>{restaurant.display_phone}</a>
+                            </p>
+                        </div>
+                        <div id="distance">
+                            <i className="fas fa-map-marker-alt fa-sm"></i>
+                            <span>
+                                <Distance /> miles
                                 </span>
-                            </div>
-
                         </div>
                     </div>
+
                 </div>
 
             </div>
 
             <hr />
-            <h3 id="good">Sounds <span id="attention">good</span>, right?
+            <h3 id="good">Sounds <span id="attention">good</span> right?
             </h3>
 
             <div align="left">
