@@ -87,8 +87,20 @@ function Preferences({ category }) {
           <h1>Preferences</h1>
         </div>
         <form action="/preferences" method="POST">
+
           {categories.map((category) => (
-            <Checkbox key={category.categoryId} category={category} />
+            category.categoryType === 1 ? (
+            <div>
+              <h2>Dietary preferences (select one)</h2>
+              <Checkbox key={category.categoryId} category={category} />
+            </div>
+            ) :
+            (
+            <div>
+              <h2>Cuisine preferences (select all that apply)</h2>
+              <Checkbox key={category.categoryId} category={category} />
+            </div>
+            )
           ))}
           <button type="submit" value="Save">Save</button>
         </form>
