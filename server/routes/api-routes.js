@@ -123,7 +123,16 @@ router.post("/api/preferences", async (req, res) => {
 	
 	try {
 		const user = req.user.dataValues;
-		const preferences = req.body.preferences;
+		const selection = Object.keys(req.body);
+
+		const preferences = [];
+		
+		function what() {
+			for (let i = 0; i < selection.length; i++) {
+			preferences.push(Number(selection[i]));
+		}};
+
+		what();
 
 	
 		const currentPreferences = await db.Preference.destroy({
@@ -133,15 +142,19 @@ router.post("/api/preferences", async (req, res) => {
 		});
 
 		console.log('req.body: ' + require('util').inspect(req.body));
+		console.log(preferences);
+		console.log(selection);
+		// console.log('req.body: ' + req.body.toString());
 
 		for (let preference of preferences) {
-			if (preference.selected) {
+			if (preference) {
 				await db.Preference.create({
 					UserId: user.id,
-					CategoryId: preference.categoryId,
+					CategoryId: preference,
 				});
 			}
 		}
+		res.redirect("/home");
 	} catch (error) {
 		console.log(error);
 	}
