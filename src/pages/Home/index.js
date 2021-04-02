@@ -86,10 +86,9 @@ export default function Home() {
                     });
                 })
             } else if (result.state === "denied") {
-                alert("Oops, your location sharing is turned off. Please enable!");
+                alert("Oops, your location sharing is blocked. Please allow!");
             }
-        }
-        )
+        })
     }
 
     const fetchRestaurant = () => {
@@ -251,7 +250,14 @@ export default function Home() {
                         <h3>Select the price range and let us take care the rest for you!</h3>
                         <PriceForm handleSubmit={handleSubmit} />
                     </>
-                    ) : <h4>Looking for your location...</h4>}
+                    ) :
+                    <div>
+                        <div id="locationLoading">
+                            <img src="https://media.giphy.com/media/mFTRCmlZgMEr5CHmOV/giphy.gif" alt="giphy loading image" />
+                        </div>
+                        <h3>Looking for your location...</h3>
+                    </div>
+                }
             </div>
         </>
     );
