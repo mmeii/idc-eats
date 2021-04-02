@@ -5,6 +5,7 @@ const Checkbox = ({ category }) => {
         <div className="checkbox">
             <input 
                 type="checkbox" 
+                aria-label="checkbox"
                 id={category.displayName} 
                 name={category.categoryId} 
                 value={category.displayName}

@@ -3,8 +3,8 @@ import "./style.css";
 
 const Footer = () => {
     return (
-        <footer>
-            Copyright &copy; 2021
+        <footer aria-label="footer">
+            Kole Gasior, Kelli King, Mindy Ratcliff, Mengmei Tu &copy; 2021
         </footer>
     )
 }

@@ -19,6 +19,7 @@ export default function Nav() {
         <Button
           aria-controls="menu"
           aria-haspopup="true"
+          aria-label="menu"
           onClick={() => setIsOpen(!isOpen)}
         >
           <MenuIcon id="navIcon" fontSize="large" />

@@ -39,6 +39,7 @@ function Btn(props) {
 				className={classes[props.className]}
 				variant="contained"
 				color="primary"
+				aria-label="button"
 				onClick={props.onClick}
 				type={props.type}
 			>

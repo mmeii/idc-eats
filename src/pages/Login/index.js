@@ -29,6 +29,7 @@ function Login() {
 					buttonText="Login"
 					action="/auth/signin"
 					method="POST"
+					aria-label="Login"
 					text={"Don't have an account yet? Sign up!"}
 					handleToggle={() => setToggle(!toggle)}
 				/>
@@ -37,6 +38,7 @@ function Login() {
 					buttonText="Register"
 					handleSubmit={handleSubmit}
 					type="signup"
+					aria-label="Register"
 					text={"Already have an account? Sign in!"}
 					handleToggle={() => setToggle(!toggle)}
 				/>

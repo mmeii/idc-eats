@@ -1,9 +1,11 @@
 footer {
     text-align: center;
     font-weight: bold;
+    opacity: .75;
     background-color: white;
     font-family: 'Roboto', sans-serif;
     bottom: 0;
+    font-size: 12px;
     position: absolute;
     width: 100%;
 }

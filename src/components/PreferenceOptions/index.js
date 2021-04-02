@@ -112,6 +112,7 @@ function PreferenceOptions() {
                 variant="contained"
                 color="secondary"
                 type="submit"
+                aria-label="submit"
                 ml={2}
               >
                 Save
