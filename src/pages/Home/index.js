@@ -134,7 +134,7 @@ export default function Home() {
   // onclick to go to google maps from current location to restaurant address
   const goToRestaurant = () => {
     window.open(
-      `http://maps.google.com/?saddr=My+Location&daddr=${restaurant.location.display_address}`,
+      `http://maps.google.com/?saddr=${coords.latitude},${coords.longitude}&daddr=${restaurant.location.display_address}`,
       "_blank"
     );
 
