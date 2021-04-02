@@ -6,8 +6,6 @@ import Checkbox from "../../components/Checkbox";
 import Btn from "../../components/Btn";
 import "./style.css";
 
-
-
 function Preferences({ category }) {
   const [categories, setCategories] = useState([]);
 
@@ -32,8 +30,10 @@ function Preferences({ category }) {
       var formEl = document.getElementById("preferencesForm");
       var formData = new FormData(formEl);
       axios.post("/api/preferences", formData);
-     
+      window.location.href="/home";
     };
+
+   
   
     // const displayCategories = [];
     
@@ -99,7 +99,7 @@ function Preferences({ category }) {
           <div>
           <h1>Preferences</h1>
         </div>
-        <form action="/preferences" method="POST">
+        <form action="/preferences" method="POST" id="preferencesForm">
           <div id="diet">
             <h3>Dietary Concern (select one)</h3>
               {categories.filter((category) => category.categoryType === 1).map((category) => (
@@ -112,7 +112,7 @@ function Preferences({ category }) {
                 <Checkbox key={category.categoryId} category={category} />
               ))}
           </div>
-          <Btn type="submit" label={"Save"} value="Save" onClick={handleSubmit}>Save</Btn>
+          <Btn type="submit" label={"Save"} value="Save" onClick={handleSubmit}>Save</Btn>          
         </form>
         {/* <div style={{ margin: "0 auto" }}>
           <PrefsBox handleSubmit={handleSubmit}/>

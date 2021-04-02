@@ -33,13 +33,11 @@ app.use(
 	})
 );
 app.use(flash());
+app.use(upload.array());
 
 // Passport middlewares
 app.use(passport.initialize());
 app.use(passport.session());
-
-//FormData middleware
-app.use(upload.array());
 
 // Auth Routes
 app.use(authRoutes);
