@@ -6,7 +6,7 @@ import _ from "lodash";
 import ContainerWrapper from "../../components/ContainerWrapper";
 import PriceForm from "../../components/PriceForm";
 import Loading from "../../components/Loading";
-import Motion from "../../components/Motion";
+import Logo from "../../components/Logo";
 
 //material-ui imports
 import {
@@ -212,6 +212,7 @@ export default function Home() {
             <Button
               variant="contained"
               color="primary"
+              aria-label="Yes"
               onClick={goToRestaurant}
               startIcon={<ThumbUpIcon />}
             >
@@ -222,6 +223,7 @@ export default function Home() {
               id="nopeBtn"
               variant="contained"
               color="secondary"
+              aria-label="Nope"
               onClick={fetchRestaurant}
               startIcon={<ThumbDownIcon />}
               ml={2}
@@ -237,7 +239,7 @@ export default function Home() {
   const Rando = () => (
     <>
       <div className="eats">
-        <Motion />
+        <Logo />
         <div className="imgDiv"></div>
         <h3>Select the price range and let us take care the rest for you!</h3>
         <PriceForm handleSubmit={handleSubmit} />

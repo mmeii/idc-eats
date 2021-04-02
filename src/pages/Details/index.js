@@ -32,13 +32,13 @@ const Details = () => {
                 {/* goes back to Eats/rando page */}
                 <div className={classes.root}>
                     <Link to="eats">
-                        <Btn label="Nope" />
+                        <Btn label="Nope" aria-label="Nope" />
                     </Link>
 
                     {/* goes to google for directions */}
                     {/* TODO: add location and restaurant address */}
                     <a href="https://www.google.com/maps" target="_blank" rel="noopener noreferrer">
-                        <Btn label="Take Me There!" />
+                        <Btn label="Take Me There!" aria-label="Take me there" />
                     </a>
                 </div>
 
