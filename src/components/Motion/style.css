@@ -1,8 +1,8 @@
 .square {
     margin-left: auto;
     margin-right: auto;
-    height: 35vh;
-    width: 20vw;
+    width: 250px;
+    height: 250px;
     background-image:url(./logo.jpg);
     background-repeat: no-repeat;
     background-color: white;
