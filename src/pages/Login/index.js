@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-import Motion from "../../components/Motion";
+import Logo from "../../components/Logo";
 import ContainerWrapper from "../../components/ContainerWrapper";
 import AuthForm from "../../components/AuthForm";
 import "./style.css";
@@ -18,7 +18,7 @@ function Login() {
 
 	return (
 		<ContainerWrapper>
-			<Motion />
+			<Logo />
 			<h4>The app that picks where to eat so you don't have to</h4>
 			<h5>
 				Saving marriages and friendships from food-related arguments one click
@@ -29,6 +29,7 @@ function Login() {
 					buttonText="Login"
 					action="/auth/signin"
 					method="POST"
+					aria-label="Login"
 					text={"Don't have an account yet? Sign up!"}
 					handleToggle={() => setToggle(!toggle)}
 				/>
@@ -37,6 +38,7 @@ function Login() {
 					buttonText="Register"
 					handleSubmit={handleSubmit}
 					type="signup"
+					aria-label="Register"
 					text={"Already have an account? Sign in!"}
 					handleToggle={() => setToggle(!toggle)}
 				/>

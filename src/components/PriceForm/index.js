@@ -30,6 +30,7 @@ const PriceForm = ({ handleSubmit }) => {
 							label="$"
 							labelPlacement="end"
 							name="$"
+							aria-label="One"
 							onChange={handleChange}
 						/>
 						<FormControlLabel
@@ -37,6 +38,7 @@ const PriceForm = ({ handleSubmit }) => {
 							control={<Checkbox color="primary" />}
 							label="$$"
 							name="$$"
+							aria-label="Two"
 							labelPlacement="end"
 							onChange={handleChange}
 						/>
@@ -45,6 +47,7 @@ const PriceForm = ({ handleSubmit }) => {
 							control={<Checkbox color="primary" />}
 							label="$$$"
 							name="$$$"
+							aria-label="Three"
 							labelPlacement="end"
 							onChange={handleChange}
 						/>
@@ -53,6 +56,7 @@ const PriceForm = ({ handleSubmit }) => {
 							control={<Checkbox color="primary" />}
 							label="$$$$"
 							name="$$$$"
+							aria-label="Four"
 							labelPlacement="end"
 							onChange={handleChange}
 						/>
@@ -60,6 +64,7 @@ const PriceForm = ({ handleSubmit }) => {
 							<Button
 								label={"Find a restaurant!"}
 								type="submit"
+								aria-label="submit"
 							/>
 						</div>
 					</Form>

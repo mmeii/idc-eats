@@ -112,11 +112,8 @@ function Preferences({ category }) {
                 <Checkbox key={category.categoryId} category={category} />
               ))}
           </div>
-          <Btn type="submit" label={"Save"} value="Save" onClick={handleSubmit}>Save</Btn>          
+          <Btn type="submit" label={"Save"} value="Save" aria-label="Save" onClick={handleSubmit}>Save</Btn>          
         </form>
-        {/* <div style={{ margin: "0 auto" }}>
-          <PrefsBox handleSubmit={handleSubmit}/>
-        </div> */}
         </FormGroup>
         </ContainerWrapper>
       </div>

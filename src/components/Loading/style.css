@@ -1,4 +1,32 @@
 h2 {
-    font-family: 'Alegreya Sans SC', sans-serif;
-    font-weight:bolder;
+  font-family: "Alegreya Sans SC", sans-serif;
+  font-weight: bolder;
 }
+
+.noAnim {
+  visibility: none;
+  display: none;
+}
+
+/* Tone down the animation to avoid motion triggers*/
+@media (prefers-reduced-motion: reduce) {
+  .anim {
+    visibility: none;
+    display: none;
+  }
+
+  .noAnim {
+   visibility:visible;
+    display: block;
+    border-radius: 50%;
+    margin-right: auto;
+    margin-left: auto;
+    height: 300px;
+    width: 300px;
+    background-color: white;
+    background-image: url("../RandoAnim/Images/2.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+}
+
