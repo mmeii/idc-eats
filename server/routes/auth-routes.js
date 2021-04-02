@@ -19,7 +19,8 @@ router.post("/auth/signup", async (req, res, next) => {
 		});
 
 		if (existingUser) {
-			return res.send("Username already taken.");
+			req.flash('error', "Username aleady taken")
+			return res.send();
 		}
 
 		const user = await db.User.create(req.body);
