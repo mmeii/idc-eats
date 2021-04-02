@@ -75,13 +75,22 @@ export default function Home() {
     }, [restaurant]);
 
     const fetchCoords = () => {
-        navigator.geolocation.getCurrentPosition((res) => {
-            setCoords({
-                latitude: res.coords.latitude,
-                longitude: res.coords.longitude,
-            });
-        });
-    };
+        navigator.permissions.query({
+            name: "geolocation"
+        }).then(function (result) {
+            if (result.state === 'granted') {
+                navigator.geolocation.getCurrentPosition((res) => {
+                    setCoords({
+                        latitude: res.coords.latitude,
+                        longitude: res.coords.longitude,
+                    });
+                })
+            } else if (result.state === "denied") {
+                alert("Oops, your location sharing is turned off. Please enable!");
+            }
+        }
+        )
+    }
 
     const fetchRestaurant = () => {
         if (coords) {
@@ -243,7 +252,6 @@ export default function Home() {
                         <PriceForm handleSubmit={handleSubmit} />
                     </>
                     ) : <h4>Looking for your location...</h4>}
-
             </div>
         </>
     );
