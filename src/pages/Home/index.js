@@ -54,7 +54,7 @@ export default function Home() {
   const [coords, setCoords] = useState();
   const [restaurant, setRestaurant] = useState({});
   const [priceOptions, setPriceOptions] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   //yelp get route basing on lat and long
   useEffect(() => {
@@ -65,15 +65,13 @@ export default function Home() {
     fetchRestaurant();
   }, [priceOptions]);
 
-  useEffect(() => {
-    setTimeout(() => setIsLoading(false), 6000);
-  }, []);
+
 
   useEffect(() => {
     if (restaurant.categories) {
       const categories = restaurant.categories;
       axios.patch("/api/weights/decrement", categories);
-      setTimeout(() => setIsLoading(true), 2000);
+      setIsLoading(false);
     }
     
   }, [restaurant]);
@@ -87,8 +85,9 @@ export default function Home() {
     });
   };
 
-  const fetchRestaurant = () => {
+  const fetchRestaurant = () => { 
     if (coords) {
+    setIsLoading(true)
       axios
         .get(
           `/api/restaurants/${coords.latitude}/${coords.longitude}?price=${priceOptions}`
@@ -153,7 +152,7 @@ export default function Home() {
 
   const RestaurantDetails = () => (
     <>
-    {isLoading === false ? <Loading /> : (
+    
       <div className="home">
         <div>
           <img
@@ -231,7 +230,7 @@ export default function Home() {
             </Button>
           </ThemeProvider>
         </div>
-      </div>)}
+      </div>
     </>
   );
 
@@ -246,24 +245,16 @@ export default function Home() {
     </>
   );
 
-  //const FindFoodLoadingPage = () => (
-    //<>
-      //{isLoading === false ? (
-        //<Rando />
-      //) : (
-        //<Loading />
-      //)}
-    //</>
-  //);
 
   return (
     <div className="homeWrapper">
       <ContainerWrapper>
-        {Object.keys(restaurant).length ? (
+      {isLoading ? <Loading /> :( 
+        Object.keys(restaurant).length ? 
           <RestaurantDetails />
-        ) : (
+         : 
           <Rando />
-        )}
+      )}
       </ContainerWrapper>
     </div>
   );
