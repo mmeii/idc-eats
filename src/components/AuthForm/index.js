@@ -45,14 +45,14 @@ const AuthForm = ({
 				setValMessage("Username must be greater than 6 characters");
 			} else if (password.length < 6) {
 				setValMessage("Password must be greater than 6 characters");
-			} else if ((password.match(/[!@#$%^&*]/g) || []).length < 2) {
-				setValMessage("Password must contain at least 2 special characters");
+			} else if ((password.match(/[!@#$%^&*()-_=+]/g) || []).length < 1) {
+				setValMessage("Password must contain at least 1 special characters");
 			} else if ((password.match(/[A-Za-z]/g) || []).length < 2) {
 				setValMessage(
 					"Password must contain at least 2 alphabetical characters"
 				);
-			} else if ((password.match(/\d/g) || []).length < 2) {
-				setValMessage("Password must contain at least 2 numerical characters");
+			} else if ((password.match(/\d/g) || []).length < 1) {
+				setValMessage("Password must contain at least 1 numerical characters");
 			} else {
 				handleSubmit(username, password);
 			}
