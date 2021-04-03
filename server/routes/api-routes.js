@@ -116,16 +116,16 @@ router.post("/api/preferences", async (req, res) => {
 	// console.log(req.user.dataValues);
 	try {
 		const user = req.user.dataValues;
-		const selection = Object.values(req.body);
-		const preferences = [];
+		const preferences = Object.values(req.body).map(category => Number(category));
+		// const preferences = [];
 
-		function getPreferences() {
-			for (let i = 0; i < selection.length; i++) {
-				preferences.push(Number(selection[i]));
-			}
-		}
+		// function getPreferences() {
+		// 	for (let i = 0; i < selection.length; i++) {
+		// 		preferences.push(Number(selection[i]));
+		// 	}
+		// }
 
-		getPreferences();
+		// getPreferences();
 
 		const currentPreferences = await db.Preference.destroy({
 			where: {

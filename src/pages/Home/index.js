@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import _ from "lodash";
+import { Link } from "react-router-dom";
 
 //components imports
 import ContainerWrapper from "../../components/ContainerWrapper";
@@ -160,7 +161,7 @@ export default function Home() {
 
     const RestaurantDetails = () => (
         <>
-
+            <Link to="home" onClick={() => {window.location.href="/home"}} className="start-over">Start Over</Link>
             <div className="home">
                 <img
                     className={classes.image}
