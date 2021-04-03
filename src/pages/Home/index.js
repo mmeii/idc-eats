@@ -234,6 +234,7 @@ export default function Home() {
                         >
                             Next!
                         </Button>
+                        <Link to="home" onClick={() => {window.location.href="/home"}} className="start-over">Start Over</Link>
                     </ThemeProvider>
                 </div>
             </div>

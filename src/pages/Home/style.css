@@ -133,3 +133,18 @@ hr {
     width: 80px;
     height: auto;
 }
+
+.start-over {
+    float: right;
+    font-size: 13px;
+    color: #4E9DA6;
+    opacity: .9;
+    font-family: 'Roboto', sans-serif;
+    text-decoration: none;
+    margin-top: 20px;
+}
+
+.start-over:hover {
+    font-weight: bolder;
+    color: #254B4F;
+}
