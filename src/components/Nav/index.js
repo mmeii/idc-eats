@@ -35,7 +35,6 @@ export default function Nav() {
           >
             <MenuIcon id="navIcon" fontSize="large" />
           </Button>
-
           <motion.div className="menu" variants={menu_variants}>
             <ul>
               <li>

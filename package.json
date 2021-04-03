@@ -46,8 +46,7 @@
 		"build": "react-scripts build",
 		"build:watch": "cra-build-watch",
 		"test": "react-scripts test",
-		"eject": "react-scripts eject",
-		"heroku-postbuild": "npm run build"
+		"eject": "react-scripts eject"
 
 	},
 	"browserslist": {
