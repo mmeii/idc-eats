@@ -20,10 +20,7 @@ const randomCategory = weights => {
 	}
 };
 
-
-
 router.get("/api/restaurants/:lat/:long/", async (req, res) => {
-	console.log(req.user.dataValues);
 	const user = req.user.dataValues;
 	let priceOptions = req.query.price;
 	if (!priceOptions.length) {
@@ -46,8 +43,7 @@ router.get("/api/restaurants/:lat/:long/", async (req, res) => {
 
 	let dietPreferences;
 	if (user.Preference.length) {
-		dietPreferences =
-			user.Preference[0].Category.dataValues.yelp_category;
+		dietPreferences = user.Preference[0].Category.dataValues.yelp_category;
 	}
 
 	try {
@@ -74,7 +70,7 @@ router.get("/api/restaurants/:lat/:long/", async (req, res) => {
 				Math.random() * matchingRestaurants.length
 			);
 			randomRestaurant = matchingRestaurants[randomIndex];
-			
+
 			res.json(randomRestaurant);
 		} else {
 			const randomIndex = Math.floor(
@@ -96,20 +92,24 @@ router.get("/api/preferences", async (req, res) => {
 	try {
 		const preferences = await db.Preference.findAll({
 			where: {
-				UserId: user.id
+				UserId: user.id,
 			},
 		});
 		// console.log(preferences[0].CategoryId, preferences[0].UserId);
 		// console.log(typeof preferences);
 		const categories = await db.Category.findAll();
 		// console.log(categories);
-		const displayCategory = categories.map((category) => ({
+		const displayCategory = categories.map(category => ({
 			categoryId: category.id,
 			displayName: category.display_category,
 			categoryType: category.TypeId,
 			selected: preferences.some(p => p.CategoryId == category.id),
 		}));
+<<<<<<< HEAD
 		// console.log(displayCategory);
+=======
+
+>>>>>>> 896faa242450a55680827c9316be891fdfacc7f5
 		res.json(displayCategory);
 	} catch (error) {
 		console.log(error);
@@ -118,26 +118,46 @@ router.get("/api/preferences", async (req, res) => {
 
 // Post User Preferences
 router.post("/api/preferences", async (req, res) => {
+<<<<<<< HEAD
 	// console.log(req.user.dataValues);
+=======
+	//req.user
+
+>>>>>>> 896faa242450a55680827c9316be891fdfacc7f5
 	try {
 		const user = req.user.dataValues;
 		const selection = Object.values(req.body);
 		const preferences = [];
+<<<<<<< HEAD
 		
 		function getPreferences() {
-			for (let i = 0; i < selection.length; i++) {
-			preferences.push(Number(selection[i]));
-		}};
+=======
 
+		function what() {
+>>>>>>> 896faa242450a55680827c9316be891fdfacc7f5
+			for (let i = 0; i < selection.length; i++) {
+				preferences.push(Number(selection[i]));
+			}
+		}
+
+<<<<<<< HEAD
 		getPreferences();
 	
+=======
+		what();
+
+>>>>>>> 896faa242450a55680827c9316be891fdfacc7f5
 		const currentPreferences = await db.Preference.destroy({
 			where: {
 				UserId: user.id,
 			},
 		});
 
+<<<<<<< HEAD
 		// console.log('req.body: ' + require('util').inspect(req.body));
+=======
+		console.log("req.body: " + require("util").inspect(req.body));
+>>>>>>> 896faa242450a55680827c9316be891fdfacc7f5
 		console.log(preferences);
 
 		for (let preference of preferences) {
@@ -161,7 +181,7 @@ router.patch("/api/weights/:type", async (req, res) => {
 	const type = req.params.type;
 
 	try {
-		const dbCategories = await db.Category.findAll({});
+		const dbCategories = await db.Category.findAll({ where: { TypeId: 2 } });
 
 		const yelpCategories = dbCategories.map(
 			category => category.dataValues.yelp_category
@@ -180,7 +200,7 @@ router.patch("/api/weights/:type", async (req, res) => {
 						where: { yelp_category: yelpCategory },
 					});
 
-					const weight = await db.Weight.findOne({
+					var weight = await db.Weight.findOne({
 						where: {
 							UserId: user.id,
 							CategoryId: queriedCategory.dataValues.id,

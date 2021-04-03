@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
@@ -11,7 +12,7 @@ import "./style.css";
 const useStyles = makeStyles({
 	error: {
 		color: "red",
-		fontSize: "14px",
+		fontSize: "12px",
 	},
 	text: {
 		color: "#D92B04",
@@ -64,6 +65,7 @@ const AuthForm = ({
 			<Grid container spacing={2}>
 				<Grid item xs={12}>
 					<TextField
+						size="small"
 						value={username}
 						label="Username"
 						variant="outlined"
@@ -77,6 +79,7 @@ const AuthForm = ({
 				</Grid>
 				<Grid item xs={12}>
 					<TextField
+						size="small"
 						value={password}
 						label="Password"
 						variant="outlined"
@@ -96,32 +99,25 @@ const AuthForm = ({
 						onClick={e => handleClick(e)}
 					/>
 				</Grid>
-				<Grid item xs={12}>
-					{message && !valMessage ? (
-						<Typography className={classes.error}>{message.message}</Typography>
-					) : null}
-				</Grid>
-				<Grid item xs={12}>
+				<p id="errorMsg">{message && !valMessage ? (
+					<Typography className={classes.error}>{message.message}</Typography>
+				) : null}
 					{valMessage ? (
 						<Typography className={classes.error}>{valMessage}</Typography>
 					) : null}
-				</Grid>
+				</p>
 				<Grid item xs={12}>
 					<Typography className={classes.text} onClick={handleToggle}>
 						{text}
 					</Typography>
 				</Grid>
-				<Grid item xs={12}>
-					<Grid container>
-						<Grid item xs={12}>
-							<h2>Login with Google</h2>
-						</Grid>
-						<Grid item xs={12} align="center">
-							<a href="/auth/google">
-								<i className="fab fa-google"></i>
-							</a>
-						</Grid>
-					</Grid>
+				<p id="or">OR</p>
+				<Grid item xs={12} align="center">
+					<Button
+						className="loginButton"
+						label="Login with Google"
+						onClick={() => { window.location.href = "/auth/google" }}
+					/>
 				</Grid>
 			</Grid>
 		</form>
