@@ -100,8 +100,8 @@ const AuthForm = ({
 						onClick={e => handleClick(e)}
 					/>
 				</Grid>
-				<h6 id="errorMsg">{message && !valMessage ? (
-					<Typography className={classes.error}>{message.message}</Typography>
+				<h6 id="errorMsg">{window.message && !valMessage ? (
+					<Typography className={classes.error}>{window.message.message}</Typography>
 				) : null}
 					{valMessage ? (
 						<Typography className={classes.error}>{valMessage}</Typography>
