@@ -42,6 +42,7 @@ const AuthForm = ({
 	const handleClick = e => {
 		if (type === "signup") {
 			e.preventDefault();
+			setValMessage("");
 			if (username.length < 6) {
 				setValMessage("Username must be greater than 6 characters");
 			} else if (password.length < 6) {

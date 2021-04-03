@@ -1,8 +1,16 @@
-#diet {
-    text-align: left;
-    
-}
+#diet,
 #cuisine {
-    text-align: left;
-   
+    justify-content: left;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
 }
+
+.preferences h3 {
+    text-align: left!important;
+}
+
+.preferences label {
+    font-family: 'Roboto', sans-serif;
+}
+

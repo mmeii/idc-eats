@@ -170,7 +170,7 @@ export default function Home() {
 
                 <h3 id="found">
                     We found a(n){" "}
-                    <span id="attention">{restaurant.categories[0].title}</span> place for you!
+                    <span className="attention">{restaurant.categories[0].title}</span> place for you!
                 </h3>
 
                 <hr />
@@ -209,7 +209,7 @@ export default function Home() {
 
                 <hr />
                 <h3 id="good">
-                    Sounds <span id="attention">good</span> right?
+                    Sounds <span className="attention">good</span> right?
                 </h3>
 
                 <div align="left">
@@ -235,7 +235,7 @@ export default function Home() {
                         >
                             Next!
                         </Button>
-                        <Link to="home" onClick={() => {window.location.href="/home"}} className="start-over">Start Over</Link>
+                        <Link to="home" onClick={() => { window.location.href = "/home" }} className="start-over">Start Over</Link>
                     </ThemeProvider>
                 </div>
             </div>
