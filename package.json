@@ -38,7 +38,7 @@
 		"node": "14.x"
 	},
 	"scripts": {
-		"start": "concurrently \"npm run build\" \"npm run server\"",
+		"start": "npm run server",
 		"start:dev": "concurrently \"npm run build:watch\" \"npm run server:watch\"",
 		"start:test": "npm run build && npm run server",
 		"server": "node server/server.js",
