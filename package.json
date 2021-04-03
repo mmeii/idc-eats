@@ -1,7 +1,7 @@
 {
-	"name": "mern",
-	"version": "0.1.0",
-	"description": "Mern Demo",
+	"name": "idceats",
+	"version": "1.0.0",
+	"description": "A restaurant finder",
 	"homepage": "/",
 	"private": true,
 	"dependencies": {
@@ -32,6 +32,9 @@
 		"sequelize": "^6.6.2",
 		"sequelize-cli": "^6.2.0",
 		"serialize-javascript": "^5.0.1"
+	},
+	"engines": {
+		"node": "14.x"
 	},
 	"scripts": {
 		"start": "concurrently \"npm run build:watch\" \"npm run server:watch\"",
