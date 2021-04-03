@@ -1,5 +1,24 @@
 @import url('https://fonts.googleapis.com/css2?family=Syne:wght@700&display=swap');
 
+.idclogo {
+    float: left;
+    padding-left: 15px;
+    padding-top: 0;
+    margin-top: 0;
+    border-top: 0;
+    padding-bottom: 20px;
+    
+
+}
+
+#goback {
+    padding-top: 0;
+    margin-top: 0;
+    padding-bottom: 40px;
+
+}
+
+
 .menu {
     text-align: right;
     
@@ -7,7 +26,7 @@
 
 #navIcon {
     color: red;
-    font-size: 48px;
+    font-size: 64px;
 }
 
 #loginlink{
