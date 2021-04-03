@@ -135,13 +135,15 @@ hr {
 }
 
 .start-over {
-    float: left;
-    padding-bottom: 10px;
-    font-size: 12px;
+    float: right;
+    /* padding-bottom: 10px; */
+    font-size: 13px;
     /* font-weight: bold; */
-    color: #808080;
+    color: #4E9DA6;
+    opacity: .7;
     font-family: 'Roboto', sans-serif;
-    /* text-decoration: none; */
+    text-decoration: none;
+    margin-bottom: 20px;
 }
 
 .start-over:hover {
