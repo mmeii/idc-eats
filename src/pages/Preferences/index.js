@@ -96,6 +96,8 @@ function Preferences({ category }) {
               {categories.filter((category) => category.categoryType === 1).map((category) => (
                 <Radiobutton key={category.categoryId} category={category} />
               ))}
+              <input type="radio" name="diet" value="0" defaultChecked="true" />
+              <label htmlFor="None">None</label>
           </div>
           <div id="cuisine">
             <h3>Cuisine Preference (select all that apply)</h3>
