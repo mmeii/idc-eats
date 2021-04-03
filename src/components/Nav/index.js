@@ -30,11 +30,9 @@ export default function Nav() {
             <li>
               <Link to="home" onClick={() => {window.location.href="/home"}}>Home</Link>
             </li>
-            <li></li>
             <li>
               <Link to="preferences" onClick={() => {window.location.href="/preferences"}}>Preferences</Link>
             </li>
-            <li></li>
             <li>
               <a href="/auth/logout" onClick={() => {window.location.href="/logout"}}>Logout</a>
             </li>
