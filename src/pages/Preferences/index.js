@@ -4,6 +4,7 @@ import FormGroup from "@material-ui/core/FormGroup";
 import axios from "axios";
 import Checkbox from "../../components/Checkbox";
 import Btn from "../../components/Btn";
+import Radiobutton from "../../components/Radiobutton"
 import "./style.css";
 
 function Preferences({ category }) {
@@ -32,16 +33,6 @@ function Preferences({ category }) {
       axios.post("/api/preferences", formData);
       window.location.href="/home";
     };
-
-   
-  
-    // const displayCategories = [];
-    
-    // function convertCategories() {
-    //   displayCategories.push(categories);
-    // };
-
-    // convertCategories();
 
     //axios.post("/api/preferences", {
     //setCurrentPreferences = []
@@ -103,7 +94,7 @@ function Preferences({ category }) {
           <div id="diet">
             <h3>Dietary Concern (select one)</h3>
               {categories.filter((category) => category.categoryType === 1).map((category) => (
-                <Checkbox key={category.categoryId} category={category} />
+                <Radiobutton name="diet" id="diet" key={category.categoryId} category={category} />
               ))}
           </div>
           <div id="cuisine">

@@ -123,7 +123,7 @@ router.post("/api/preferences", async (req, res) => {
 	
 	try {
 		const user = req.user.dataValues;
-		const selection = Object.keys(req.body);
+		const selection = Object.values(req.body);
 
 		const preferences = [];
 		
@@ -154,7 +154,6 @@ router.post("/api/preferences", async (req, res) => {
 				});
 			}
 		}
-		res.redirect("/home");
 	} catch (error) {
 		console.log(error);
 	}
