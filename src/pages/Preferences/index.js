@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import ContainerWrapper from "../../components/ContainerWrapper";
 import FormGroup from "@material-ui/core/FormGroup";
 import axios from "axios";
-import Checkbox from "../../components/Checkbox";
+import Chkbox from "../../components/Chkbox";
 import Btn from "../../components/Btn";
 import Radiobutton from "../../components/Radiobutton"
 import "./style.css";
@@ -55,7 +55,7 @@ function Preferences({ category }) {
             <h3>Cuisine Preference (select all that apply)</h3>
             <div id="cuisine">
               {categories.filter((category) => category.categoryType === 2).map((category) => (
-                <Checkbox key={category.categoryId} category={category} />
+                <Chkbox key={category.categoryId} category={category} />
               ))}
             </div>
             <div style={{ marginTop: "20px" }}>
