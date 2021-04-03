@@ -94,7 +94,7 @@ function Preferences({ category }) {
           <div id="diet">
             <h3>Dietary Concern (select one)</h3>
               {categories.filter((category) => category.categoryType === 1).map((category) => (
-                <Radiobutton name="diet" id="diet" key={category.categoryId} category={category} />
+                <Radiobutton key={category.categoryId} category={category} />
               ))}
           </div>
           <div id="cuisine">
