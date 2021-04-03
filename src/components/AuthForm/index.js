@@ -99,13 +99,13 @@ const AuthForm = ({
 						onClick={e => handleClick(e)}
 					/>
 				</Grid>
-				<p id="errorMsg">{message && !valMessage ? (
+				<h6 id="errorMsg">{message && !valMessage ? (
 					<Typography className={classes.error}>{message.message}</Typography>
 				) : null}
 					{valMessage ? (
 						<Typography className={classes.error}>{valMessage}</Typography>
 					) : null}
-				</p>
+				</h6>
 				<Grid item xs={12}>
 					<Typography className={classes.text} onClick={handleToggle}>
 						{text}
