@@ -23,7 +23,7 @@ export default function Nav() {
           }}
           className="start-over"
           aria-label="go back"
-        ><i class="fas fa-angle-double-left" id="goback" style={{paddingTop: 0}}></i></Link>
+        ><i class="fas fa-undo fa-3x" style={{ opacity: .7 }}></i></Link>
       </div>
       <div className="menu">
         <motion.div initial="hidden" animate={isOpen ? "open" : "hidden"}>
