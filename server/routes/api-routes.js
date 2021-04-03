@@ -105,11 +105,6 @@ router.get("/api/preferences", async (req, res) => {
 			categoryType: category.TypeId,
 			selected: preferences.some(p => p.CategoryId == category.id),
 		}));
-<<<<<<< HEAD
-		// console.log(displayCategory);
-=======
-
->>>>>>> 896faa242450a55680827c9316be891fdfacc7f5
 		res.json(displayCategory);
 	} catch (error) {
 		console.log(error);
@@ -118,46 +113,27 @@ router.get("/api/preferences", async (req, res) => {
 
 // Post User Preferences
 router.post("/api/preferences", async (req, res) => {
-<<<<<<< HEAD
 	// console.log(req.user.dataValues);
-=======
-	//req.user
-
->>>>>>> 896faa242450a55680827c9316be891fdfacc7f5
 	try {
 		const user = req.user.dataValues;
 		const selection = Object.values(req.body);
 		const preferences = [];
-<<<<<<< HEAD
-		
-		function getPreferences() {
-=======
 
-		function what() {
->>>>>>> 896faa242450a55680827c9316be891fdfacc7f5
+		function getPreferences() {
 			for (let i = 0; i < selection.length; i++) {
 				preferences.push(Number(selection[i]));
 			}
 		}
 
-<<<<<<< HEAD
 		getPreferences();
-	
-=======
-		what();
 
->>>>>>> 896faa242450a55680827c9316be891fdfacc7f5
 		const currentPreferences = await db.Preference.destroy({
 			where: {
 				UserId: user.id,
 			},
 		});
 
-<<<<<<< HEAD
-		// console.log('req.body: ' + require('util').inspect(req.body));
-=======
-		console.log("req.body: " + require("util").inspect(req.body));
->>>>>>> 896faa242450a55680827c9316be891fdfacc7f5
+		// console.log("req.body: " + require("util").inspect(req.body));
 		console.log(preferences);
 
 		for (let preference of preferences) {
