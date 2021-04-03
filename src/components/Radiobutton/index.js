@@ -1,13 +1,12 @@
 import React from 'react';
 
-const Checkbox = ({ category }) => {
+const Radiobutton = ({ category }) => {
     return (
         <div className="checkbox">
             <input 
-                type="checkbox" 
-                aria-label="checkbox"
+                type="radio" 
                 id={category.displayName} 
-                name={category.displayName} 
+                name="diet"
                 value={category.categoryId}
                 defaultChecked={category.selected} />
                 
@@ -17,4 +16,4 @@ const Checkbox = ({ category }) => {
     );
 }
 
-export default Checkbox;
+export default Radiobutton;
