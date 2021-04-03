@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
@@ -98,12 +99,13 @@ const AuthForm = ({
 						onClick={e => handleClick(e)}
 					/>
 				</Grid>
-				{message && !valMessage ? (
+				<p id="errorMsg">{message && !valMessage ? (
 					<Typography className={classes.error}>{message.message}</Typography>
 				) : null}
-				{valMessage ? (
-					<Typography className={classes.error}>{valMessage}</Typography>
-				) : null}
+					{valMessage ? (
+						<Typography className={classes.error}>{valMessage}</Typography>
+					) : null}
+				</p>
 				<Grid item xs={12}>
 					<Typography className={classes.text} onClick={handleToggle}>
 						{text}
@@ -111,12 +113,13 @@ const AuthForm = ({
 				</Grid>
 				<p id="or">OR</p>
 				<Grid item xs={12} align="center">
-					<a href="/auth/google">
-						<Button
-							className="loginButton"
-							label="Login with Google"
-						/>
-					</a>
+
+					<Button
+						className="loginButton"
+						label="Login with Google"
+						onClick={() => { window.location.href = "/auth/google" }}
+					/>
+
 				</Grid>
 			</Grid>
 		</form>
