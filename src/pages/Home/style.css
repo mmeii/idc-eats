@@ -136,14 +136,12 @@ hr {
 
 .start-over {
     float: right;
-    /* padding-bottom: 10px; */
     font-size: 13px;
-    /* font-weight: bold; */
     color: #4E9DA6;
-    opacity: .7;
+    opacity: .9;
     font-family: 'Roboto', sans-serif;
     text-decoration: none;
-    margin-bottom: 20px;
+    margin-top: 20px;
 }
 
 .start-over:hover {

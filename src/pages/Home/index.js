@@ -161,7 +161,7 @@ export default function Home() {
 
     const RestaurantDetails = () => (
         <>
-            <Link to="home" onClick={() => {window.location.href="/home"}} className="start-over">Start Over</Link>
+            
             <div className="home">
                 <img
                     className={classes.image}
@@ -236,7 +236,7 @@ export default function Home() {
                         >
                             Next!
                         </Button>
-                        
+                        <Link to="home" onClick={() => {window.location.href="/home"}} className="start-over">Start Over</Link>
                     </ThemeProvider>
                 </div>
             </div>
