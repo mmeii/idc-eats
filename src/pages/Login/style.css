@@ -20,23 +20,11 @@ h4, h5, h6, p {
     text-align: left;
     height: 100%;
     background-color: white;
-    opacity: 70%;
+    opacity: 100%;
     border-radius: 20px;
     width: 200px;
-    padding: 20px;
-   
+    padding: 20px;  
 }
-
-/* Was affecting the price options on Eats page */
-/* form {
-	align-items: center;
-	text-align: center;
-	height: 100%;
-	background-color: pink;
-	opacity: 70%;
-	border-radius: 20px;
-} */
-
 
 #loginbtn {
 	margin: 20px;

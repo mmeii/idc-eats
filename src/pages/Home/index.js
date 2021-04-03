@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
     },
     image: {
         width: "100%",
-        maxHeight: "365px",
+        height: "365px",
         objectFit: "cover",
         borderTopLeftRadius: "50px",
         borderBottomRightRadius: "50px",
@@ -41,10 +41,10 @@ const useStyles = makeStyles((theme) => ({
 const theme = createMuiTheme({
     palette: {
         primary: {
-            main: "#D92B04",
+            main: "#4E9DA6",
         },
         secondary: {
-            main: "#4E9DA6",
+            main: "#D92B04",
         },
     },
 });
@@ -162,13 +162,11 @@ export default function Home() {
         <>
 
             <div className="home">
-                <div>
-                    <img
-                        className={classes.image}
-                        src={restaurant.image_url}
-                        alt={restaurant.name}
-                    />
-                </div>
+                <img
+                    className={classes.image}
+                    src={restaurant.image_url}
+                    alt={restaurant.name}
+                />
 
                 <h3 id="found">
                     We found a(n){" "}
