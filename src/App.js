@@ -12,6 +12,7 @@ import PrivateRoute from "./components/PrivateRoute";
 import "./App.css";
 
 const App = () => {
+	console.log(window.user, window.message);
 	return (
 		<>
 			<Router>

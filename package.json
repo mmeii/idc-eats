@@ -43,7 +43,7 @@
 		"start:test": "npm run build && npm run server",
 		"server": "node server/server.js",
 		"server:watch": "nodemon --ignore './src/' server/server.js",
-		"build": "react-scripts build",
+		"build": "cra-build-watch",
 		"build:watch": "cra-build-watch",
 		"test": "react-scripts test",
 		"eject": "react-scripts eject"
