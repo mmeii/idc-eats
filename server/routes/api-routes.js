@@ -105,7 +105,6 @@ router.get("/api/preferences", async (req, res) => {
 			categoryType: category.TypeId,
 			selected: preferences.some(p => p.CategoryId == category.id),
 		}));
-
 		res.json(displayCategory);
 	} catch (error) {
 		console.log(error);
@@ -114,21 +113,19 @@ router.get("/api/preferences", async (req, res) => {
 
 // Post User Preferences
 router.post("/api/preferences", async (req, res) => {
-	//req.user
-
+	// console.log(req.user.dataValues);
 	try {
 		const user = req.user.dataValues;
 		const selection = Object.values(req.body);
-
 		const preferences = [];
 
-		function what() {
+		function getPreferences() {
 			for (let i = 0; i < selection.length; i++) {
 				preferences.push(Number(selection[i]));
 			}
 		}
 
-		what();
+		getPreferences();
 
 		const currentPreferences = await db.Preference.destroy({
 			where: {
@@ -136,10 +133,8 @@ router.post("/api/preferences", async (req, res) => {
 			},
 		});
 
-		console.log("req.body: " + require("util").inspect(req.body));
+		// console.log("req.body: " + require("util").inspect(req.body));
 		console.log(preferences);
-		console.log(selection);
-		// console.log('req.body: ' + req.body.toString());
 
 		for (let preference of preferences) {
 			if (preference) {
