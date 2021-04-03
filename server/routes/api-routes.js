@@ -28,22 +28,41 @@ router.get("/api/restaurants/:lat/:long/", async (req, res) => {
 	}
 	const lat = req.params.lat;
 	const long = req.params.long;
+
 	const weights = await db.Weight.findAll({
 		where: { UserId: user.id },
 		include: db.Category,
 	});
+
 	const mappedWeights = weights.map(weight => {
 		return {
+			categoryId: weight.dataValues.CategoryId,
 			weight: weight.dataValues.value,
 			category: weight.dataValues.Category.dataValues.yelp_category,
 		};
 	});
 
-	const category = randomCategory(mappedWeights);
-
 	let dietPreferences;
 	if (user.Preference.length) {
-		dietPreferences = user.Preference[0].Category.dataValues.yelp_category;
+		dietPreferences = user.Preference.map(preference => {
+			return {
+				id: preference.dataValues.CategoryId,
+				category: preference.dataValues.Category.dataValues.yelp_category,
+			};
+		});
+	}
+
+	let category;
+	if (dietPreferences) {
+		const filteredWeights = mappedWeights.filter(weight => {
+			return dietPreferences.find(
+				preference => weight.categoryId === preference.id
+			);
+		});
+
+		category = randomCategory(filteredWeights);
+	} else {
+		category = randomCategory(mappedWeights);
 	}
 
 	try {
@@ -52,34 +71,40 @@ router.get("/api/restaurants/:lat/:long/", async (req, res) => {
 				latitude: lat,
 				longitude: long,
 				limit: 50,
-				categories: dietPreferences,
+				categories: category,
 				price: priceOptions,
 			},
 		});
 
-		const matchingRestaurants = restaurants.data.businesses.filter(
-			restaurant => {
-				return restaurant.categories.find(c => {
-					return category.includes(c.alias);
-				});
-			}
+		// const matchingRestaurants = restaurants.data.businesses.filter(
+		// 	restaurant => {
+		// 		return restaurant.categories.find(c => {
+		// 			return category.includes(c.alias);
+		// 		});
+		// 	}
+		// );
+
+		// if (matchingRestaurants.length) {
+		// 	const randomIndex = Math.floor(
+		// 		Math.random() * matchingRestaurants.length
+		// 	);
+		// 	randomRestaurant = matchingRestaurants[randomIndex];
+
+		// 	res.json(randomRestaurant);
+		// } else {
+		// 	const randomIndex = Math.floor(
+		// 		Math.random() * restaurants.data.businesses.length
+		// 	);
+		// 	randomRestaurant = restaurants.data.businesses[randomIndex];
+
+		// 	res.json(randomRestaurant);
+		// }
+
+		const randomIndex = Math.floor(
+			Math.random() * restaurants.data.businesses.length
 		);
-
-		if (matchingRestaurants.length) {
-			const randomIndex = Math.floor(
-				Math.random() * matchingRestaurants.length
-			);
-			randomRestaurant = matchingRestaurants[randomIndex];
-
-			res.json(randomRestaurant);
-		} else {
-			const randomIndex = Math.floor(
-				Math.random() * restaurants.data.businesses.length
-			);
-			randomRestaurant = restaurants.data.businesses[randomIndex];
-
-			res.json(randomRestaurant);
-		}
+		randomRestaurant = restaurants.data.businesses[randomIndex];
+		res.json(randomRestaurant);
 	} catch (e) {
 		res.status(500).send(e);
 	}
@@ -116,7 +141,9 @@ router.post("/api/preferences", async (req, res) => {
 	// console.log(req.user.dataValues);
 	try {
 		const user = req.user.dataValues;
-		const preferences = Object.values(req.body).map(category => Number(category));
+		const preferences = Object.values(req.body).map(category =>
+			Number(category)
+		);
 		// const preferences = [];
 
 		// function getPreferences() {
@@ -184,9 +211,13 @@ router.patch("/api/weights/:type", async (req, res) => {
 					});
 
 					if (type === "increment") {
-						weight.increment("value", { by: 5 });
+						if (weight.dataValues.value < 100) {
+							weight.increment("value", { by: 10 });
+						}
 					} else {
-						weight.decrement("value", { by: 3 });
+						if (weight.dataValues.value > 5) {
+							weight.decrement("value", { by: 5 });
+						}
 					}
 				}
 			});
