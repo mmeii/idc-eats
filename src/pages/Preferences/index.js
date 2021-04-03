@@ -44,9 +44,11 @@ function Preferences({ category }) {
           <form action="/preferences" method="POST" id="preferencesForm">
             <h3>Dietary Concern (select one)</h3>
             <div id="diet">
+
               {categories.filter((category) => category.categoryType === 1).map((category) => (
                 <Radiobutton key={category.categoryId} category={category} />
               ))}
+
               <div>
                 <input type="radio" name="diet" value="0" defaultChecked="true" />
                 <label htmlFor="None">None</label>
@@ -55,7 +57,9 @@ function Preferences({ category }) {
             <h3>Cuisine Preference (select all that apply)</h3>
             <div id="cuisine">
               {categories.filter((category) => category.categoryType === 2).map((category) => (
-                <Chkbox key={category.categoryId} category={category} />
+                <div>
+                  <Chkbox key={category.categoryId} category={category} />
+                </div>
               ))}
             </div>
             <div style={{ marginTop: "20px" }}>
