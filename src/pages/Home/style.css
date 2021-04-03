@@ -31,8 +31,10 @@
 #resName {
     font-weight: bolder;
     border: 1px black;
-    text-align: center;
-    letter-spacing: 0.15rem;
+    font-size: 21px;
+    text-align: left;
+    letter-spacing: 0.2rem;
+    padding: 8px 0;
 }
 
 .resDetails:after {
@@ -43,7 +45,7 @@
 
 .resContext {
     margin: auto;
-    padding-bottom: 10px;
+    padding-bottom: 4px;
 }
 
 .resInfo {
@@ -93,10 +95,6 @@
     padding-top: 4px;
     text-decoration: none;
     color: #808080;
-}
-
-#phone a:hover {
-    font-style: italic;
 }
 
 #phone {
