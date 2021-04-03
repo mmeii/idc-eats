@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import _ from "lodash";
-import { Link } from "react-router-dom";
+
 
 //components imports
 import ContainerWrapper from "../../components/ContainerWrapper";
@@ -235,7 +235,6 @@ export default function Home() {
                         >
                             Next!
                         </Button>
-                        <Link to="home" onClick={() => { window.location.href = "/home" }} className="start-over">Start Over</Link>
                     </ThemeProvider>
                 </div>
             </div>
