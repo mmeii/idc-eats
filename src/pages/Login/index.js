@@ -10,7 +10,6 @@ function Login() {
 	const [toggle, setToggle] = useState(true);
 
 	const handleSubmit = async (username, password) => {
-		event.preventDefault();
 		const credentials = { username, password };
 		await axios.post("/auth/signup", credentials);
 		window.location = "/home";
