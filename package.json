@@ -38,14 +38,17 @@
 		"node": "14.x"
 	},
 	"scripts": {
-		"start": "concurrently \"npm run build:watch\" \"npm run server:watch\"",
+		"start": "node server/server.js",
+		"start:dev": "concurrently \"npm run build:watch\" \"npm run server:watch\"",
 		"start:test": "npm run build && npm run server",
 		"server": "node server/server.js",
 		"server:watch": "nodemon --ignore './src/' server/server.js",
 		"build": "react-scripts build",
 		"build:watch": "cra-build-watch",
 		"test": "react-scripts test",
-		"eject": "react-scripts eject"
+		"eject": "react-scripts eject",
+		"heroku-postbuild": "npm run build"
+
 	},
 	"browserslist": {
 		"production": [
