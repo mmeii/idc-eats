@@ -113,13 +113,11 @@ const AuthForm = ({
 				</Grid>
 				<p id="or">OR</p>
 				<Grid item xs={12} align="center">
-
 					<Button
 						className="loginButton"
 						label="Login with Google"
 						onClick={() => { window.location.href = "/auth/google" }}
 					/>
-
 				</Grid>
 			</Grid>
 		</form>
