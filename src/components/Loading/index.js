@@ -7,14 +7,12 @@ import "./style.css";
 export default function Loading() {
   return (
     <div>
-      <ContainerWrapper>
-        <div class="anim" aria-label="spinning foods">
-          <RandoAnim />
-        </div>
-        <div class="noAnim" aria-label="donut">
-        </div>
-        <h2>Just a sec while we find your new favorite!</h2>
-      </ContainerWrapper>
+      <div class="anim" aria-label="spinning foods">
+        <RandoAnim />
+      </div>
+      <div class="noAnim" aria-label="donut">
+      </div>
+      <h2>Just a sec while we find your new favorite!</h2>
     </div>
   );
 }
