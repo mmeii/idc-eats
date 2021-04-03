@@ -22,8 +22,8 @@
     text-align: left;
 }
 
-#attention {
-    color: #4E9DA6;
+.attention {
+    color: #D92B04;
     font-size: 1.2em;
     text-decoration: underline;
 }
