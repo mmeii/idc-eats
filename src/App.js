@@ -15,9 +15,10 @@ const App = () => {
 	return (
 		<>
 			<Router>
-				<Nav />
 				<Switch>
 					<Route exact path="/" component={Login} />
+					<>
+					<Nav />
 					<PrivateRoute exact path="/home">
 						<Home />
 					</PrivateRoute>
@@ -27,6 +28,7 @@ const App = () => {
 					<PrivateRoute exact path="/preferences">
 						<Preferences />
 					</PrivateRoute>
+					</>
 				</Switch>
 			</Router>
 			<Footer />
