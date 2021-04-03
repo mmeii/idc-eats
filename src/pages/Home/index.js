@@ -160,7 +160,6 @@ export default function Home() {
 
     const RestaurantDetails = () => (
         <>
-
             <div className="home">
                 <img
                     className={classes.image}
