@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import _ from "lodash";
+import { Link } from "react-router-dom";
 
 //components imports
 import ContainerWrapper from "../../components/ContainerWrapper";
