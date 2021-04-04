@@ -58,12 +58,6 @@ app.use(
 // if (process.env.NODE_ENV === "production") {
 // 	app.use(express.static("client/build"));
 // }
-const server = http.createServer(app);
-db.sequelize.sync().then(function () {
-	server.listen(PORT, () => {
-		console.log(`🌎 ==> API server now on port ${PORT}!`);
-	});
-});
 
 if (process.env.NODE_ENV !== "production") {
 	// Wires up handler for /reload/reload.js route
@@ -87,5 +81,13 @@ app.get("*", (req, res) => {
 			user: serialize({ user }, { isJSON: true }),
 			message: serialize({ message }, { isJSON: true }),
 		},
+	});
+});
+
+const server = http.createServer(app);
+
+db.sequelize.sync().then(function () {
+	server.listen(PORT, () => {
+		console.log(`🌎 ==> API server now on port ${PORT}!`);
 	});
 });
