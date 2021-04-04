@@ -32,8 +32,8 @@
 		<noscript> You need to enable JavaScript to run this app. </noscript>
 		<div id="root"></div>
 		<script>
-			var user = <%= '${user}' %>
-			var message = <%= '${message}' %>
+			window.user = <%= '${user}' %>
+			window.message = <%= '${message}' %>
 
 			<% if(process.env.NODE_ENV !== 'production'){ %>
 				<script src="/reload/reload.js"></script>
