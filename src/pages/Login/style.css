@@ -20,7 +20,7 @@ h4, h5, h6, p {
     text-align: left;
     height: 100%;
     background-color: white;
-    opacity: 100%;
+    opacity: 1.0;
     border-radius: 20px;
     width: 200px;
     padding: 20px;  
@@ -44,7 +44,7 @@ input {
 	height: 70vh;
 	margin-right: auto;
 	margin-left: auto;
-	opacity: 100%;
+	opacity: 1.0;
 }
 
 #googlelogin {
