@@ -43,8 +43,22 @@ router.get("/api/restaurants/:lat/:long/", async (req, res) => {
 	});
 
 	let dietPreferences;
+	let dietRestriction;
 	if (user.Preference.length) {
-		dietPreferences = user.Preference.map(preference => {
+		const filteredRestriction = user.Preference.filter(
+			preference => preference.dataValues.Category.dataValues.TypeId === 1
+		);
+
+		if (filteredRestriction.length) {
+			dietRestriction =
+				filteredRestriction[0].dataValues.Category.dataValues.yelp_category;
+		}
+
+		const filteredPreferences = user.Preference.filter(
+			preference => preference.dataValues.Category.dataValues.TypeId === 2
+		);
+
+		dietPreferences = filteredPreferences.map(preference => {
 			return {
 				id: preference.dataValues.CategoryId,
 				category: preference.dataValues.Category.dataValues.yelp_category,
@@ -53,7 +67,7 @@ router.get("/api/restaurants/:lat/:long/", async (req, res) => {
 	}
 
 	let category;
-	if (dietPreferences) {
+	if (dietPreferences && dietPreferences.length) {
 		const filteredWeights = mappedWeights.filter(weight => {
 			return dietPreferences.find(
 				preference => weight.categoryId === preference.id
@@ -66,45 +80,54 @@ router.get("/api/restaurants/:lat/:long/", async (req, res) => {
 	}
 
 	try {
-		const restaurants = await yelp.get("/search", {
-			params: {
-				latitude: lat,
-				longitude: long,
-				limit: 50,
-				categories: category,
-				price: priceOptions,
-			},
-		});
+		if (dietRestriction) {
+			const restaurants = await yelp.get("/search", {
+				params: {
+					latitude: lat,
+					longitude: long,
+					limit: 50,
+					categories: dietRestriction,
+					price: priceOptions,
+				},
+			});
 
-		// const matchingRestaurants = restaurants.data.businesses.filter(
-		// 	restaurant => {
-		// 		return restaurant.categories.find(c => {
-		// 			return category.includes(c.alias);
-		// 		});
-		// 	}
-		// );
+			const matchingRestaurants = restaurants.data.businesses.filter(
+				restaurant => {
+					return restaurant.categories.find(c => {
+						return category.includes(c.alias);
+					});
+				}
+			);
+			if (matchingRestaurants.length) {
+				const randomIndex = Math.floor(
+					Math.random() * matchingRestaurants.length
+				);
+				randomRestaurant = matchingRestaurants[randomIndex];
+				return res.json(randomRestaurant);
+			} else {
+				const randomIndex = Math.floor(
+					Math.random() * restaurants.data.businesses.length
+				);
+				randomRestaurant = restaurants.data.businesses[randomIndex];
+				return res.json(randomRestaurant);
+			}
+		} else {
+			const restaurants = await yelp.get("/search", {
+				params: {
+					latitude: lat,
+					longitude: long,
+					limit: 50,
+					categories: category,
+					price: priceOptions,
+				},
+			});
 
-		// if (matchingRestaurants.length) {
-		// 	const randomIndex = Math.floor(
-		// 		Math.random() * matchingRestaurants.length
-		// 	);
-		// 	randomRestaurant = matchingRestaurants[randomIndex];
-
-		// 	res.json(randomRestaurant);
-		// } else {
-		// 	const randomIndex = Math.floor(
-		// 		Math.random() * restaurants.data.businesses.length
-		// 	);
-		// 	randomRestaurant = restaurants.data.businesses[randomIndex];
-
-		// 	res.json(randomRestaurant);
-		// }
-
-		const randomIndex = Math.floor(
-			Math.random() * restaurants.data.businesses.length
-		);
-		randomRestaurant = restaurants.data.businesses[randomIndex];
-		res.json(randomRestaurant);
+			const randomIndex = Math.floor(
+				Math.random() * restaurants.data.businesses.length
+			);
+			randomRestaurant = restaurants.data.businesses[randomIndex];
+			res.json(randomRestaurant);
+		}
 	} catch (e) {
 		res.status(500).send(e);
 	}
