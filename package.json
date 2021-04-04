@@ -19,6 +19,7 @@
 		"if-env": "^1.0.4",
 		"lodash": "^4.17.21",
 		"multer": "^1.4.2",
+		"mysql": "^2.18.1",
 		"mysql2": "^2.2.5",
 		"npm-run-all": "^1.4.0",
 		"passport": "^0.4.1",
@@ -37,7 +38,8 @@
 		"node": "14.x"
 	},
 	"scripts": {
-		"start": "concurrently \"npm run build:watch\" \"npm run server:watch\"",
+		"start": "npm run server",
+		"start:dev": "concurrently \"npm run build:watch\" \"npm run server:watch\"",
 		"start:test": "npm run build && npm run server",
 		"server": "node server/server.js",
 		"server:watch": "nodemon --ignore './src/' server/server.js",
