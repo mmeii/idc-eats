@@ -23,7 +23,7 @@ export default function Nav() {
           }}
           className="start-over"
           aria-label="go back"
-        ><i class="fas fa-arrow-left fa-2x"></i></Link>
+        ><i className="fas fa-arrow-left fa-2x"></i></Link>
       </div>
       <div className="menu">
         <motion.div initial="hidden" animate={isOpen ? "open" : "hidden"}>
