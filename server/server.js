@@ -7,15 +7,13 @@ const reload = require("reload");
 const es6Renderer = require("express-es6-template-engine");
 const serialize = require("serialize-javascript");
 const cookieSession = require("cookie-session");
-const bodyParser = require("body-parser");
-const multer = require ("multer");
+const multer = require("multer");
 const upload = multer();
 
-const packageJson = require("../package.json");
 const keys = require("./config/keys");
 const authRoutes = require("./routes/auth-routes");
 const apiRoutes = require("./routes/api-routes");
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3000;
 const app = express();
 
 // Require models for syncing
@@ -46,13 +44,12 @@ app.use(apiRoutes);
 
 // view engine setup
 app.engine("html", es6Renderer);
-app.set("views", path.resolve(__dirname, "../build/"));
+app.set("views", path.join(__dirname, "../build"));
 app.set("view engine", "html");
 
 // Serve static files
 app.use(
-	packageJson.homepage,
-	express.static(path.join(__dirname, "..", "build"), {
+	express.static(path.join(__dirname, "../build"), {
 		index: false,
 	})
 );
