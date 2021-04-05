@@ -1,16 +1,22 @@
 # IDC-Eats
 ![Languages](https://img.shields.io/github/languages/count/mmeii/idc-eats) ![Language](https://img.shields.io/github/languages/top/mmeii/idc-eats) ![MySQL](https://img.shields.io/badge/dependency-mysql-blue) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) 
 
-This application randomly generates a restaurant for a user based on geolocation and preset user preferences. A MySQL database is used along with Passport, Framer-Motion, and Material-UI. 
+This application randomly generates a restaurant for a user based on geolocation and preset user preferences. A MySQL database is used along with Passport, Framer-Motion, and Material-UI along with the Yelp API.
 
-![Screenshot]
+
+![Desktop](./desktop.jpg)
+
+![Mobile](./mobile.jpeg)
+
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Table of Contents
 1.) [Scripts](#scripts)
 
-2.) [Contributing](#contributing)
+2.) [Credits](#credits)
+
+3.) [Contributing](#contributing)
 
 3.) [Questions/Contact](#questions/contact)
 
@@ -83,6 +89,29 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+## Credits
+
+The following references were made during the development of this project:
+
+[Yelp](https://www.yelp.com/developers)
+
+[MDN](https://developer.mozilla.org/en-US/)
+
+[React](https://reactjs.org)
+
+[Framer](https://www.framer.com/motion/)
+
+[MaterialUI](https://material-ui.com)
+
+[MySQL](https://dev.mysql.com/doc/)
+
+[Jankord](https://www.brettjankord.com/2020/09/21/how-to-inject-server-rendered-html-into-create-react-app-with-express/)
+
+[Passport](http://www.passportjs.org)
+
+[Formik](https://formik.org)
+
 
 ## Contributing
 
