@@ -1,7 +1,7 @@
 # IDC-Eats
 ![Languages](https://img.shields.io/github/languages/count/mmeii/idc-eats) ![Language](https://img.shields.io/github/languages/top/mmeii/idc-eats) ![MySQL](https://img.shields.io/badge/dependency-mysql-blue) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) 
 
-This application randomly generates a restaurant for a user based on geolocation and preset user preferences. A MySQL database is used along with Passport, Framer-Motion, and Material-UI along with the Yelp API.
+This application randomly generates a restaurant for a user based on geolocation and preset user preferences. A MySQL database is used along with Passport, Framer-Motion, and Material-UI as well as the Yelp API.
 
 
 ![Desktop](./desktop.jpg)
