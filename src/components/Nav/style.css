@@ -43,7 +43,7 @@
 .menu ul {
     float: right;
     height: 130px;
-    width: 120px;
+    width: auto;
     position: relative;
     right: 8px;
     top: 5px;
@@ -52,6 +52,9 @@
     text-align: left;
     box-shadow: 2px 2px 2px 2px #FBF5FB;
     border-radius: 10px;
+    border-style: solid;
+    border-color: #FBF5FB;
+    border-width: 1px;
     margin:auto;
     padding-top: 5px;
     padding: 0;
@@ -61,13 +64,19 @@
     padding: 15px;
     padding-bottom: 0;
     padding-right: 10px;
-    text-align: right;
+    text-align: left;
     font-family: 'Roboto', sans-serif;
 }
 
 a {
     color: #4E9DA6;
     font-size: 16px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.menu-link:hover {
+    color: #d92b04;
 }
 
 .fa-arrow-left {
