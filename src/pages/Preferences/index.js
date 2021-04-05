@@ -30,8 +30,14 @@ function Preferences({ category }) {
     event.preventDefault();
     var formEl = document.getElementById("preferencesForm");
     var formData = new FormData(formEl);
-    axios.post("/api/preferences", formData);
-    window.location.href = "/home";
+    axios
+      .post("/api/preferences", formData)
+      .then(response => {
+        window.location.href = "/home";
+      })
+      .catch(err =>  {
+        console.log(err);
+      });
   };
 
   return (
