@@ -38,7 +38,7 @@ export default function Nav() {
           <motion.div className="menu" variants={menu_variants}>
             <ul>
               <li>
-                <Link
+                <Link className="menu-link"
                   to="home"
                   onClick={() => {
                     window.location.href = "/home";
@@ -48,7 +48,7 @@ export default function Nav() {
                 </Link>
               </li>
               <li>
-                <Link
+                <Link className="menu-link"
                   to="preferences"
                   onClick={() => {
                     window.location.href = "/preferences";
@@ -58,7 +58,7 @@ export default function Nav() {
                 </Link>
               </li>
               <li>
-                <a
+                <a className="menu-link"
                   href="/auth/logout"
                   onClick={() => {
                     window.location.href = "/logout";
