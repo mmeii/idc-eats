@@ -194,6 +194,7 @@ router.post("/api/preferences", async (req, res) => {
 				});
 			}
 		}
+		res.send();
 	} catch (error) {
 		console.log(error);
 	}
