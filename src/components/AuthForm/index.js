@@ -47,7 +47,7 @@ const AuthForm = ({
 				setValMessage("Username must be greater than 6 characters");
 			} else if (password.length < 6) {
 				setValMessage("Password must be greater than 6 characters");
-			} else if ((password.match(/[!@#$%^&*()-_=+]/g) || []).length < 1) {
+			} else if ((password.match(/[!@#$%^&*()\-_=+]/g) || []).length < 1) {
 				setValMessage("Password must contain at least 1 special characters");
 			} else if ((password.match(/[A-Za-z]/g) || []).length < 2) {
 				setValMessage(
@@ -100,9 +100,12 @@ const AuthForm = ({
 						onClick={e => handleClick(e)}
 					/>
 				</Grid>
-				<h6 id="errorMsg">{window.message && !valMessage ? (
-					<Typography className={classes.error}>{window.message.message}</Typography>
-				) : null}
+				<h6 id="errorMsg">
+					{window.message && !valMessage ? (
+						<Typography className={classes.error}>
+							{window.message.message}
+						</Typography>
+					) : null}
 					{valMessage ? (
 						<Typography className={classes.error}>{valMessage}</Typography>
 					) : null}
@@ -117,7 +120,9 @@ const AuthForm = ({
 					<Button
 						className="loginButton"
 						label="Login with Google"
-						onClick={() => { window.location.href = "/auth/google" }}
+						onClick={() => {
+							window.location.href = "/auth/google";
+						}}
 					/>
 				</Grid>
 			</Grid>
